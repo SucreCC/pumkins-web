@@ -1,6 +1,9 @@
-# PumkinsFrontkit
+# angular-revealjs
+Adding Reveal.JS into your Angular TypeScript Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
+#### Video tutorial (how-to): https://www.youtube.com/watch?v=A48qPsNTWv8
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
 ## Development server
 
