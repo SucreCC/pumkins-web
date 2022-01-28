@@ -13,19 +13,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { BlogComponent } from './index/blog/blog.component';
-import { AboutComponent } from './index/about/about.component';
-import { BlogDetailComponent } from './index/blog/blog-detail/blog-detail.component';
+import { BlogComponent } from './blog/blog.component';
+import { AboutComponent } from './about/about.component';
+import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 
-import { ServiceblogService } from './index/blog/blog-service.service';
-import { RelayOnComponent } from './index/about/About-Components/relay-on/relay-on.component';
-import { TopContentComponent } from './index/about/About-Components/top-content/top-content.component';
+import { ServiceblogService } from './blog/blog-service.service';
+import { RelayOnComponent } from './about/About-Components/relay-on/relay-on.component';
+import { TopContentComponent } from './about/About-Components/top-content/top-content.component';
 
 
-import { BannerComponent } from './index/shared/banner/banner.component';
-import { BannerNavigationComponent } from './index/shared/banner-navigation/banner-navigation.component';
-import { FooterComponent } from './index/shared/footer/footer.component';
-import {BannerContentComponent} from "./index/shared/banner-content/banner-content.component";
+import { HeaderComponent } from './index/header/header.component';
+import { HeaderMenuComponent } from './index/header/header-menu/header-menu.component';
+import { FooterComponent } from './index/footer/footer.component';
+import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
 
 
 const COMPONENT =[
@@ -49,9 +49,9 @@ const COMPONENTS_NOROUNT = [
     BlogDetailComponent,
     RelayOnComponent,
     TopContentComponent,
-    BannerComponent,
-    BannerContentComponent,
-    BannerNavigationComponent,
+    HeaderComponent,
+    HeaderContentComponent,
+    HeaderMenuComponent,
     FooterComponent
   ],
   imports: [

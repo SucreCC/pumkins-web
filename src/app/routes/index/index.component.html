@@ -1,13 +1,14 @@
 <div id="main-wrapper">
 
-  <app-banner></app-banner>
+<!--  头部-->
+  <app-header></app-header>
 
   <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Container fluid  -->
     <!-- ============================================================== -->
     <div class="container-fluid">
-<!--       <app-banner-content></app-banner-content>-->
+      <!--       <app-header-content></app-header-content>-->
 
       <div class="blog-home2">
         <div>
@@ -15,7 +16,6 @@
           <router-outlet></router-outlet>
 
         </div>
-
 
 
       </div>
@@ -30,7 +30,10 @@
     <a class="bt-top btn btn-circle btn-lg btn-info" href="#top"><i class="ti-arrow-up"></i></a>
   </div>
 
- <app-blog></app-blog>
+<!--  中部-->
+  <app-blog></app-blog>
+
+<!--  底部-->
   <app-footer></app-footer>
 
 </div>
