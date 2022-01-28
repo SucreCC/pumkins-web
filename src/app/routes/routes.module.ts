@@ -57,8 +57,6 @@ const COMPONENTS_NOROUNT = [
   imports: [
     BrowserModule,
     RoutesRoutingModule,
-
-
     CommonModule,
     NgbModule,
     FormsModule,
