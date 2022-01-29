@@ -2,8 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {IndexComponent} from "./index/index.component";
-import {BlogComponent} from './blog/blog.component';
- import {AboutComponent} from './about/about.component';
+import {AboutComponent} from './about/about.component';
 
 const routes: Routes = [
   {
@@ -11,13 +10,13 @@ const routes: Routes = [
   },
 
   {
-    path: 'index', component: IndexComponent, data: {title: 'Index', name: 'Index'}
+    path: 'index', component: IndexComponent, data: {title: 'Index', name: 'Index'},
   },
+
+  { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
+
   {
-    path: 'blog', component: BlogComponent, data: {title: 'Blog', name: 'Blog'}
-  },
-  {
-    path: 'about', component: AboutComponent, data: {title: 'About' , name: 'About'}
+    path: 'about', component: AboutComponent, data: {title: 'About', name: 'About'}
   }
 ];
 

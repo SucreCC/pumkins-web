@@ -1,18 +1,73 @@
-<!--<div-->
-<!--  class="banner-innerpage"-->
-<!--  style="background-image: url(/assets/images/landingpage/banner-bg2.jpg)"-->
-<!--&gt;-->
-<!--  <div class="container">-->
-<!--    &lt;!&ndash; Row  &ndash;&gt;-->
-<!--    <div class="row justify-content-center">-->
-<!--      &lt;!&ndash; Column &ndash;&gt;-->
-<!--      <div class="col-lg-9 col-md-6 no-trans align-self-center text-center">-->
-<!--        <h1 class="title">ABOUT PAGE</h1>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; Column &ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="topbar" id="top">
+  <div class="header6">
+    <div class="container po-relative">
+
+      <!--导航栏菜单-->
+      <nav class="navbar navbar-expand-lg h6-nav-bar">
+        <a class="navbar-brand" [routerLink]="['/index']">
+          <img src="/assets/images/logos/white-text.png" alt="pumkins"/>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#h6-info"
+                aria-controls="h6-info" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="ti-menu"></span>
+        </button>
+
+        <div class="collapse navbar-collapse hover-dropdown font-14 ml-auto" id="h6-info">
+          <ul class="navbar-nav ml-auto  align-items-center">
+
+
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/index']">
+                Home
+              </a>
+            </li>
+
+            <!--路由/write 和 write 是不一样的，前面加/代表从最开始的路由进行匹配，不加的话代表从当前路径进行匹配-->
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['write']">
+                Write
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="btn btn-danger-gradiant font-14" target="_blank"
+                 href="https://www.wrappixel.com/free-wrapkit-angular-blog">
+                Login
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<!--图片样式1-->
+<div class="static-slider-head" style="background-image:url(/assets/images/landingpage/banner-bg.jpg)">
+  <div class="container">
+    <!-- Row  -->
+    <div class="row justify-content-center">
+      <!-- Column -->
+      <div class="col-lg-9 col-md-6 align-self-center text-center" data-aos="fade-up" data-aos-duration="1200">
+        <h1 class="title">Wrapkit Angular Blog</h1>
+        <h5 class="subtitle op-5">Want a blog app with ng-bootstrap ? Here is the fully workable blog app in which we
+          are giving add post, edit post and delete post.</h5>
+
+        <a routerLink="https://www.wrappixel.com/free-wrapkit-angular-blog"
+           class="btn btn-md m-t-30 btn-danger-gradiant font-14">Download Free</a>
+      </div>
+      <!-- Column -->
+    </div>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
+
 
 <!-- Row  -->
 <div class="container spacer">

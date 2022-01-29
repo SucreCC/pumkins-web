@@ -1,70 +1,63 @@
-import { NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { RoutesRoutingModule } from './routes-routing.module';
-
-import { WelcomeComponent } from "./welcome/welcome.component";
-import { IndexComponent } from "./index/index.component";
-
-
-import { CommonModule } from '@angular/common';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
-import { BlogComponent } from './blog/blog.component';
-import { AboutComponent } from './about/about.component';
-import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
-
-import { ServiceblogService } from './blog/blog-service.service';
-import { RelayOnComponent } from './about/About-Components/relay-on/relay-on.component';
-import { TopContentComponent } from './about/About-Components/top-content/top-content.component';
+import {NgModule} from '@angular/core';
+import {RoutesRoutingModule} from './routes-routing.module';
+import {CommonModule} from '@angular/common';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 
-import { HeaderComponent } from './index/header/header.component';
-import { HeaderMenuComponent } from './index/header/header-menu/header-menu.component';
-import { FooterComponent } from './index/footer/footer.component';
+import {WelcomeComponent} from "./welcome/welcome.component";
+import {IndexComponent} from "./index/index.component";
+
+import {AboutComponent} from './about/about.component';
+import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
+
+import {ServiceblogService} from './blog/blog-service.service';
+import {RelayOnComponent} from './about/About-Components/relay-on/relay-on.component';
+import {TopContentComponent} from './about/About-Components/top-content/top-content.component';
+
+
+import {HeaderComponent} from './index/header/header.component';
+import {HeaderMenuComponent} from './index/header/header-menu/header-menu.component';
+import {FooterComponent} from './index/footer/footer.component';
 import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
 
 import {ShareModule} from "../share/share.module";
 
 
-const COMPONENT =[
+const COMPONENT = [
   WelcomeComponent,
-  IndexComponent
+  IndexComponent,
+  IndexComponent,
+  AboutComponent,
+  BlogDetailComponent,
+  RelayOnComponent,
+  TopContentComponent,
+  HeaderComponent,
+  HeaderContentComponent,
+  HeaderMenuComponent,
+  FooterComponent
 ];
 
-// 用于存放共享组件
-const COMPONENTS_NOROUNT = [
-
+const COMPONENT_IMPORT = [
+  RoutesRoutingModule,
+  CommonModule,
+  NgbModule,
+  FormsModule,
+  ReactiveFormsModule,
+  HttpClientModule,
+  ShareModule
 ]
+
+// 用于存放共享组件
+const COMPONENTS_NOROUNT = []
 
 @NgModule({
   declarations: [
-    COMPONENT,
-
-
-    IndexComponent,
-    BlogComponent,
-    AboutComponent,
-    BlogDetailComponent,
-    RelayOnComponent,
-    TopContentComponent,
-    HeaderComponent,
-    HeaderContentComponent,
-    HeaderMenuComponent,
-    FooterComponent
+    ...COMPONENT,
   ],
   imports: [
-    BrowserModule,
-    RoutesRoutingModule,
-    CommonModule,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ShareModule
+    ...COMPONENT_IMPORT
   ],
   providers: [ServiceblogService],
   exports: [
@@ -72,4 +65,5 @@ const COMPONENTS_NOROUNT = [
   ],
   entryComponents: []
 })
-export class RoutesModule { }
+export class RoutesModule {
+}

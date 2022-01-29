@@ -62,6 +62,7 @@ export class EditorMarkdownComponent implements OnInit {
    */
   syncModel(str: any): void {
     this.markdown.setValue(str);
+
   }
 
   /**
@@ -79,5 +80,4 @@ export class EditorMarkdownComponent implements OnInit {
     obj.html = this.editorMdDirective.getHtml();
     return obj;
   }
-
 }
