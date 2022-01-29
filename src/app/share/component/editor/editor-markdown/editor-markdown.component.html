@@ -1,0 +1,9 @@
+<form [formGroup]="markdownForm">
+  <div id="md"
+       appEditorMd
+       [editormdConfig]="conf"
+       class="editor-md-content"
+       (onEditorChange)="syncModel($event)">
+    <textarea formControlName="markdown" style="display: block;"></textarea>
+  </div>
+</form>

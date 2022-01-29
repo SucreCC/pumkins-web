@@ -27,6 +27,8 @@ import { HeaderMenuComponent } from './index/header/header-menu/header-menu.comp
 import { FooterComponent } from './index/footer/footer.component';
 import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
 
+import {ShareModule} from "../share/share.module";
+
 
 const COMPONENT =[
   WelcomeComponent,
@@ -62,6 +64,7 @@ const COMPONENTS_NOROUNT = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ShareModule
   ],
   providers: [ServiceblogService],
   exports: [
