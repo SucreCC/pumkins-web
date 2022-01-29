@@ -41,9 +41,14 @@
               "node_modules/reveal.js/plugin/highlight/monokai.css",
 
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/scss/style.scss"
+              "src/assets/scss/style.scss",
+
+              "src/assets/editor.md/css/editormd.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "src/assets/editor.md/editormd.min.js"
+            ]
           },
           "configurations": {
             "production": {
