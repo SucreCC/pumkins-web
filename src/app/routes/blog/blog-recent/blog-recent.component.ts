@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Blog } from './data/blog-type';
-import { ServiceblogService } from './data/blog-service.service';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {Blog} from "../data/blog-type";
+import {ServiceblogService} from "../data/blog-service.service";
+import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css'],
+  selector: 'app--blog-recent',
+  templateUrl: './blog-recent.component.html',
+  styleUrls: ['./blog-recent.component.scss']
 })
-export class BlogComponent implements OnInit {
+export class BlogRecentComponent implements OnInit {
+
   blogsDetail: Blog[] = [];
 
   constructor(

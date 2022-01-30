@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EditorConfig} from "../../../share/component/editor/editor-config/editor-config";
-import {ServiceblogService} from "../blog-service.service";
+import {ServiceblogService} from "../data/blog-service.service";
 
 @Component({
   selector: 'app--blog-write',

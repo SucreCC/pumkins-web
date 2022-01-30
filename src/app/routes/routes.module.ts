@@ -12,7 +12,7 @@ import {IndexComponent} from "./index/index.component";
 import {AboutComponent} from './about/about.component';
 import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
 
-import {ServiceblogService} from './blog/blog-service.service';
+import {ServiceblogService} from './blog/data/blog-service.service';
 import {RelayOnComponent} from './about/About-Components/relay-on/relay-on.component';
 import {TopContentComponent} from './about/About-Components/top-content/top-content.component';
 
