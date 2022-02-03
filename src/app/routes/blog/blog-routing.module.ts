@@ -12,11 +12,12 @@ const routes: Routes = [
     component: BlogComponent,
     data: {title: 'Blog', name: 'Blog'},
     children: [
-      { path: '', redirectTo: 'recent', pathMatch: 'full' },
+      {path: '', redirectTo: 'recent', pathMatch: 'full'},
       {path: 'recent', component: BlogRecentComponent, data: {title: 'BlogRecent', name: 'BlogRecent'}},
-      {path: 'write', component: BlogWriteComponent, data: {title: 'BlogWrite', name: 'BlogWrite'}}
     ]
   },
+
+  {path: 'write', component: BlogWriteComponent, data: {title: 'BlogWrite', name: 'BlogWrite'}}
 
 ];
 

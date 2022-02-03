@@ -43,7 +43,9 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/scss/style.scss",
 
-              "src/assets/editor.md/css/editormd.css"
+              "src/assets/editor.md/css/editormd.css",
+
+              "node_modules/vditor/src/assets/scss/index.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
