@@ -21,6 +21,8 @@
     "@ng-bootstrap/ng-bootstrap": "^8.0.1",
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.0",
+    "ngx-markdown": "^13.0.0",
+    "prismjs": "^1.26.0",
     "reveal.js": "^4.0.2",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

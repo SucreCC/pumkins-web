@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EditorConfig} from "../../../share/component/editor/editor-config/editor-config";
 import {ServiceblogService} from "../data/blog-service.service";
+import { MarkdownService } from 'ngx-markdown';
 
 import Vditor from 'vditor';
 
@@ -17,6 +18,13 @@ export class BlogWriteComponent implements OnInit {
   //   this.markdown = '测试内容';
   //
   // }
+
+
+
+  constructor(private markdownService: MarkdownService) {
+  }
+
+
   //
   // ngOnInit(): void {
   // }
