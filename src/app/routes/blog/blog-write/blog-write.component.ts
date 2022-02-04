@@ -1,67 +1,75 @@
 import {Component, OnInit} from '@angular/core';
-import {EditorConfig} from "../../../share/component/editor/editor-config/editor-config";
-import {ServiceblogService} from "../data/blog-service.service";
-import { MarkdownService } from 'ngx-markdown';
-
+// import { CacheService } from '@delon/cache';
 import Vditor from 'vditor';
+
+class Blog {
+  id: number = 0;
+  image: string = '';
+  heading: string = '';
+  subHeading: string = '';
+  blogDate: string = '';
+  blogDetail: string = '';
+
+  public constructor() {
+    this.initProperties();
+  }
+
+  initProperties() {
+    this.blogDate = new Date().toDateString();
+  }
+}
 
 @Component({
   selector: 'app--blog-write',
   templateUrl: './blog-write.component.html',
   styleUrls: ['./blog-write.component.scss']
 })
+
 export class BlogWriteComponent implements OnInit {
 
-  // constructor(public service: ServiceblogService) {
-  //   this.service.showEdit = false;
-  //   this.config = new EditorConfig({height: 'calc(100vh - 71px)'});
-  //   this.markdown = '测试内容';
-  //
-  // }
-
-
-
-  constructor(private markdownService: MarkdownService) {
-  }
-
-
-  //
-  // ngOnInit(): void {
-  // }
-  //
-  // /**
-  //  * editor的配置参数信息
-  //  */
-  // config: EditorConfig;
-  //
-  // /**
-  //  * markdown的内容
-  //  */
-  // markdown: string;
-
-
   vditor: Vditor;
+  // vditor 初始化时的配置
+  option: IOptions = {
+    mode: 'sv',
+    height: 'auto',
+    width: "100%",
+    theme: 'classic',
+    toolbarConfig: {
+      pin: true,
+    },
+    preview: {
+      markdown: {
+        autoSpace: true,
+        toc: true,
+        mark: true,
+      }
+    },
+    cache: {
+      enable: true,
+    },
+    after: () => {
+      this.blog = new Blog()
+      this.blogDetail = 'Hello, Vditor + Angular!';
+      this.vditor.setValue(this.blog.blogDetail);
+    },
+    input (md) {
+      console.log("111")
+    },
+  };
+
+  blog: Blog;
+  heading: string = '';
+  blogDetail: string = '';
+
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.vditor = new Vditor('vditor', {
-      mode:'sv',
-      height: 'auto',
-      icon:'material',
-      theme:'classic',
-      toolbarConfig: {
-        pin: true,
-      },
-      cache: {
-        enable: false,
-      },
-      after: () => {
-        this.vditor.setValue('Hello, Vditor + Angular!');
-      }
-    });
+    this.vditor = new Vditor('vditor', this.option);
   }
 
-  coverToJson(){
-    this.vditor.exportJSON("")
+  save() {
+    this.blogDetail = this.vditor.html2md(this.vditor.getHTML())
+    this.blog.blogDetail = this.blogDetail;
   }
-
 }
