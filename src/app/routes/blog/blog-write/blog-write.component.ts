@@ -46,6 +46,10 @@ export class BlogWriteComponent implements OnInit {
     },
     cache: {
       enable: true,
+      after(markdown: string) {
+      // 用于缓存markdown文件
+      }
+
     },
     after: () => {
       this.blog = new Blog()
@@ -53,7 +57,7 @@ export class BlogWriteComponent implements OnInit {
       this.vditor.setValue(this.blog.blogDetail);
     },
     input (md) {
-      console.log("111")
+    //  用户每输入一个字符时进行的操作
     },
   };
 
