@@ -5,35 +5,35 @@ Email: niravjoshi87@gmail.com
 File: scss
 */
 @import 'variable';
-/******************* 
-This is the font import from the google api 
+/*******************
+This is the font import from the google api
 *******************/
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800');
 @font-face {
   font-family: 'Calafia-Regular';
-  src: url('font/Calafia-Regular.eot?#iefix') format('embedded-opentype'),  
+  src: url('font/Calafia-Regular.eot?#iefix') format('embedded-opentype'),
        url('font/Calafia-Regular.otf')  format('opentype'),
-       url('font/Calafia-Regular.woff') format('woff'), 
-         url('font/Calafia-Regular.ttf')  format('truetype'), 
+       url('font/Calafia-Regular.woff') format('woff'),
+         url('font/Calafia-Regular.ttf')  format('truetype'),
          url('font/Calafia-Regular.svg#Calafia-Regular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
-/******************* 
-Global Styles 
+/*******************
+Global Styles
 *******************/
 
 * {
-    outline: none;  
+    outline: none;
 }
- 
+
 body {
     background: $bodycolor;
     font-family: $bodyfont;
-    margin: 0; 
+    margin: 0;
     overflow-x: hidden;
     color: $bodytext;
-    font-weight: 300; 
+    font-weight: 300;
 }
 
 html {
@@ -73,7 +73,7 @@ a.white-link{
 
 html body .mdi:before,
 html body .mdi-set {
-    line-height: initial; 
+    line-height: initial;
 }
 
 
@@ -592,11 +592,11 @@ Background Colors
 }
 .bg-info-gradiant{
     @include linear-gradient (to right, $info 0%, $primary 100%);
-} 
+}
 .bg-danger-gradiant{
-    @include linear-gradient (to right, $danger 0%, $orange 100%); 
-} 
-html body { 
+    @include linear-gradient (to right, $danger 0%, $orange 100%);
+}
+html body {
     .bg-megna {
         background-color: $megna;
     }
@@ -863,7 +863,7 @@ ul.list-style-none {
         }
     }
 }
-  
+
 
 /*******************
 dropdown-item
@@ -988,18 +988,18 @@ Buttons
 }
 .btn-secondary,
 .btn-secondary.disabled {
-    
+
     transition: 0.2s ease-in;
     background-color: $white;
-    color: $bodytext; 
+    color: $bodytext;
     &:hover{
-        
+
         color:$white!important;
     }
     &.active, &:active, &:focus{
         color:$white!important;
         background:$dark;
-        border-color:$dark; 
+        border-color:$dark;
     }
 }
 
@@ -1007,14 +1007,14 @@ Buttons
 .btn-primary.disabled {
     background: $primary;
     border: 1px solid $primary;
-    
+
     transition: 0.2s ease-in;
     &:hover{
         background: $primary-dark;
         border: 1px solid $primary-dark;
     }
     &.active, &:active, &:focus{
-        background: $primary-dark;   
+        background: $primary-dark;
     }
 }
 .btn-themecolor,
@@ -1024,13 +1024,13 @@ Buttons
     border: 1px solid $themecolor;
     &:hover{
         background: $themecolor-dark;
-        
+
         border: 1px solid $themecolor-dark;
     }
     &.active, &:active, &:focus{
         background: $themecolor-dark;
     }
-    
+
 }
 .btn-success,
 .btn-success.disabled {
@@ -1042,7 +1042,7 @@ Buttons
     }
     &.active, &:active, &:focus{
         background: $success-dark;
-        
+
     }
 }
 
@@ -1050,16 +1050,16 @@ Buttons
 .btn-info.disabled {
     background: $info;
     border: 1px solid $info;
-    
+
     transition: 0.2s ease-in;
     &:hover{
         background: $info-dark;
         border: 1px solid $info-dark;
-        
+
     }
     &.active, &:active, &:focus{
         background: $info-dark;
-        
+
     }
 }
 
@@ -1068,17 +1068,17 @@ Buttons
     background: $warning;
     color:$white;
     border: 1px solid $warning;
-    
+
     &:hover{
         background: $warning-dark;
         color:$white;
-        
+
         border: 1px solid $warning-dark;
     }
     &.active, &:active, &:focus{
         background: $warning-dark;
         color:$white;
-        
+
     }
 }
 
@@ -1086,16 +1086,16 @@ Buttons
 .btn-danger.disabled {
     background: $danger;
     border: 1px solid $danger;
-    
+
     transition: 0.2s ease-in;
     &:hover{
         background: $danger-dark;
-        
+
         border: 1px solid $danger-dark;
     }
     &.active, &:active, &:focus{
         background: $danger-dark;
-        
+
     }
 }
 .btn-inverse,
@@ -1105,7 +1105,7 @@ Buttons
      color: $white;
     &:hover{
         background: $inverse-dark;
-        
+
         color: $white;
         border: 1px solid $inverse-dark;
     }
@@ -1120,7 +1120,7 @@ Buttons
     border: 1px solid $red;
     color: $white;
     &:hover {
-        
+
         border: 1px solid $red-dark;
         background: $red-dark;
     }
@@ -1132,10 +1132,10 @@ Buttons
 .btn-success-gradiant{
     @include linear-gradient (to right, $success 0%, $success-dark 100%);
     border:0px;
-    
+
     &:hover{
         @include linear-gradient (to right, $success-dark 0%, $success 100%);
-        
+
     }
     &.active, &:active, &:focus{
         box-shadow: 0px;
@@ -1146,10 +1146,10 @@ Buttons
 .btn-danger-gradiant{
     @include linear-gradient (to right, $danger 0%, $orange 100%);
     border:0px;
-    
+
     &:hover{
         @include linear-gradient (to right, $orange 0%, $danger 100%);
-        
+
     }
     &.active, &:active, &:focus{
         box-shadow: 0px;
@@ -1160,15 +1160,15 @@ Buttons
 .btn-info-gradiant{
     @include linear-gradient (to right, $info 0%, $primary 100%);
     border:0px;
-    
+
     &:hover{
         @include linear-gradient (to right, $primary 0%, $info 100%);
-        
+
     }
     &.active, &:active, &:focus{
         box-shadow: 0px;
         opacity: 1;
-    } 
+    }
 }
 
 .btn-outline-secondary {
@@ -1178,7 +1178,7 @@ Buttons
     &:hover,
     &:focus,
     &.focus {
-        
+
     }
     &.active, &:active, &:focus{
         background: $dark;
@@ -1206,7 +1206,7 @@ Buttons
     color: $success;
     background-color: transparent;
     border-color:$success;
-    
+
     transition: 0.2s ease-in;
     &:hover,
     &:focus,
@@ -1214,7 +1214,7 @@ Buttons
         background: $success;
         border-color:$success;
         color: $white;
-        
+
     }
     &.active, &:active, &:focus{
         background: $success-dark;
@@ -1225,7 +1225,7 @@ Buttons
     color: $info;
     background-color: transparent;
     border-color:$info;
-    
+
     transition: 0.2s ease-in;
     &:hover,
     &:focus,
@@ -1233,7 +1233,7 @@ Buttons
         background: $info;
         border-color:$info;
         color: $white;
-        
+
     }
     &.active, &:active, &:focus{
         background: $info-dark;
@@ -1244,7 +1244,7 @@ Buttons
     color: $warning;
     background-color: transparent;
     border-color:$warning;
-    
+
     transition: 0.2s ease-in;
     &:hover,
     &:focus,
@@ -1252,7 +1252,7 @@ Buttons
         background: $warning;
         border-color:$warning;
         color: $white;
-        
+
     }
     &.active, &:active, &:focus{
         background: $warning-dark;
@@ -1263,7 +1263,7 @@ Buttons
     color: $danger;
     background-color: transparent;
     border-color:$danger;
-    
+
     transition: 0.2s ease-in;
     &:hover,
     &:focus,
@@ -1271,7 +1271,7 @@ Buttons
         background: $danger;
         border-color:$danger;
         color: $white;
-        
+
     }
     &.active, &:active, &:focus{
         background: $danger-dark;
@@ -1287,7 +1287,7 @@ Buttons
         background: $red;
         border-color:$red;
         color: $white;
-        
+
     }
     &.active, &:active, &:focus{
         background: $danger-dark;
@@ -1394,7 +1394,7 @@ Buttons
 .open > .dropdown-toggle.btn-inverse {
     background-color: $inverse-dark;
     border: 1px solid $inverse-dark;
-   
+
 }
 
 .btn-red:hover,
@@ -1414,7 +1414,7 @@ Buttons
     span.btn-devider{
         display: inline-block;
         padding-left: 10px;
-        
+
     }
 }
 
@@ -1484,7 +1484,7 @@ Buttons
     top: -1px;
     bottom: 0;
     right: 35px;
-    
+
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
 }
@@ -1565,4 +1565,4 @@ Buttons
 
 .hidden-xl-down {
   display: none !important;
-}   
+}

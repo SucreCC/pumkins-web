@@ -1,13 +1,46 @@
-<!--<div class="markdown-editor">-->
-<!--  <editor-markdown [conf]="config" [oldMarkdownContent]="markdown"></editor-markdown>-->
-<!--</div>-->
+<div>
+  <div class="markdown-header">
+
+    <div style="margin-top:10px">
+      <div style="display: inline; text-align: center; margin-left:20px">
+        <a class="navbar-brand" style="color:black" [routerLink]="['/blog']"> < 文章管理 </a>
+      </div>
+
+      <div class="markdown-write-div" style="display: inline; width: 100% ;margin-left: 10px">
+                <input maxlength="100" style="width: 1286px ; height:36px; border-radius: 20px; border: 0.5px solid darkgray" type="text" placeholder="请输入文章标题" [ngModel]="heading">
+      </div>
+
+      <div class="btn btn-outline-secondary font-14" style="display: inline ; margin-left: 20px; border-radius: 20px;"
+           (click)="save()">保存草稿
+      </div>
+
+      <div class="btn btn-danger-gradiant font-14" style="display: inline ; margin-left: 20px; border-radius: 20px;">
+        发布文章
+      </div>
+    </div>
 
 
-<div id="vditor"></div>
+    <nav class="navbar navbar-expand-lg h6-nav-bar">
 
 
-<markdown
-  lineHighlight
-  [line]="'6, 10-16'"
-  [lineOffset]="5"
-  [src]="'/assets/Spring.md'"></markdown>
+      <!--      <a class="navbar-brand" [routerLink]="['recent']">-->
+      <!--        <img src="/assets/images/logos/white-text.png" alt="pumkins"/>-->
+      <!--      </a>-->
+
+      <!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#h6-info"-->
+      <!--              aria-controls="h6-info" aria-expanded="false" aria-label="Toggle navigation">-->
+      <!--        <span class="ti-menu"></span>-->
+      <!--      </button>-->
+
+      <!--      <li class="nav-item">-->
+      <!--        <a class="btn btn-danger-gradiant font-14" target="_blank"-->
+      <!--           href="https://www.wrappixel.com/free-wrapkit-angular-blog">-->
+      <!--          save-->
+      <!--        </a>-->
+      <!--      </li>-->
+
+    </nav>
+  </div>
+  <div class="markdown-write-body" id="vditor"></div>
+</div>
+
