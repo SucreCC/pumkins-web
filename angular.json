@@ -43,7 +43,6 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/scss/style.scss",
 
-              "src/assets/editor.md/css/editormd.css",
 
               "node_modules/vditor/src/assets/scss/index.scss",
 
@@ -56,8 +55,6 @@
               "node_modules/jquery/dist/jquery.js",
 
               "node_modules/marked/lib/marked.js",
-
-              "src/assets/editor.md/editormd.min.js",
 
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
