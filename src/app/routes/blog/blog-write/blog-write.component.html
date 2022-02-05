@@ -7,7 +7,7 @@
       </div>
 
       <div class="markdown-write-div" style="display: inline; width: 100% ;margin-left: 10px">
-                <input maxlength="100" style="width: 1286px ; height:36px; border-radius: 20px; border: 0.5px solid darkgray" type="text" placeholder="请输入文章标题" [ngModel]="heading">
+                <input [ngModel]="heading" required maxlength="100" style="width: 1286px ; height:36px; border-radius: 20px; border: 0.5px solid darkgray" type="text" placeholder="请输入文章标题" >
       </div>
 
       <div class="btn btn-outline-secondary font-14" style="display: inline ; margin-left: 20px; border-radius: 20px;"
