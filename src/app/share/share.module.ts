@@ -1,11 +1,9 @@
 import {NgModule} from '@angular/core';
-import {EditorMdDirective} from './component/editor/editor-directive/Editor-md-directive';
-import {EditorMarkdownComponent} from "./component/editor/editor-markdown/editor-markdown.component";
 import {FormsModule} from '@angular/forms';
 
-const DIRECTIVES: any = [EditorMdDirective];
+const DIRECTIVES: any = [];
 
-const COMPONENTS: any = [EditorMarkdownComponent];
+const COMPONENTS: any = [];
 
 const COMPONENTS_NOROUNT: any = []
 
