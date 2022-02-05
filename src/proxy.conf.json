@@ -1,0 +1,6 @@
+{
+  "/pumkins": {
+    "target": "http://127.0.0.1:14000",
+    "secure": false
+  }
+}
