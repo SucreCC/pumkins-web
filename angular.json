@@ -31,21 +31,27 @@
             "inlineStyleLanguage": "css",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
+              "src/theme.less",
               "src/styles.css",
               "node_modules/reveal.js/dist/reveal.css",
               "node_modules/reveal.js/dist/reset.css",
               "node_modules/reveal.js/dist/theme/white.css",
-              "node_modules/reveal.js/plugin/highlight/monokai.css",
 
+              "node_modules/reveal.js/plugin/highlight/monokai.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+
+
               "src/assets/scss/style.scss",
 
-
               "node_modules/vditor/src/assets/scss/index.scss",
-
               "node_modules/prismjs/themes/prism-okaidia.css",
               "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",
               "node_modules/prismjs/plugins/command-line/prism-command-line.css",
