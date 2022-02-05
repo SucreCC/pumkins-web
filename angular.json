@@ -111,7 +111,8 @@
               "browserTarget": "pumkins-frontkit:build:production"
             },
             "development": {
-              "browserTarget": "pumkins-frontkit:build:development"
+              "browserTarget": "pumkins-frontkit:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
