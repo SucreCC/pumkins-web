@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-// import { CacheService } from '@delon/cache';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import Vditor from 'vditor';
 import {URLS} from "../../../share";
 
@@ -28,7 +27,7 @@ class Blog {
   styleUrls: ['./blog-write.component.scss']
 })
 
-export class BlogWriteComponent implements OnInit {
+export class BlogWriteComponent implements OnInit , OnDestroy {
 
   vditor: Vditor;
   // vditor 初始化时的配置
@@ -47,32 +46,33 @@ export class BlogWriteComponent implements OnInit {
         mark: true,
       }
     },
-    cache: {
-      enable: true,
-      after(markdown: string) {
-        // 用于缓存markdown文件
-      }
-
-    },
     after: () => {
-      this.blog = new Blog()
-      this.blogDetail = 'Hello, Vditor + Angular!';
-      this.vditor.setValue(this.blog.blogDetail);
+      this.vditor.setValue(this.blogDetail);
     },
     input(md) {
-      //  用户每输入一个字符时进行的操作
+      localStorage.setItem("oldMarkdown", md);
     },
   };
 
   blog: Blog;
   heading: string = '';
-  blogDetail: string = '';
+  blogDetail: any = '';
 
   constructor(public http: _HttpClient) {
   }
 
   ngOnInit(): void {
     this.vditor = new Vditor('vditor', this.option);
+
+    // 保证刷新时缓存还在
+    if (localStorage.getItem("oldMarkdown") != null){
+      this.blogDetail = localStorage.getItem("oldMarkdown")
+    }
+  }
+
+  ngOnDestroy(): void {
+    // 离开本页面时清除缓存
+    localStorage.removeItem("oldMarkdown");
   }
 
   save() {
@@ -80,10 +80,7 @@ export class BlogWriteComponent implements OnInit {
     this.blog.blogDetail = this.blogDetail;
     this.http.post(URLS.saveBlog.url, this.blog).subscribe(res => {
       if (res.data.status === 0) {
-        alert("1111")
       }
     })
   }
-
-
 }
