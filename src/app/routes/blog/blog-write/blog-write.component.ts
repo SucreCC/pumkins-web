@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 // import { CacheService } from '@delon/cache';
 import Vditor from 'vditor';
+import {URLS} from "../../../share";
+
+import {_HttpClient} from '@delon/theme';
 
 class Blog {
   id: number = 0;
@@ -47,7 +50,7 @@ export class BlogWriteComponent implements OnInit {
     cache: {
       enable: true,
       after(markdown: string) {
-      // 用于缓存markdown文件
+        // 用于缓存markdown文件
       }
 
     },
@@ -56,8 +59,8 @@ export class BlogWriteComponent implements OnInit {
       this.blogDetail = 'Hello, Vditor + Angular!';
       this.vditor.setValue(this.blog.blogDetail);
     },
-    input (md) {
-    //  用户每输入一个字符时进行的操作
+    input(md) {
+      //  用户每输入一个字符时进行的操作
     },
   };
 
@@ -65,7 +68,7 @@ export class BlogWriteComponent implements OnInit {
   heading: string = '';
   blogDetail: string = '';
 
-  constructor() {
+  constructor(public http: _HttpClient) {
   }
 
   ngOnInit(): void {
@@ -75,5 +78,12 @@ export class BlogWriteComponent implements OnInit {
   save() {
     this.blogDetail = this.vditor.html2md(this.vditor.getHTML())
     this.blog.blogDetail = this.blogDetail;
+    this.http.post(URLS.saveBlog.url, this.blog).subscribe(res => {
+      if (res.data.status === 0) {
+        alert("1111")
+      }
+    })
   }
+
+
 }

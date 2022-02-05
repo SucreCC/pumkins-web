@@ -9,7 +9,8 @@ export function genUrl(url: string, name?: string) {
 }
 
 export const URLS: any = {
-  employeeList: genUrl('/getUrlName', '获取url名称'),
+//  blog
+  saveBlog:genUrl('/blog/save','save blog')
 };
 
 
