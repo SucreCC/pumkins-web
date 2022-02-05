@@ -6,18 +6,19 @@ import {_HttpClient} from '@delon/theme';
 
 class Blog {
   id: number = 0;
-  image: string = '';
-  heading: string = '';
-  subHeading: string = '';
-  blogDate: string = '';
-  blogDetail: any = '';
+  img: string = '';
+  title: string = '';
+  blogDescribe: string = '';
+  createDate: string = '';
+  updateDate: string = '';
+  content: any = '';
 
   public constructor() {
     this.initProperties();
   }
 
   initProperties() {
-    this.blogDate = new Date().toDateString();
+    this.createDate = new Date().toDateString();
   }
 }
 
@@ -27,7 +28,7 @@ class Blog {
   styleUrls: ['./blog-write.component.scss']
 })
 
-export class BlogWriteComponent implements OnInit , OnDestroy {
+export class BlogWriteComponent implements OnInit, OnDestroy {
 
   vditor: Vditor;
   // vditor 初始化时的配置
@@ -47,15 +48,15 @@ export class BlogWriteComponent implements OnInit , OnDestroy {
       }
     },
     after: () => {
-      this.vditor.setValue(this.blogDetail);
+      this.vditor.setValue(this.content);
     },
     input(md) {
       localStorage.setItem("oldMarkdown", md);
     },
   };
 
-  heading: string = '';
-  blogDetail: any = '';
+  title: string = '';
+  content: any = '';
 
   constructor(public http: _HttpClient) {
   }
@@ -64,8 +65,8 @@ export class BlogWriteComponent implements OnInit , OnDestroy {
     this.vditor = new Vditor('vditor', this.option);
 
     // 保证刷新时缓存还在
-    if (localStorage.getItem("oldMarkdown") != null){
-      this.blogDetail = localStorage.getItem("oldMarkdown")
+    if (localStorage.getItem("oldMarkdown") != null) {
+      this.content = localStorage.getItem("oldMarkdown")
     }
   }
 
@@ -75,10 +76,10 @@ export class BlogWriteComponent implements OnInit , OnDestroy {
   }
 
   save() {
-    this.blogDetail = this.vditor.html2md(this.vditor.getHTML())
+    this.content = this.vditor.html2md(this.vditor.getHTML())
     const blog = new Blog;
-    blog.blogDetail = this.blogDetail;
-    blog.heading = this.heading;
+    blog.content = this.content;
+    blog.title = this.title;
 
     this.http.post(URLS.saveBlog.url, blog).subscribe(res => {
       if (res.data.status === 0) {
