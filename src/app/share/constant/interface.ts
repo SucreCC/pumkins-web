@@ -2,10 +2,10 @@
  * 常量
  */
 const isMock = false;
-const apiPrefix = isMock ? '' : 'frontkit/service';
+
 
 export function genUrl(url: string, name?: string) {
-  return {url: apiPrefix + url, name};
+  return {url: url, name};
 }
 
 export const URLS: any = {

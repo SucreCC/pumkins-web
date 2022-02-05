@@ -10,7 +10,7 @@ class Blog {
   heading: string = '';
   subHeading: string = '';
   blogDate: string = '';
-  blogDetail: string = '';
+  blogDetail: any = '';
 
   public constructor() {
     this.initProperties();
@@ -54,7 +54,6 @@ export class BlogWriteComponent implements OnInit , OnDestroy {
     },
   };
 
-  blog: Blog;
   heading: string = '';
   blogDetail: any = '';
 
@@ -77,8 +76,11 @@ export class BlogWriteComponent implements OnInit , OnDestroy {
 
   save() {
     this.blogDetail = this.vditor.html2md(this.vditor.getHTML())
-    this.blog.blogDetail = this.blogDetail;
-    this.http.post(URLS.saveBlog.url, this.blog).subscribe(res => {
+    const blog = new Blog;
+    blog.blogDetail = this.blogDetail;
+    blog.heading = this.heading;
+
+    this.http.post(URLS.saveBlog.url, blog).subscribe(res => {
       if (res.data.status === 0) {
       }
     })
