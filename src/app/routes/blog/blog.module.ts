@@ -11,6 +11,8 @@ import {BlogRoutingModule} from "./blog-routing.module";
 import {BlogComponent} from "./blog.component";
 import {BlogRecentComponent} from "./blog-recent/blog-recent.component";
 import {MarkdownModule, MarkedOptions} from "ngx-markdown";
+import {NzInputModule} from "ng-zorro-antd/input";
+
 
 
 
@@ -28,7 +30,8 @@ const COMPONENT_IMPORT = [
   ReactiveFormsModule,
   HttpClientModule,
   ShareModule,
-  BlogRoutingModule
+  BlogRoutingModule,
+  NzInputModule,
 ]
 
 // 用于存放共享组件
@@ -38,21 +41,22 @@ const COMPONENTS_NOROUNT = []
   declarations: [
     ...COMPONENT,
   ],
-    imports: [
-        ...COMPONENT_IMPORT,
-      MarkdownModule.forRoot({
-        loader: HttpClient,
-        markedOptions: {
-          provide: MarkedOptions,
-          useValue: {
-            gfm: true,
-            breaks: false,
-            pedantic: false,
-            smartLists: true,
-            smartypants: false,
-          },
-      }})
-    ],
+  imports: [
+    ...COMPONENT_IMPORT,
+    MarkdownModule.forRoot({
+      loader: HttpClient,
+      markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          gfm: true,
+          breaks: false,
+          pedantic: false,
+          smartLists: true,
+          smartypants: false,
+        },
+      }
+    }),
+  ],
   providers: [ServiceblogService],
   exports: [],
   entryComponents: []

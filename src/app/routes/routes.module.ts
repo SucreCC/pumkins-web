@@ -23,6 +23,7 @@ import {FooterComponent} from './index/footer/footer.component';
 import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
 
 import {ShareModule} from "../share/share.module";
+import {NzNotificationModule} from "ng-zorro-antd/notification";
 
 
 const COMPONENT = [
@@ -46,7 +47,8 @@ const COMPONENT_IMPORT = [
   FormsModule,
   ReactiveFormsModule,
   HttpClientModule,
-  ShareModule
+  ShareModule,
+  NzNotificationModule
 ]
 
 // 用于存放共享组件
