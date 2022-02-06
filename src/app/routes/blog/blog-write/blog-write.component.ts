@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import Vditor from 'vditor';
 import {URLS} from "../../../share";
-
+import {NzNotificationService} from 'ng-zorro-antd/notification';
 import {_HttpClient} from '@delon/theme';
 
 class Blog {
@@ -60,8 +60,9 @@ export class BlogWriteComponent implements OnInit, OnDestroy {
 
   title: string = '';
   content: any = '';
+  modalVisible: boolean = false;
 
-  constructor(public http: _HttpClient) {
+  constructor(public http: _HttpClient, private notification: NzNotificationService) {
   }
 
   ngOnInit(): void {
@@ -78,15 +79,28 @@ export class BlogWriteComponent implements OnInit, OnDestroy {
     localStorage.removeItem("oldMarkdown");
   }
 
-  save() {
+  save(): boolean {
     this.content = this.vditor.html2md(this.vditor.getHTML())
     const blog = new Blog;
     blog.content = this.content;
     blog.title = this.title;
 
+    if (!this.title) {
+      this.notification.create("error", "错误", '请输入博客标题!'
+      );
+      return false;
+    }
+
+    if (!this.content) {
+      this.notification.create("error", "错误", '请输入博客内容!'
+      );
+      return false;
+    }
+
     this.http.post(URLS.saveBlog.url, blog).subscribe(res => {
       if (res.data.status === 0) {
       }
     })
+    return true;
   }
 }
