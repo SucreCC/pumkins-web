@@ -2,7 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import Vditor from 'vditor';
 import {URLS} from "../../../share";
 import {NzNotificationService} from 'ng-zorro-antd/notification';
-import {_HttpClient} from '@delon/theme';
+import {_HttpClient, ModalHelperOptions} from '@delon/theme';
+import {BlogSaveComponent} from "../blog-save/blog-save.component";
+import { ModalHelper } from '@delon/theme';
 
 class Blog {
   id: number = 0;
@@ -60,9 +62,14 @@ export class BlogWriteComponent implements OnInit, OnDestroy {
 
   title: string = '';
   content: any = '';
-  modalVisible: boolean = false;
+  options: ModalHelperOptions = {
+    /** 大小；例如：lg、600，默认：`lg` */
+    size: 1200,
+  };
 
-  constructor(public http: _HttpClient, private notification: NzNotificationService) {
+  constructor(public http: _HttpClient,
+              private notification: NzNotificationService,
+              private modalHelper: ModalHelper) {
   }
 
   ngOnInit(): void {
@@ -91,11 +98,16 @@ export class BlogWriteComponent implements OnInit, OnDestroy {
       return false;
     }
 
-    if (!this.content) {
+    if (this.content === null) {
       this.notification.create("error", "错误", '请输入博客内容!'
       );
       return false;
     }
+
+    this.modalHelper.createStatic(BlogSaveComponent, this.options)
+      .subscribe(channel => {
+
+      });
 
     this.http.post(URLS.saveBlog.url, blog).subscribe(res => {
       if (res.data.status === 0) {
