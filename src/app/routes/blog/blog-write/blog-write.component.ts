@@ -18,7 +18,10 @@ class Blog {
   }
 
   initProperties() {
-    this.createDate = new Date().toDateString();
+    if (this.createDate === null) {
+      this.createDate = new Date().toDateString();
+    }
+    this.updateDate = new Date().toDateString();
   }
 }
 
