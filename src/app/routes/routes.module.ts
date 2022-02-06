@@ -2,8 +2,6 @@ import {NgModule} from '@angular/core';
 import {RoutesRoutingModule} from './routes-routing.module';
 import {CommonModule} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
 
 
 import {WelcomeComponent} from "./welcome/welcome.component";
@@ -22,8 +20,6 @@ import {HeaderMenuComponent} from './index/header/header-menu/header-menu.compon
 import {FooterComponent} from './index/footer/footer.component';
 import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
 
-import {ShareModule} from "../share/share.module";
-import {NzNotificationModule} from "ng-zorro-antd/notification";
 
 
 const COMPONENT = [
@@ -44,11 +40,6 @@ const COMPONENT_IMPORT = [
   RoutesRoutingModule,
   CommonModule,
   NgbModule,
-  FormsModule,
-  ReactiveFormsModule,
-  HttpClientModule,
-  ShareModule,
-  NzNotificationModule
 ]
 
 // 用于存放共享组件
