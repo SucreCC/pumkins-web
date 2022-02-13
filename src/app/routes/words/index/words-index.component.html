@@ -31,11 +31,13 @@
             <!--            </li>-->
 
             <li class="nav-item">
-              <a class="btn btn-danger-gradiant font-14" target="_blank"
-                 href="https://www.wrappixel.com/free-wrapkit-angular-blog">
-                Login
+              <a class="btn btn-danger-gradiant font-14"
+                 [routerLink]="['/words-add']">
+                Add Wordsx
               </a>
             </li>
+
+
           </ul>
 
         </div>
@@ -60,6 +62,19 @@
   <!--      &lt;!&ndash; Column &ndash;&gt;-->
   <!--    </div>-->
   <!--  </div>-->
+</div>
+
+
+<div style="margin-top:200px; left:35%;width:30%;height:200px;position:relative">
+
+  <nz-upload
+    nzType="drag"
+    [(nzFileList)]="fileList"
+  >
+    <i nz-icon nzType="upload"></i>
+    点击上传今日单词
+  </nz-upload>
+
 </div>
 
 

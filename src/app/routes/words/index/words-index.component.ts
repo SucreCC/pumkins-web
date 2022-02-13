@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {NzUploadFile} from "ng-zorro-antd/upload";
+
 
 @Component({
   selector: 'app-words-index',
@@ -9,12 +11,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WordsIndexComponent implements OnInit {
 
+  fileList: NzUploadFile[] = [];
 
   constructor(
     public router: Router,
-    public http: HttpClient
+    public http: HttpClient,
   ) {}
 
   ngOnInit(): void {}
+
+
 
 }
