@@ -19,7 +19,7 @@ import {HeaderComponent} from './index/header/header.component';
 import {HeaderMenuComponent} from './index/header/header-menu/header-menu.component';
 import {FooterComponent} from './index/footer/footer.component';
 import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
-
+import {NzMessageService} from "ng-zorro-antd/message";
 
 
 const COMPONENT = [
@@ -52,7 +52,7 @@ const COMPONENTS_NOROUNT = []
   imports: [
     ...COMPONENT_IMPORT
   ],
-  providers: [ServiceblogService],
+  providers: [ServiceblogService, NzMessageService],
   exports: [
     WelcomeComponent,
     BlogDetailComponent

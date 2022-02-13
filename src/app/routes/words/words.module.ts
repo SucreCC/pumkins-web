@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
 import {CommonModule} from "@angular/common";
 import {WordsIndexComponent} from "./index/words-index.component";
 import {WordsRoutingModule} from "./words-routing.module";
 import {WordsAddComponent} from "./words-add/words-add.component";
 import {NzUploadModule} from "ng-zorro-antd/upload";
 import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 
 const COMPONENT = [
@@ -32,6 +32,7 @@ const COMPONENTS_NOROUNT = []
   imports: [
     ...COMPONENT_IMPORT,
     NzIconModule,
+    NzButtonModule,
   ],
   providers: [],
   exports: [],

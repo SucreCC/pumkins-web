@@ -10,7 +10,10 @@ export function genUrl(url: string, name?: string) {
 
 export const URLS: any = {
 //  blog
-  saveBlog:genUrl('/blog/save','save blog')
+  saveBlog:genUrl('/blog/save','save blog'),
+
+//  words
+  addWords:genUrl('/words/add','add words'),
 };
 
 
