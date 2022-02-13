@@ -1,0 +1,43 @@
+/* modal */
+.model-auto-height .ant-modal-body {
+  overflow: auto;
+  max-height: 80vh;
+}
+
+/* 解决model框滚动问题 */
+.model-content-scroll {
+  overflow: auto;
+  margin-left: 100px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  padding: 20px;
+  width: calc(100% + 40px);
+  height: auto;
+  max-height: 700px;
+  max-width: 100%;
+  // 去掉横向，自动换行
+  // white-space: nowrap;
+  // word-break: keep-all;
+}
+
+/* antd中modal的上下居中 */
+.ant-modal-wrap {
+  display: flex;
+  align-items: center;
+
+  .ant-modal {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* 加上面modal样式实现ng-alain中ModalHelper的上下居中 */
+.modal-sm,
+.modal-md,
+.modal-lg,
+.modal-xl {
+  max-width:100%;
+  .ant-modal {
+    width: 100% !important;
+  }
+}
