@@ -64,7 +64,7 @@ export class BlogWriteComponent implements OnInit, OnDestroy {
   content: any = '';
   options: ModalHelperOptions = {
     /** 大小；例如：lg、600，默认：`lg` */
-    size: 1200,
+    size: 1200
   };
 
   constructor(public http: _HttpClient,
