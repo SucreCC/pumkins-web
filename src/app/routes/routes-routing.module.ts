@@ -13,11 +13,19 @@ const routes: Routes = [
     path: 'index', component: IndexComponent, data: {title: 'Index', name: 'Index'},
   },
 
-  { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
+  {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
 
   {
     path: 'about', component: AboutComponent, data: {title: 'About', name: 'About'}
+  },
+
+  {
+    path: 'words', loadChildren: () => import('./words/words.module').then(m => m.WordsModule)
   }
+
+  // {
+  //   path: 'words', component: WordsIndexComponent, data: {title: 'words', name: 'Words'}
+  // }
 ];
 
 @NgModule({

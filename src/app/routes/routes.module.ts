@@ -54,7 +54,8 @@ const COMPONENTS_NOROUNT = []
   ],
   providers: [ServiceblogService],
   exports: [
-    WelcomeComponent
+    WelcomeComponent,
+    BlogDetailComponent
   ],
   entryComponents: []
 })
