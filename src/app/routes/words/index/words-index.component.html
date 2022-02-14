@@ -65,23 +65,4 @@
 </div>
 
 
-<div style="margin-top:200px; left:35%;width:30%;height:200px;position:relative">
-
-  <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
-    <button nz-button>
-      <i nz-icon nzType="upload"></i>
-      Select File
-    </button>
-  </nz-upload>
-  <button
-    nz-button
-    [nzType]="'primary'"
-    [nzLoading]="uploading"
-    (click)="handleUpload()"
-    [disabled]="fileList.length === 0"
-    style="margin-top: 16px"
-  >
-    {{ uploading ? 'Uploading' : 'Start Upload' }}
-  </button>
-</div>
 <router-outlet></router-outlet>
