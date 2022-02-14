@@ -1,20 +1,46 @@
+<!--<div style="margin-top:200px; left:10%;width:30%;height:200px;position:relative">-->
+<div style="margin-top:200px;">
 
-<div style="margin-top:200px; left:35%;width:30%;height:200px;position:relative">
+<div nz-row>
+  <div nz-col nzSpan="8">
+    <nz-form-item>
+      <nz-form-label [nzSpan]='8' nzRequired>excel</nz-form-label>
+      <nz-form-control [nzSpan]='16'>
+        <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
+          <button nz-button>
+            <i nz-icon nzType="upload"></i>
+            Select File
+          </button>
+        </nz-upload>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
 
-  <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
-    <button nz-button>
-      <i nz-icon nzType="upload"></i>
-      Select File
-    </button>
-  </nz-upload>
-  <button
-    nz-button
-    [nzType]="'primary'"
-    [nzLoading]="uploading"
-    (click)="handleUpload()"
-    [disabled]="fileList.length === 0"
-    style="margin-top: 16px"
-  >
-    {{ uploading ? 'Uploading' : 'Start Upload' }}
-  </button>
+  <div nz-col nzSpan="8" >
+    <nz-form-item>
+      <nz-form-label [nzSpan]='8' nzRequired>第几天</nz-form-label>
+      <nz-form-control [nzSpan]='16'>
+        <input nz-input minLength='1' maxLength='300' required name='theDay'
+               [(ngModel)]='theDay' placeholder='这是第几天的单词'/>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+
+  <div nz-col nzSpan="8" >
+    <nz-form-item>
+      <nz-form-control [nzSpan]='6'>
+        <button
+          nz-button
+          [nzType]="'primary'"
+          [nzLoading]="uploading"
+          (click)="handleUpload()"
+          [disabled]="fileList.length === 0"
+        >
+          {{ uploading ? 'Uploading' : 'Start Upload' }}
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</div>
+
 </div>

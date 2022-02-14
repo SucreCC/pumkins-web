@@ -7,6 +7,8 @@ import {WordsAddComponent} from "./words-add/words-add.component";
 import {NzUploadModule} from "ng-zorro-antd/upload";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzInputModule} from "ng-zorro-antd/input";
 
 
 const COMPONENT = [
@@ -29,11 +31,13 @@ const COMPONENTS_NOROUNT = []
   declarations: [
     ...COMPONENT,
   ],
-  imports: [
-    ...COMPONENT_IMPORT,
-    NzIconModule,
-    NzButtonModule,
-  ],
+    imports: [
+        ...COMPONENT_IMPORT,
+        NzIconModule,
+        NzButtonModule,
+        NzFormModule,
+        NzInputModule,
+    ],
   providers: [],
   exports: [],
   entryComponents: []

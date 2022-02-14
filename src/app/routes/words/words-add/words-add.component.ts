@@ -16,10 +16,7 @@ export class WordsAddComponent implements OnInit {
   fileList: NzUploadFile[] = [];
   xlsxFile: any;
   uploading: boolean = false;
-  word: {
-    formData: FormData,
-    theDay: number,
-  }
+  theDay: any;
 
   constructor(
     public router: Router,
@@ -58,9 +55,7 @@ export class WordsAddComponent implements OnInit {
     this.uploading = true;
     const formData = new FormData();
     formData.append("xlsxFile", this.xlsxFile);
-    //
-    // this.word.theDay = 1;
-    // this.word.formData = formData;
+    formData.append("theDay",this.theDay),
 
     this.http.post(URLS.addWords.url, formData).subscribe(res => {
       if (res.status === 0) {
