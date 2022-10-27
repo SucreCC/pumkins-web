@@ -94,17 +94,17 @@ declare module "reveal.js" {
 
       /**
        * Toggles the overview mode on/off
-       * @param override 
+       * @param override
        */
       toggleOverview(override?: boolean): void;
       /**
        * Toggles the "black screen" mode on/off
-       * @param override 
+       * @param override
        */
       togglePause(override?: boolean): void;
       /**
        * Toggles the auto slide mode on/off
-       * @param override 
+       * @param override
        */
       toggleAutoSlide(override?: boolean): void;
       /**
@@ -127,7 +127,7 @@ declare module "reveal.js" {
 
       /**
        * Returns the indices of the current, or specified, slide
-       * @param slide 
+       * @param slide
        */
       getIndices(slide?: Element): { h: number; v: number; };
       /**
@@ -141,22 +141,22 @@ declare module "reveal.js" {
 
       /**
        * Returns the speaker notes string for a slide, or null
-       * @param slide 
+       * @param slide
        */
       getSlideNotes(slide?: Element): string | null;
 
       /**
        * Forward event binding to the reveal DOM element
-       * @param type 
-       * @param listener 
-       * @param useCapture 
+       * @param type
+       * @param listener
+       * @param useCapture
        */
       addEventListener(type: string, listener: (event: any) => void, useCapture?: boolean): void;
       /**
        * Forward event binding to the reveal DOM element
-       * @param type 
-       * @param listener 
-       * @param useCapture 
+       * @param type
+       * @param listener
+       * @param useCapture
        */
       removeEventListener(type: string, listener: (event: any) => void, useCapture?: boolean): void;
 
@@ -202,8 +202,8 @@ declare module "reveal.js" {
       removeEventListeners(): void;
       /**
        * Returns the slide element at the specified index
-       * @param x 
-       * @param y 
+       * @param x
+       * @param y
        */
       getSlide(x: number, y?: number): Element;
       /**
@@ -220,7 +220,7 @@ declare module "reveal.js" {
       getQueryHash(): Record<string, any>;
       /**
        * Facility for persisting and restoring the presentation state
-       * @param state 
+       * @param state
        */
       setState(state: any): void;
       /**
@@ -228,7 +228,7 @@ declare module "reveal.js" {
        */
       getState(): any;
 
-      /** 
+      /**
        * update slides after dynamic changes
        */
       sync(): void;
@@ -433,19 +433,19 @@ declare module "reveal.js" {
        * Display the page number of the current slide
        * - true:    Show slide number
        * - false:   Hide slide number
-       * 
+       *
        * Can optionally be set as a string that specifies the number formatting:
        * - "h.v":  Horizontal . vertical slide number (default)
        * - "h/v":  Horizontal / vertical slide number
        * - "c":  Flattened slide number
        * - "c/t":  Flattened slide number / total slides
-       * 
+       *
        * Alternatively, you can provide a function that returns the slide
        * number for the current slide. The function needs to return an array
        * with one string [slideNumber] or three strings [n1,delimiter,n2].
        * See #formatSlideNumber().
        * <https://github.com/hakimel/reveal.js/#slide-number>
-       * 
+       *
        * @default false
        */
       slideNumber?: boolean | string | (() => [string] | [string, string, string]);
@@ -454,7 +454,7 @@ declare module "reveal.js" {
        * - "all":      Always show the slide number
        * - "print":    Only when printing to PDF
        * - "speaker":  Only in the speaker view
-       * 
+       *
        * @default "all"
        */
       showSlideNumber?: "all" | "print" | "speaker";
@@ -468,7 +468,7 @@ declare module "reveal.js" {
       /**
        * Enable keyboard shortcuts for navigation
        * <https://github.com/hakimel/reveal.js/#keyboard-bindings>
-       * 
+       *
        * @default true
        */
       keyboard?: boolean | Record<string | number, string | null | (() => void)>;
@@ -541,7 +541,7 @@ declare module "reveal.js" {
        *           is present on the current slide or fragment
        * - 1+:     All slides will progress automatically at the given interval
        * - false:  No auto-sliding, even if data-autoslide is present
-       * 
+       *
        * @default 0
        */
       autoSlide?: number | false;
@@ -644,7 +644,7 @@ declare module "reveal.js" {
        * The "normal" size of the presentation, aspect ratio will be preserved
        * when the presentation is scaled to fit different resolutions
        * <https://github.com/hakimel/reveal.js/#presentation-size>
-       * 
+       *
        * @default 960
        */
       width?: number | string;
@@ -652,7 +652,7 @@ declare module "reveal.js" {
        * The "normal" size of the presentation, aspect ratio will be preserved
        * when the presentation is scaled to fit different resolutions
        * <https://github.com/hakimel/reveal.js/#presentation-size>
-       * 
+       *
        * @default 700
        */
       height?: number | string;
@@ -721,26 +721,26 @@ declare module "reveal.js" {
 
       /**
        * Changes the behavior of our navigation directions.
-       * 
+       *
        * "default"
        * Left/right arrow keys step between horizontal slides, up/down
        * arrow keys step between vertical slides. Space key steps through
        * all slides (both horizontal and vertical).
-       * 
+       *
        * "linear"
        * Removes the up/down arrows. Left/right arrows step through all
        * slides (both horizontal and vertical).
-       * 
+       *
        * "grid"
        * When this is enabled, stepping left/right from a vertical stack
        * to an adjacent vertical stack will land you at the same vertical
        * index.
-       * 
+       *
        * Consider a deck with six slides ordered in two vertical stacks:
        * 1.1    2.1
        * 1.2    2.2
        * 1.3    2.3
-       * 
+       *
        * If you're on slide 1.3 and navigate right, you will normally move
        * from 1.3 -> 2.1. If "grid" is used, the same navigation takes you
        * from 1.3 -> 2.3.
@@ -758,7 +758,7 @@ declare module "reveal.js" {
        * - null:   Media will only autoplay if data-autoplay is present
        * - true:   All media will autoplay, regardless of individual setting
        * - false:  No media will autoplay, regardless of individual setting
-       * 
+       *
        * @default null
        */
       autoplayMedia?: boolean | null;
@@ -769,7 +769,7 @@ declare module "reveal.js" {
        *           the viewDistance, iframes with only data-src will be loaded when visible
        * - true:   All iframes with data-src will be loaded when within the viewDistance
        * - false:  All iframes with data-src will be loaded only when visible
-       * 
+       *
        * @default null
        */
       preloadIframes?: boolean | null;

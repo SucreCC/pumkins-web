@@ -15,11 +15,11 @@ import {RelayOnComponent} from './about/About-Components/relay-on/relay-on.compo
 import {TopContentComponent} from './about/About-Components/top-content/top-content.component';
 
 
-import {HeaderComponent} from './index/header/header.component';
+import {AppHeaderComponent} from './index/header/app-header.component';
 import {HeaderMenuComponent} from './index/header/header-menu/header-menu.component';
-import {FooterComponent} from './index/footer/footer.component';
+import {AppFooterComponent} from './index/footer/app-footer.component';
 import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
-import {BodyComponent} from "./index/body/body.component";
+import {AppBodyComponent} from "./index/body/app-body.component";
 
 
 
@@ -31,11 +31,11 @@ const COMPONENT = [
   BlogDetailComponent,
   RelayOnComponent,
   TopContentComponent,
-  HeaderComponent,
+  AppHeaderComponent,
   HeaderContentComponent,
   HeaderMenuComponent,
-  FooterComponent,
-  BodyComponent
+  AppFooterComponent,
+  AppBodyComponent
 ];
 
 const COMPONENT_IMPORT = [
