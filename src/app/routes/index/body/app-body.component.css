@@ -1,6 +1,7 @@
 .app-body {
   width: 100%;
-  min-height: 400px;
-  background-color: yellow;
+  min-height: 600px;
+  background-color: #f5f5f5;
+  color: #333333;
   margin: 0;
 }
