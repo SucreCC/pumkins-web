@@ -19,6 +19,7 @@ import {HeaderComponent} from './index/header/header.component';
 import {HeaderMenuComponent} from './index/header/header-menu/header-menu.component';
 import {FooterComponent} from './index/footer/footer.component';
 import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
+import {BodyComponent} from "./index/body/body.component";
 
 
 
@@ -33,7 +34,8 @@ const COMPONENT = [
   HeaderComponent,
   HeaderContentComponent,
   HeaderMenuComponent,
-  FooterComponent
+  FooterComponent,
+  BodyComponent
 ];
 
 const COMPONENT_IMPORT = [

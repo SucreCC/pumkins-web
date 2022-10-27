@@ -5,9 +5,14 @@ import {IndexComponent} from "./index/index.component";
 import {AboutComponent} from './about/about.component';
 
 const routes: Routes = [
+
   {
-    path: '', component: WelcomeComponent, data: {title: 'Welcome', name: 'Welcome'}
+    path: '', component: IndexComponent, data: {title: 'Index', name: 'Index'}
   },
+
+  // {
+  //   path: '', component: WelcomeComponent, data: {title: 'Welcome', name: 'Welcome'}
+  // },
 
   {
     path: 'index', component: IndexComponent, data: {title: 'Index', name: 'Index'},
