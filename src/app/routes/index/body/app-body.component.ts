@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppBodyComponent implements OnInit {
 
+
+  indexPath: string = "/index";
+  currentPath: string="";
+
   constructor() { }
 
   ngOnInit(): void {
+    this.currentPath=window.location.href.substring(window.location.href.lastIndexOf("/"));
+
   }
 
 }
