@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {IndexComponent} from "./index/index.component";
 import {AboutComponent} from './about/about.component';
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
 
@@ -13,6 +14,11 @@ const routes: Routes = [
       {
         path: 'Home', component: IndexComponent, data: {title: 'Index', name: 'Index'},
       },
+
+      // {
+      //   path: 'home', component: HomeComponent, data: {title: 'Home', name: 'Home'},
+      // },
+
 
       { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
 
