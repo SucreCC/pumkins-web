@@ -1,0 +1,8 @@
+{
+  "/pumkins": {
+    "target": "http://localhost:14000/",
+    "secure": false,
+    "changeOrigin": true,
+    "loglevel": "debug"
+  }
+}
