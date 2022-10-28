@@ -25,21 +25,28 @@
 <!--<app-header-content></app-header-content>-->
 
 
+<div class="app-header">
 
-<nav class="app-header">
+  <nav class="header-nav">
+    <div class="left">
+      <a [routerLink]="['/index']">Home</a>
+      <a>news</a>
+      <a>emotion</a>
+      <a>about</a>
+    </div>
 
-  <div class="left">
-    <a [routerLink]="['/index']">Home</a>
-    <a>news</a>
-    <a>emotion</a>
-    <a>about</a>
+    <div class="right">
+      <img class="right-img" src="assets/my-assets/images/theme/header/right-image.png" alt="pumkins"/>
+      <a>login</a>
+      <a>register</a>
+    </div>
+  </nav>
+
+
+  <div class="body-picture">
+    <img class="body-img" [src]="pictureSrc" alt="header-picture">
   </div>
 
 
-  <div class="right">
-    <a>login</a>
-    <a>register</a>
-  </div>
+</div>
 
-
-</nav>
