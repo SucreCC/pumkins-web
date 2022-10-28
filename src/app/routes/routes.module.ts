@@ -20,6 +20,7 @@ import {HeaderMenuComponent} from './index/header/header-menu/header-menu.compon
 import {AppFooterComponent} from './index/footer/app-footer.component';
 import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
 import {AppBodyComponent} from "./index/body/app-body.component";
+import {BrowserModule} from "@angular/platform-browser";
 
 
 
@@ -42,6 +43,7 @@ const COMPONENT_IMPORT = [
   RoutesRoutingModule,
   CommonModule,
   NgbModule,
+  BrowserModule
 ]
 
 // 用于存放共享组件
