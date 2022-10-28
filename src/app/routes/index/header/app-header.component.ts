@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef} from '@angular/core';
+import {Component, OnInit, ElementRef, Pipe, PipeTransform} from '@angular/core';
 import {_HttpClient} from '@delon/theme';
 
 @Component({
@@ -15,6 +15,11 @@ export class AppHeaderComponent implements OnInit {
   prefixPath: string = "/assets/my-assets/images/theme/body/";
   pictureSrc: string = '';
 
+  imgList: string[] = ["/assets/my-assets/images/theme/body/body1.jpeg",
+    "/assets/my-assets/images/theme/body/body2.jpeg",
+    "/assets/my-assets/images/theme/body/body3.jpeg"
+  ];
+
   getDynamicPictureUrl: string = "/index/header/dynamic-picture";
 
   constructor(public http: _HttpClient, public el: ElementRef) {
@@ -28,20 +33,38 @@ export class AppHeaderComponent implements OnInit {
 
   }
 
+  // dynamicPicture() {
+  //   let index = 1;
+  //   this.pictureNumber = 3;
+  //   setInterval(() => {
+  //     let picture = "body" + index.toString() + ".jpeg"
+  //     this.pictureSrc = this.prefixPath + picture;
+  //     if (index === this.pictureNumber) {
+  //       index = 0;
+  //     }
+  //
+  //     index++;
+  //   }, 2000)
+  // }
 
   dynamicPicture() {
-    let index = 1;
-    this.pictureNumber = 3;
+    let index = 0;
+    this.pictureNumber = this.imgList.length;
 
     setInterval(() => {
-      let picture = "body" + index.toString() + ".jpeg"
-      this.pictureSrc = this.prefixPath + picture;
+      let elementRefs = this.el.nativeElement.querySelectorAll(".header-img");
+      for (let e of elementRefs) {
+        e.style.opacity = 0;
+      }
+
       if (index === this.pictureNumber) {
         index = 0;
       }
 
+      elementRefs[index].style.opacity = 1;
+
       index++;
-    }, 2000)
+    }, 5000)
   }
 
 

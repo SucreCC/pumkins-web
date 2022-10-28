@@ -7,7 +7,22 @@ import {AboutComponent} from './about/about.component';
 const routes: Routes = [
 
   {
-    path: '', component: IndexComponent, data: {title: 'Index', name: 'Index'}
+    path: '', component: IndexComponent, data: {title: 'Index', name: 'Index'},
+
+    children: [
+      {
+        path: 'Home', component: IndexComponent, data: {title: 'Index', name: 'Index'},
+      },
+
+      { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
+
+      {
+        path: 'about', component: AboutComponent, data: {title: 'About', name: 'About'}
+      }
+
+    ]
+
+
   },
 
   // {
