@@ -91,7 +91,7 @@
             var evidence = error.evidence;
             tabpositions = [];
             // ugggh phantomjs does not like this
-            // forEachChar(evidence, function(item, index) {
+            // forEachChar(evidence, function(item, layout) {
             Array.prototype.forEach.call(evidence, function(item,
                                                             index) {
               if (item === '\t') {

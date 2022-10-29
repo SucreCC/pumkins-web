@@ -1329,7 +1329,7 @@
                 _this.hideInfoDialog();
             });
 
-            infoDialog.css("border", (editormd.isIE8) ? "1px solid #ddd" : "").css("z-index", editormd.dialogZindex).show();
+            infoDialog.css("border", (editormd.isIE8) ? "1px solid #ddd" : "").css("z-layout", editormd.dialogZindex).show();
 
             this.infoDialogPosition();
 
@@ -1388,7 +1388,7 @@
 						backgroundColor : settings.dialogMaskBgColor
 					}).show();
 
-			infoDialog.css("z-index", editormd.dialogZindex).show();
+			infoDialog.css("z-layout", editormd.dialogZindex).show();
 
 			this.infoDialogPosition();
 
@@ -2805,7 +2805,7 @@
         });
 
         if (settings.dialogShowMask) {
-            editor.children("." + this.classPrefix + "mask").css("z-index", parseInt(dialog.css("z-index")) - 1).show();
+            editor.children("." + this.classPrefix + "mask").css("z-layout", parseInt(dialog.css("z-layout")) - 1).show();
         }
     };
 
@@ -3784,7 +3784,7 @@
                     }
 
                     li.mouseover(function(){
-                        ul.css("z-index", zindex).show();
+                        ul.css("z-layout", zindex).show();
                         zindex += 1;
                     }).mouseleave(function(){
                         ul.hide();
@@ -4290,7 +4290,7 @@
         dialog.showMask = function() {
             if (options.mask)
             {
-                editor.find("." + classPrefix + "mask").css(options.maskStyle).css("z-index", editormd.dialogZindex - 1).show();
+                editor.find("." + classPrefix + "mask").css(options.maskStyle).css("z-layout", editormd.dialogZindex - 1).show();
             }
             return dialog;
         };
@@ -4358,7 +4358,7 @@
             if (!options.mask) {
                 dialogHeader.bind(mouseOrTouch("click", "touchend"), function(){
                     editormd.dialogZindex += 2;
-                    dialog.css("z-index", editormd.dialogZindex);
+                    dialog.css("z-layout", editormd.dialogZindex);
                 });
             }
 

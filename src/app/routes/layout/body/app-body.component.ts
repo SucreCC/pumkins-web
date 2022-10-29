@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppBodyComponent implements OnInit {
 
 
-  indexPath: string = "/index";
+  indexPath: string = "/layout";
   currentPath: string="";
 
   constructor() { }

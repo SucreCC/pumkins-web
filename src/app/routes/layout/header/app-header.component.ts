@@ -20,7 +20,7 @@ export class AppHeaderComponent implements OnInit {
     "/assets/my-assets/images/theme/body/body3.jpeg"
   ];
 
-  getDynamicPictureUrl: string = "/index/header/dynamic-picture";
+  getDynamicPictureUrl: string = "/layout/header/dynamic-picture";
 
   constructor(public http: _HttpClient, public el: ElementRef) {
   }
@@ -34,16 +34,16 @@ export class AppHeaderComponent implements OnInit {
   }
 
   // dynamicPicture() {
-  //   let index = 1;
+  //   let layout = 1;
   //   this.pictureNumber = 3;
   //   setInterval(() => {
-  //     let picture = "body" + index.toString() + ".jpeg"
+  //     let picture = "body" + layout.toString() + ".jpeg"
   //     this.pictureSrc = this.prefixPath + picture;
-  //     if (index === this.pictureNumber) {
-  //       index = 0;
+  //     if (layout === this.pictureNumber) {
+  //       layout = 0;
   //     }
   //
-  //     index++;
+  //     layout++;
   //   }, 2000)
   // }
 

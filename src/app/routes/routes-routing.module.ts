@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {WelcomeComponent} from "./welcome/welcome.component";
-import {IndexComponent} from "./index/index.component";
+import {IndexComponent} from "./layout/index.component";
 import {AboutComponent} from './about/about.component';
 import {HomeComponent} from "./home/home.component";
 
@@ -34,7 +34,7 @@ const routes: Routes = [
   // },
 
   // {
-  //   path: 'index', component: IndexComponent, data: {title: 'Index', name: 'Index'},
+  //   path: 'layout', component: IndexComponent, data: {title: 'Index', name: 'Index'},
   // },
   //
   // { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },

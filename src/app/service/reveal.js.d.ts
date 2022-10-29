@@ -25,8 +25,8 @@ declare module "reveal.js" {
        * slide which matches the specified horizontal and vertical
        * indices.
        *
-       * @param {number} [h=indexh] Horizontal index of the target slide
-       * @param {number} [v=indexv] Vertical index of the target slide
+       * @param {number} [h=indexh] Horizontal layout of the target slide
+       * @param {number} [v=indexv] Vertical layout of the target slide
        * @param {number} [f] Index of a fragment within the
        * target slide to activate
        * @param {number} [o] Origin for use in multimaster environments
@@ -63,10 +63,10 @@ declare module "reveal.js" {
       /**
        * Navigate to the specified slide fragment.
        *
-       * @param {?number} index The index of the fragment that
+       * @param {?number} index The layout of the fragment that
        * should be shown, -1 means all are invisible
        * @param {number} offset Integer offset to apply to the
-       * fragment index
+       * fragment layout
        *
        * @return {boolean} true if a change was made in any
        * fragments visibility as part of this call
@@ -201,7 +201,7 @@ declare module "reveal.js" {
        */
       removeEventListeners(): void;
       /**
-       * Returns the slide element at the specified index
+       * Returns the slide element at the specified layout
        * @param x
        * @param y
        */
@@ -323,7 +323,7 @@ declare module "reveal.js" {
       unloadSlide(): HTMLElement;
       /**
        * Returns the number of past slides. This can be used as a global
-       * flattened index for slides.
+       * flattened layout for slides.
        *
        * @return {number} Past slide count
        */
@@ -341,11 +341,11 @@ declare module "reveal.js" {
        * Returns the background element for the given slide.
        * All slides, even the ones with no background properties
        * defined, have a background element so as long as the
-       * index is valid an element will be returned.
+       * layout is valid an element will be returned.
        *
-       * @param {mixed} x Horizontal background index OR a slide
+       * @param {mixed} x Horizontal background layout OR a slide
        * HTML element
-       * @param {number} y Vertical background index
+       * @param {number} y Vertical background layout
        * @return {(HTMLElement[]|*)}
        */
       getSlideBackground(x: number | Element, y: number): HTMLElement[] | undefined;
@@ -734,7 +734,7 @@ declare module "reveal.js" {
        * "grid"
        * When this is enabled, stepping left/right from a vertical stack
        * to an adjacent vertical stack will land you at the same vertical
-       * index.
+       * layout.
        *
        * Consider a deck with six slides ordered in two vertical stacks:
        * 1.1    2.1

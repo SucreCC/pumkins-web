@@ -5,7 +5,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import {WelcomeComponent} from "./welcome/welcome.component";
-import {IndexComponent} from "./index/index.component";
+import {IndexComponent} from "./layout/index.component";
 
 import {AboutComponent} from './about/about.component';
 import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
@@ -15,11 +15,11 @@ import {RelayOnComponent} from './about/About-Components/relay-on/relay-on.compo
 import {TopContentComponent} from './about/About-Components/top-content/top-content.component';
 
 
-import {AppHeaderComponent} from './index/header/app-header.component';
-import {HeaderMenuComponent} from './index/header/header-menu/header-menu.component';
-import {AppFooterComponent} from './index/footer/app-footer.component';
-import {HeaderContentComponent} from "./index/header/header-content/header-content.component";
-import {AppBodyComponent} from "./index/body/app-body.component";
+import {AppHeaderComponent} from './layout/header/app-header.component';
+import {HeaderMenuComponent} from './layout/header/header-menu/header-menu.component';
+import {AppFooterComponent} from './layout/footer/app-footer.component';
+import {HeaderContentComponent} from "./layout/header/header-content/header-content.component";
+import {AppBodyComponent} from "./layout/body/app-body.component";
 import {BrowserModule} from "@angular/platform-browser";
 
 

@@ -50,7 +50,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   jump() {
-    this.router.navigate(['/index'])
+    this.router.navigate(['/layout'])
   }
 }
 

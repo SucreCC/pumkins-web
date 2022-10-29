@@ -25,7 +25,7 @@
     this.annotations = [];
     this.doRedraw = this.doUpdate = null;
     this.div = cm.getWrapperElement().appendChild(document.createElement("div"));
-    this.div.style.cssText = "position: absolute; right: 0; top: 0; z-index: 7; pointer-events: none";
+    this.div.style.cssText = "position: absolute; right: 0; top: 0; z-layout: 7; pointer-events: none";
     this.computeScale();
 
     function scheduleRedraw(delay) {
