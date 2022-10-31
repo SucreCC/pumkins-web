@@ -2,40 +2,43 @@
   <div class="card-title">
     <h2 class="card-h2">Featured Article</h2>
 
-    <div>
-      <a href="#">Show Detail</a>
+    <div class="switch">
+      <span [style.color]="show===true? '#e4ad0d':'blue'" (click)="switchShow(true)">Work</span>
+      <span>|</span>
+      <span [style.color]="show===false?'#e4ad0d':'blue'" (click)="switchShow(false)">Life</span>
     </div>
   </div>
 
   <div class="card-content">
 
-    <!--    <ul>-->
-    <!--      <li *ngFor="let img of imgList">-->
-    <!--        <div class="left">-->
-    <!--          <div>-->
-    <!--            <img [src]="img" alt="blog-image" style="height: 100px">-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="right">-->
-    <!--          <h2>The basic use of React</h2>-->
-    <!--          <p> install React package-->
-    <!--            python npm install react-->
-    <!--            use react-->
-    <!--            react basic use-->
-    <!--          </p>-->
-    <!--          <span>two days ago</span>-->
-    <!--        </div>-->
-
-    <!--      </li>-->
-    <!--    </ul>-->
-
-
-    <ul class="sucre">
-      <li *ngFor="let img of imgList">
+    <ul *ngIf="show" class="sucre">
+      <li *ngFor="let img of workImgList">
         <div class="left">
           <div>
-            <img [src]="img" alt="blog-image" >
+            <img [src]="img" alt="blog-image">
+          </div>
+        </div>
+
+
+        <div class="right">
+          <h2>The basic use of React</h2>
+          <p> install React package
+            python npm install react
+            use react
+            react basic use
+          </p>
+          <span>two days ago</span>
+        </div>
+
+      </li>
+
+    </ul>
+
+    <ul *ngIf="!show" class="cindy">
+      <li *ngFor="let img of lifeImgList">
+        <div class="left">
+          <div>
+            <img [src]="img" alt="blog-image">
           </div>
         </div>
 

@@ -5,6 +5,23 @@
 .featured-article {
   margin-bottom: 20px;
 
+  .switch {
+    color: blue;
+
+    span {
+      margin-right: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all, 0.3s;
+
+      &:hover {
+        color: #e4ad0d;
+        //color: #ff4d00;
+        font-weight: bold;
+      }
+    }
+  }
+
   .card-content {
     padding: 0 20px;
 
@@ -70,6 +87,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             color: #e4ad0d;
+            cursor: pointer;
           }
 
           p {
