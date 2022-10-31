@@ -21,6 +21,7 @@ import {AppFooterComponent} from './layout/footer/app-footer.component';
 import {HeaderContentComponent} from "./layout/header/header-content/header-content.component";
 import {AppBodyComponent} from "./layout/body/app-body.component";
 import {BrowserModule} from "@angular/platform-browser";
+import {HomeModule} from "./home/home.module";
 
 
 
@@ -43,7 +44,8 @@ const COMPONENT_IMPORT = [
   RoutesRoutingModule,
   CommonModule,
   NgbModule,
-  BrowserModule
+  BrowserModule,
+  HomeModule,
 ]
 
 // 用于存放共享组件

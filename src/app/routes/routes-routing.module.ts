@@ -38,7 +38,7 @@ const routes: Routes = [
   // },
 
   // {
-  //   path: 'layout', component: IndexComponent, data: {title: 'Index', name: 'Index'},
+  //   path: 'layout', component: BlogArticleComponent, data: {title: 'Index', name: 'Index'},
   // },
   //
   // { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },

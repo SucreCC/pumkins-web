@@ -4,10 +4,12 @@ import {HttpClient} from '@angular/common/http';
 import {CommonModule} from "@angular/common";
 import {HomeComponent} from "./home.component";
 import {HomeRoutingModule} from "./home-routing.module";
+import {BlogArticleComponent} from "./blog-article/blog-article.component";
 
 
 const COMPONENT = [
-  HomeComponent
+  HomeComponent,
+  BlogArticleComponent
 ];
 
 const COMPONENT_IMPORT = [
