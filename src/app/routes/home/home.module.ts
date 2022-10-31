@@ -6,12 +6,14 @@ import {HomeComponent} from "./home.component";
 import {HomeRoutingModule} from "./home-routing.module";
 import {BlogArticleComponent} from "./blog-article/blog-article.component";
 import {TagsComponent} from "./tags/tags.component";
+import {FeaturedArticleComponent} from "./featured-article/featured-article.component";
 
 
 const COMPONENT = [
   HomeComponent,
   BlogArticleComponent,
-  TagsComponent
+  TagsComponent,
+  FeaturedArticleComponent
 ];
 
 const COMPONENT_IMPORT = [

@@ -1,0 +1,98 @@
+// 引入公共样式
+@import "src/app/routes/home/home.component.less";
+
+
+.featured-article {
+  margin-bottom: 20px;
+
+  .card-content {
+    padding: 0 20px;
+
+    > ul {
+      display: flex;
+      flex-wrap: wrap;
+
+      > li {
+        width: 50%;
+        box-sizing: border-box;
+        display: flex;
+        padding: 10px 0;
+
+        &:nth-child(1), &:nth-child(3), &:nth-child(5) {
+          .right {
+            padding-right: 10px;
+            border-right: 1px solid #f0eeee;
+          }
+        }
+
+        &:nth-child(2), &:nth-child(4), &:nth-child(6) {
+          //padding: 10px;
+          padding: 10px 0 10px 10px;
+        }
+
+        &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+          border-bottom: 1px solid #f0eeee;
+        }
+
+
+        .left {
+          width: 30%;
+
+          > div {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 5px;
+
+          }
+
+          img {
+            width: 100%;
+            height: 100px;
+            transition: all 0.3s;
+
+            &:hover {
+              transform: scale(1.2)
+            }
+          }
+        }
+
+        .right {
+          width: 70%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          box-sizing: border-box;
+          padding-left: 10px;
+
+          h2 {
+            font-size: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #e4ad0d;
+          }
+
+          p {
+            // 单行文字截断
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 10px;
+          }
+
+          span {
+            font-size: 14px;
+            color: #555555;
+          }
+
+
+        }
+
+      }
+
+    }
+  }
+
+
+}
