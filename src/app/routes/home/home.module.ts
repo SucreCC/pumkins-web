@@ -5,11 +5,13 @@ import {CommonModule} from "@angular/common";
 import {HomeComponent} from "./home.component";
 import {HomeRoutingModule} from "./home-routing.module";
 import {BlogArticleComponent} from "./blog-article/blog-article.component";
+import {TagsComponent} from "./tags/tags.component";
 
 
 const COMPONENT = [
   HomeComponent,
-  BlogArticleComponent
+  BlogArticleComponent,
+  TagsComponent
 ];
 
 const COMPONENT_IMPORT = [

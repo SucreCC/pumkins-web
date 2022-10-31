@@ -1,0 +1,92 @@
+// 引入公共样式
+@import "src/app/routes/home/home.component.less";
+
+
+.tags {
+  .card-content {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+    ul {
+      padding: 0;
+      margin: 10px 0 0 0;
+
+      //动画路线
+      @keyframes move_box {
+        0% {
+          left: 0;
+          top: 0;
+        }
+
+        25% {
+          left: calc(100% - 20px);
+          top: 0;
+        }
+
+        50% {
+          top: calc(100% - 20px);
+          left: calc(100% - 20px);
+        }
+
+        75% {
+          top: calc(100% - 20px);
+          left: 0;
+        }
+
+        100% {
+          left: 0;
+          top: 0;
+        }
+      }
+
+      //动画样式
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 20px;
+        height: 20px;
+        content: "";
+        background-color: #e4ad0d;
+
+        -webkit-animation-name: move_box;
+        animation-name: move_box;
+        -webkit-animation-duration: 5s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+      }
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: calc((100% - 2px) / 3);
+      height: 40px;
+
+      &:nth-child(6n + 1), &:nth-child(6n + 2), &:nth-child(6n + 3) {
+        background-color: #f5f5f5;
+      }
+
+      &:nth-child(3n + 1), &:nth-child(3n + 2) {
+        border-right: 1px solid #f0eeee;
+      }
+    }
+  }
+}
+
+
+.ul-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  > li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33.33%;
+    height: 30px;
+  }
+}
