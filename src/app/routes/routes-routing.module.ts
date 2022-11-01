@@ -4,6 +4,7 @@ import {WelcomeComponent} from "./welcome/welcome.component";
 import {IndexComponent} from "./layout/index.component";
 import {AboutComponent} from './about/about.component';
 import {HomeComponent} from "./home/home.component";
+import {LoginComponent} from "./login/login.component";
 
 
 const routes: Routes = [
@@ -33,6 +34,11 @@ const routes: Routes = [
 
   },
 
+  {
+    path: 'login', component: LoginComponent, data: {title: 'Login', name: 'Login'}
+  }
+
+
   // {
   //   path: '', component: WelcomeComponent, data: {title: 'Welcome', name: 'Welcome'}
   // },
@@ -44,7 +50,7 @@ const routes: Routes = [
   // { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
   //
   // {
-  //   path: 'about', component: AboutComponent, data: {title: 'About', name: 'About'}
+  //   path: 'about', component: LoginComponent, data: {title: 'About', name: 'About'}
   // }
 ];
 

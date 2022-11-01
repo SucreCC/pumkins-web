@@ -22,6 +22,7 @@ import {HeaderContentComponent} from "./layout/header/header-content/header-cont
 import {AppBodyComponent} from "./layout/body/app-body.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {HomeModule} from "./home/home.module";
+import {LoginComponent} from "./login/login.component";
 
 
 
@@ -37,7 +38,8 @@ const COMPONENT = [
   HeaderContentComponent,
   HeaderMenuComponent,
   AppFooterComponent,
-  AppBodyComponent
+  AppBodyComponent,
+  LoginComponent
 ];
 
 const COMPONENT_IMPORT = [

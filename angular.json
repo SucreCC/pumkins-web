@@ -39,6 +39,9 @@
               }
             ],
             "styles": [
+              "src/assets/my-assets/css/reset.less",
+              "src/assets/scss/style.scss",
+
               "src/app/styles/index.less",
               "src/theme.less",
               "src/styles.css",
@@ -48,9 +51,6 @@
 
               "node_modules/reveal.js/plugin/highlight/monokai.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-
-
-              "src/assets/scss/style.scss",
 
               "node_modules/vditor/src/assets/scss/index.scss",
               "node_modules/prismjs/themes/prism-okaidia.css",
