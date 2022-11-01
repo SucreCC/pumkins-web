@@ -1,3 +1,53 @@
-<div>this is login</div>
+<body>
 
-<p>this is lable p</p>
+<div id="app-login">
+  <!--  <img src="assets/my-assets/images/login/background.jpg">-->
+  <main>
+
+    <div class="left">
+      <img src="assets/my-assets/images/login/login-left3.svg" alt="login-left"/>
+      <img class="login-top-left" src="assets/my-assets/images/login/login-top-left.svg" alt="login-top-left">
+      <img class="login-bottom-left" src="../../../assets/my-assets/images/login/login-bottom-left.svg" alt="login-bottom-left">
+    </div>
+
+    <div class="right">
+
+      <div class="login">
+        <h2>Login</h2>
+
+        <input
+          [(ngModel)]="username"
+          type="text"
+          placeholder="please enter username"
+          autocomplete="off"
+          required>
+
+
+        <input
+          [(ngModel)]="password"
+          type="password"
+          placeholder="please enter passwords"
+          autocomplete="off"
+          required>
+
+        <button>Login</button>
+      </div>
+
+
+      <!--      <div class="right-img">-->
+      <!--        <img class="img2" src="assets/my-assets/images/login/login-bottom-right.svg" alt="login-right">-->
+
+      <!--      </div>-->
+
+      <!--      <img class="img2" src="assets/my-assets/images/login/login-bottom-right.svg" alt="login-right">-->
+      <img class="login-bottom-mid" src="../../../assets/my-assets/images/login/login-bottom-mid.svg"
+           alt="login-bottom-mid">
+
+      <img class="login-bottom-right" src="../../../assets/my-assets/images/login/login-bottom-right.svg"
+           alt="login-bottom-right">
+
+
+    </div>
+  </main>
+</div>
+</body>
