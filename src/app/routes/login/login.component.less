@@ -9,10 +9,10 @@ body {
     justify-content: center;
     align-items: center;
 
-    .background-image{
+    .background-image {
       position: absolute;
-      width:100%;
-      height:100%;
+      width: 100%;
+      height: 100%;
       top: 0;
       left: 0;
     }
@@ -89,24 +89,29 @@ main {
       display: flex;
       justify-content: center;
       color: black;
-      font-family:cursive;
+      font-family: cursive;
       //font-family:serif;
     }
 
-    > input {
-      margin-bottom: 30px;
-      border: 1px solid #f0eeee;
-      outline: none;
-      height: 40px;
-      border-radius: 5px;
-      padding-left: 10px;
-      transition: all 0.3s;
-      font-size: 16px;
+    .loginForm {
+      width: 100%;
 
-      &:focus {
-        border: 1px solid wheat;
+      > input {
+        width: 100%;
+        margin-bottom: 30px;
+        border: 1px solid #f0eeee;
+        outline: none;
+        height: 40px;
+        border-radius: 5px;
+        padding: 0 0 0 10px;
+        transition: all 0.3s;
+
+        &:focus {
+          border: 1px solid wheat;
+        }
       }
     }
+
 
     > button {
       border: none;
@@ -116,7 +121,7 @@ main {
       color: white;
       cursor: pointer;
       //font-family:serif;
-      font-family:cursive;
+      font-family: cursive;
 
     }
 
@@ -126,12 +131,12 @@ main {
   .other-login {
     display: flex;
     flex-direction: row;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     position: relative;
 
     > p {
-      margin-top:10px;
+      margin-top: 10px;
       margin-right: 5px;
       font-size: 14px;
       color: #808595;
