@@ -10,10 +10,21 @@ import {NzModalService} from "ng-zorro-antd/modal";
 export class LoginComponent {
   username: any;
   password: any;
+  showLogin: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
     modalSrv: NzModalService,
   ) {
+  }
+
+  register() {
+
+
+  }
+
+  forgetPassword() {
+
   }
 }

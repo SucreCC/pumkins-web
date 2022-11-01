@@ -1,49 +1,61 @@
 <body>
 
+<!--<div id="app-login" style="background-image: url(assets/my-assets/images/login/login-bottom-left.svg)">-->
 <div id="app-login">
-  <!--  <img src="assets/my-assets/images/login/background.jpg">-->
+  <img class="background-image" src="assets/my-assets/images/login/login-bottom-left.svg">
+  <!--    <img class="background-image" src="assets/my-assets/images/login/login-background-img.svg">-->
   <main>
 
     <div class="left">
       <img src="assets/my-assets/images/login/login-left3.svg" alt="login-left"/>
       <img class="login-top-left" src="assets/my-assets/images/login/login-top-left.svg" alt="login-top-left">
-      <img class="login-bottom-left" src="../../../assets/my-assets/images/login/login-bottom-left.svg" alt="login-bottom-left">
+      <img class="login-bottom-left" src="assets/my-assets/images/login/login-bottom-left.svg"
+           alt="login-bottom-left">
     </div>
 
     <div class="right">
 
-      <div class="login">
+      <div class="login-form">
         <h2>Login</h2>
 
-        <input
-          [(ngModel)]="username"
-          type="text"
-          placeholder="please enter username"
-          autocomplete="off"
-          required>
+<!--        <form>-->
+          <input
+            [(ngModel)]="username"
+            name="username"
+            type="text"
+            placeholder="Username"
+            autocomplete=”off”
+            maxLength="20"
+            minLength="1"
+            required>
 
+          <input
+            [(ngModel)]="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            autocomplete=”off”
+            maxLength="20"
+            minLength="1"
+            required>
 
-        <input
-          [(ngModel)]="password"
-          type="password"
-          placeholder="please enter passwords"
-          autocomplete="off"
-          required>
+<!--        </form>-->
 
         <button>Login</button>
       </div>
 
 
-      <!--      <div class="right-img">-->
-      <!--        <img class="img2" src="assets/my-assets/images/login/login-bottom-right.svg" alt="login-right">-->
+      <div class="other-login">
+        <p (click)="register()">Register</p>
+        <p> | </p>
+        <p (click)="forgetPassword()">Forget Password</p>
+      </div>
 
-      <!--      </div>-->
 
-      <!--      <img class="img2" src="assets/my-assets/images/login/login-bottom-right.svg" alt="login-right">-->
-      <img class="login-bottom-mid" src="../../../assets/my-assets/images/login/login-bottom-mid.svg"
+      <img class="login-bottom-mid" src="assets/my-assets/images/login/login-bottom-mid.svg"
            alt="login-bottom-mid">
 
-      <img class="login-bottom-right" src="../../../assets/my-assets/images/login/login-bottom-right.svg"
+      <img class="login-bottom-right" src="assets/my-assets/images/login/login-bottom-right.svg"
            alt="login-bottom-right">
 
 

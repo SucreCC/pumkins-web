@@ -5,11 +5,17 @@ body {
   #app-login {
     width: 100%;
     height: 100%;
-    background-color: wheat;
-    //background-image: url(/src/assets/my-assets/images/login/login-register.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .background-image{
+      position: absolute;
+      width:100%;
+      height:100%;
+      top: 0;
+      left: 0;
+    }
   }
 }
 
@@ -29,6 +35,8 @@ main {
     border-right: 1px solid #f0eeee;
     position: absolute;
     background-color: #8ea6c2;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgb(124, 159, 199);
 
     img {
       height: 100%;
@@ -61,6 +69,7 @@ main {
 }
 
 .right {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   width: 50%;
   height: 100%;
   top: 0;
@@ -69,13 +78,73 @@ main {
   //background-color: #ffffff;
   //border-right: 1px solid #f0eeee;
 
+  .login-form {
+    padding: 20px 60px 20px 60px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      padding-top: 20%;
+      padding-bottom: 30px;
+      display: flex;
+      justify-content: center;
+      color: black;
+      font-family:cursive;
+      //font-family:serif;
+    }
+
+    > input {
+      margin-bottom: 30px;
+      border: 1px solid #f0eeee;
+      outline: none;
+      height: 40px;
+      border-radius: 5px;
+      padding-left: 10px;
+      transition: all 0.3s;
+      font-size: 16px;
+
+      &:focus {
+        border: 1px solid wheat;
+      }
+    }
+
+    > button {
+      border: none;
+      height: 40px;
+      border-radius: 5px;
+      background-color: wheat;
+      color: white;
+      cursor: pointer;
+      //font-family:serif;
+      font-family:cursive;
+
+    }
+
+
+  }
+
+  .other-login {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    position: relative;
+
+    > p {
+      margin-top:10px;
+      margin-right: 5px;
+      font-size: 14px;
+      color: #808595;
+      cursor: pointer;
+    }
+  }
+
 
   .login-bottom-mid {
     height: 18%;
     width: 100%;
     position: absolute;
     right: 50%;
-
     bottom: 0;
   }
 
