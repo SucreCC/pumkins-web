@@ -26,6 +26,7 @@ import {LoginComponent} from "./login/login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
+import {RegisterComponent} from "./login/register/register.component";
 
 
 
@@ -42,7 +43,8 @@ const COMPONENT = [
   HeaderMenuComponent,
   AppFooterComponent,
   AppBodyComponent,
-  LoginComponent
+  LoginComponent,
+  RegisterComponent
 ];
 
 const COMPONENT_IMPORT = [

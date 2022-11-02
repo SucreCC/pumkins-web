@@ -1,0 +1,109 @@
+<body>
+<div id="app-login">
+  <img class="background-image" src="assets/my-assets/images/login/login-bottom-left.svg">
+  <main>
+
+    <div class="left">
+      <img src="assets/my-assets/images/login/login-left3.svg" alt="login-left"/>
+      <img class="login-top-left" src="assets/my-assets/images/login/login-top-left.svg" alt="login-top-left">
+      <img class="login-bottom-left" src="assets/my-assets/images/login/login-bottom-left.svg"
+           alt="login-bottom-left">
+    </div>
+
+    <div class="right">
+
+      <div class="login-form">
+        <h2>Register</h2>
+
+<!--        <form nzform [formGroup]="form" class="registerForm">-->
+        <form nzform class="registerForm">
+
+
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="combineTp1">
+              <input
+                class="input-form-control"
+                [(ngModel)]="username"
+                name="username"
+                type="text"
+                placeholder="Username"
+                autocomplete=”off”
+                maxLength="20"
+                minLength="1"
+                required>
+              <ng-template #combineTp1 let-control>
+                <ng-container *ngIf="control.hasError('maxlength')">请输入联系邮箱</ng-container>
+                <ng-container *ngIf="control.hasError('required')">该项必填</ng-container>
+                <ng-container *ngIf="control.hasError('pattern')">联系邮箱不符合要求</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="combineTp2">
+              <input
+                class="input-form-control"
+                [(ngModel)]="password"
+                name="password"
+                type="password"
+                placeholder="Password"
+                autocomplete=”off”
+                maxLength="20"
+                minLength="1"
+                required>
+
+              <ng-template #combineTp2 let-control>
+                <ng-container *ngIf="control.hasError('maxlength')">请输入联系邮箱</ng-container>
+                <ng-container *ngIf="control.hasError('required')">该项必填</ng-container>
+                <ng-container *ngIf="control.hasError('pattern')">联系邮箱不符合要求</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="combineTp3">
+              <input
+                class="input-form-control"
+                [(ngModel)]="email"
+                name="email"
+                type="email"
+                placeholder="Email"
+                autocomplete=”off”
+                maxLength="50"
+                minLength="1"
+                required
+                pattern="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$"
+              >
+
+              <ng-template #combineTp3 let-control>
+                <ng-container *ngIf="control.hasError('maxlength')">请输入联系邮箱</ng-container>
+                <ng-container *ngIf="control.hasError('required')">该项必填</ng-container>
+                <ng-container *ngIf="control.hasError('pattern')">the format of email is not right</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+
+        </form>
+
+
+        <button class="login-button" [disabled]="isDisabledButton2()" (click)="toRegister()">Register</button>
+      </div>
+
+      <div class="other-login">
+        <p [routerLink]="['/login']">Login</p>
+        <p> | </p>
+        <p (click)="forgetPassword()">Forget Password</p>
+      </div>
+
+      <img class="login-bottom-mid" src="assets/my-assets/images/login/login-bottom-mid.svg"
+           alt="login-bottom-mid">
+
+      <img class="login-bottom-right" src="assets/my-assets/images/login/login-bottom-right.svg"
+           alt="login-bottom-right">
+    </div>
+  </main>
+</div>
+</body>

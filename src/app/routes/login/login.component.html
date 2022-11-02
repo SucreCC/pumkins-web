@@ -16,32 +16,41 @@
         <h2>Login</h2>
 
         <form class="loginForm">
-          <input
-            [(ngModel)]="username"
-            name="username"
-            type="text"
-            placeholder="Username"
-            autocomplete=”off”
-            maxLength="20"
-            minLength="1"
-            required>
 
-          <input
-            [(ngModel)]="password"
-            name="password"
-            type="password"
-            placeholder="Password"
-            autocomplete=”off”
-            maxLength="20"
-            minLength="1"
-            required>
+          <nz-form-control>
+            <input
+              class="input-form-control"
+              [(ngModel)]="username"
+              name="username"
+              type="text"
+              placeholder="Username"
+              autocomplete=”off”
+              maxLength="20"
+              minLength="1"
+              required>
+          </nz-form-control>
+
+
+          <nz-form-control>
+            <input
+              class="input-form-control"
+              [(ngModel)]="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              autocomplete=”off”
+              maxLength="50"
+              minLength="1"
+              required>
+          </nz-form-control>
+
         </form>
 
         <button class="login-button" [disabled]="isDisabledButton" (click)="toLogin()">Login</button>
       </div>
 
       <div class="other-login">
-        <p (click)="register()">Register</p>
+        <p [routerLink]="['/register']">Register</p>
         <p> | </p>
         <p (click)="forgetPassword()">Forget Password</p>
       </div>
