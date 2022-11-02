@@ -24,6 +24,8 @@ import {BrowserModule} from "@angular/platform-browser";
 import {HomeModule} from "./home/home.module";
 import {LoginComponent} from "./login/login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzInputModule} from "ng-zorro-antd/input";
 
 
 
@@ -62,7 +64,9 @@ const COMPONENTS_NOROUNT = []
     ...COMPONENT,
   ],
   imports: [
-    ...COMPONENT_IMPORT
+    ...COMPONENT_IMPORT,
+    NzFormModule,
+    NzInputModule
   ],
   providers: [ServiceblogService],
   exports: [

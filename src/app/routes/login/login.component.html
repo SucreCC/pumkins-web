@@ -1,9 +1,6 @@
 <body>
-
-<!--<div id="app-login" style="background-image: url(assets/my-assets/images/login/login-bottom-left.svg)">-->
 <div id="app-login">
   <img class="background-image" src="assets/my-assets/images/login/login-bottom-left.svg">
-  <!--    <img class="background-image" src="assets/my-assets/images/login/login-background-img.svg">-->
   <main>
 
     <div class="left">
@@ -17,7 +14,6 @@
 
       <div class="login-form">
         <h2>Login</h2>
-
 
         <form class="loginForm">
           <input
@@ -39,35 +35,10 @@
             maxLength="20"
             minLength="1"
             required>
-
         </form>
 
-
-<!--          <input-->
-<!--            [(ngModel)]="username"-->
-<!--            name="username"-->
-<!--            type="text"-->
-<!--            placeholder="Username"-->
-<!--            autocomplete=”off”-->
-<!--            maxLength="20"-->
-<!--            minLength="1"-->
-<!--            required>-->
-
-<!--          <input-->
-<!--            [(ngModel)]="password"-->
-<!--            name="password"-->
-<!--            type="password"-->
-<!--            placeholder="Password"-->
-<!--            autocomplete=”off”-->
-<!--            maxLength="20"-->
-<!--            minLength="1"-->
-<!--            required>-->
-
-
-
-        <button>Login</button>
+        <button class="login-button" [disabled]="isDisabledButton" (click)="toLogin()">Login</button>
       </div>
-
 
       <div class="other-login">
         <p (click)="register()">Register</p>
@@ -75,14 +46,11 @@
         <p (click)="forgetPassword()">Forget Password</p>
       </div>
 
-
       <img class="login-bottom-mid" src="assets/my-assets/images/login/login-bottom-mid.svg"
            alt="login-bottom-mid">
 
       <img class="login-bottom-right" src="assets/my-assets/images/login/login-bottom-right.svg"
            alt="login-bottom-right">
-
-
     </div>
   </main>
 </div>

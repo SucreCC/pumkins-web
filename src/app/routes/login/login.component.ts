@@ -1,6 +1,11 @@
-import {Component} from '@angular/core';
-import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
+import {Component, ElementRef} from '@angular/core';
+// import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {NzModalService} from "ng-zorro-antd/modal";
+
+import {Validators} from '@angular/forms';
+
+// import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
+
 
 @Component({
   selector: 'app-login',
@@ -10,12 +15,12 @@ import {NzModalService} from "ng-zorro-antd/modal";
 export class LoginComponent {
   username: any;
   password: any;
-  showLogin: boolean = false;
+  isDisabledButton: boolean = false;
 
 
   constructor(
-    private fb: FormBuilder,
     modalSrv: NzModalService,
+    public el: ElementRef
   ) {
   }
 
@@ -26,5 +31,19 @@ export class LoginComponent {
 
   forgetPassword() {
 
+  }
+
+  toLogin() {
+    this.disabledButtonFor3seconds();
+  }
+
+
+  disabledButtonFor3seconds() {
+    this.isDisabledButton = true;
+    this.el.nativeElement.querySelector('.login-button').style.backgroundColor = 'grey';
+    setTimeout(() => {
+      this.el.nativeElement.querySelector('.login-button').style.backgroundColor = '#ff7300';
+      this.isDisabledButton = false;
+    }, 2000);
   }
 }
