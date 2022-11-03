@@ -27,6 +27,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {RegisterComponent} from "./login/register/register.component";
+import {NzAlertModule} from "ng-zorro-antd/alert";
 
 
 
@@ -65,11 +66,12 @@ const COMPONENTS_NOROUNT = []
   declarations: [
     ...COMPONENT,
   ],
-  imports: [
-    ...COMPONENT_IMPORT,
-    NzFormModule,
-    NzInputModule
-  ],
+    imports: [
+        ...COMPONENT_IMPORT,
+        NzFormModule,
+        NzInputModule,
+        NzAlertModule
+    ],
   providers: [ServiceblogService],
   exports: [
     WelcomeComponent

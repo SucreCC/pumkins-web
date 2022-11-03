@@ -15,7 +15,7 @@
       <div class="login-form">
         <h2>Login</h2>
 
-<!--模版驱动表单-->
+        <!--模版驱动表单-->
         <form nzform class="loginForm">
 
 
@@ -50,7 +50,8 @@
                 autocomplete=”off”
                 maxLength="20"
                 minLength="1"
-                required>
+                required
+              >
 
               <ng-template #combineTp2 let-control>
                 <ng-container *ngIf="control.hasError('maxlength')">Please input Password</ng-container>

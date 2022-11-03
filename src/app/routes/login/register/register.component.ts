@@ -1,4 +1,4 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {NzModalService} from "ng-zorro-antd/modal";
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 // import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.less']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
   constructor(
     public el: ElementRef,
@@ -24,18 +24,18 @@ export class RegisterComponent {
   password: any;
   email: string;
   isDisabledButton: boolean = false;
-  form: FormGroup;
+  error = '';
 
-  // form: FormGroup = this.fb.group({
-  //   email: [null, [Validators.required, Validators.email]],
-  //   // password: [null, [Validators.required, Validators.minLength(6), UserRegisterComponent.checkPassword.bind(this)]],
-  //   // confirm: [null, [Validators.required, Validators.minLength(6), UserRegisterComponent.passwordEquar]],
-  //   mobilePrefix: ['+86'],
-  //   mobile: [null, [Validators.required, Validators.pattern(/^1\d{10}$/)]],
-  //   captcha: [null, [Validators.required]],
-  // });
+  form: FormGroup = this.fb.group({
+    password: [null, [Validators.required, Validators.minLength(6)]],
+    username: [null, [Validators.required, Validators.minLength(6)]],
+    email: [null, [Validators.required, Validators.minLength(6), Validators.email]],
+    // password: [null, [Validators.required, Validators.minLength(6), UserRegisterComponent.checkPassword.bind(this)]],
+    // confirm: [null, [Validators.required, Validators.minLength(6), UserRegisterComponent.passwordEquar]],
+  });
 
-
+  ngOnInit() {
+  }
 
   register() {
 
@@ -47,6 +47,9 @@ export class RegisterComponent {
   }
 
   toRegister() {
+    console.log(!this.form.invalid)
+    console.log(this.form.value)
+
     this.disabledButtonFor3seconds();
     // this.msg.error("111");
   }
@@ -61,9 +64,4 @@ export class RegisterComponent {
     }, 2000);
   }
 
-
-  isDisabledButton2() {
-
-    return this.isDisabledButton;
-  }
 }
