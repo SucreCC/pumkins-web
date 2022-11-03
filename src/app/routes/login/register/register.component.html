@@ -67,9 +67,9 @@
 
         </form>
 
-        <button [style.background-color]="(!isDisabledButton && !form.valid) === true ? 'grey':'#ff7300'"
+        <button [style.background-color]="(!form.valid) === true ? 'grey':'#ff7300'"
                 class="login-button"
-                [disabled]="!isDisabledButton && !form.valid" (click)="toRegister()">Register
+                [disabled]="!form.valid" (click)="toRegister()">Register
         </button>
       </div>
 
