@@ -1,10 +1,7 @@
 import {Component, ElementRef} from '@angular/core';
-// import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
+import {_HttpClient} from '@delon/theme';
 import {NzModalService} from "ng-zorro-antd/modal";
-
 import {Validators} from '@angular/forms';
-
-// import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 
 
 @Component({
@@ -13,20 +10,23 @@ import {Validators} from '@angular/forms';
   styleUrls: ['./login.component.less']
 })
 export class LoginComponent {
-  username: any;
+
+  loginUrl: string = "/login"
+  username: string;
   password: any;
   isDisabledButton: boolean = false;
+
+  user = {
+    username: null,
+    password: null,
+  }
 
 
   constructor(
     modalSrv: NzModalService,
-    public el: ElementRef
+    public el: ElementRef,
+    private http: _HttpClient,
   ) {
-  }
-
-  register() {
-
-
   }
 
   forgetPassword() {
@@ -35,6 +35,14 @@ export class LoginComponent {
 
   toLogin() {
     this.disabledButtonFor3seconds();
+
+    console.log(this.user);
+
+    this.http.post(this.loginUrl, this.user).subscribe(resp => {
+      if (resp.status === 0) {
+      }
+    })
+
   }
 
 

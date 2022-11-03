@@ -26,7 +26,8 @@ export class AppHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dynamicPicture()
+    this.dynamicPicture();
+    this.getPicture();
 
 
     // this.test();
@@ -68,7 +69,7 @@ export class AppHeaderComponent implements OnInit {
   }
 
 
-  test() {
+  getPicture() {
     this.http.post(this.getDynamicPictureUrl).subscribe(res => {
       if (res.status === 0) {
         // this.el.nativeElement.querySelectorAll(".body-img-original")

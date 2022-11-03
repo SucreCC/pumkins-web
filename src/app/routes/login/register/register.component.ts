@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {NzModalService} from "ng-zorro-antd/modal";
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-
+import {_HttpClient} from '@delon/theme';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
     public el: ElementRef,
     private fb: FormBuilder,
     public modalSrv: NzModalService,
+    private http: _HttpClient,
   ) {
   }
 
@@ -21,6 +22,15 @@ export class RegisterComponent implements OnInit {
   password: any;
   email: string;
   error: '';
+
+  user = {
+    username: null,
+    password: null,
+    email: null
+  }
+
+
+  registerUrl: string = "/register";
 
   form: FormGroup = this.fb.group({
     username: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
@@ -32,10 +42,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  register() {
-
-
-  }
 
   forgetPassword() {
 
@@ -43,6 +49,15 @@ export class RegisterComponent implements OnInit {
 
   toRegister() {
     this.disabledButtonFor3seconds();
+
+    this.user.username=this.form.value.username;
+    this.user.password=this.form.value.password;
+    this.user.email=this.form.value.email;
+
+    this.http.post(this.registerUrl, this.user).subscribe(resp => {
+      if (resp.status === 0) {
+      }
+    })
   }
 
 
