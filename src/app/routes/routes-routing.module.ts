@@ -6,6 +6,7 @@ import {AboutComponent} from './about/about.component';
 import {HomeComponent} from "./home/home.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./login/register/register.component";
+import {ForgetPasswordComponent} from "./login/forget-password/forget-password.component";
 
 
 const routes: Routes = [
@@ -41,6 +42,10 @@ const routes: Routes = [
 
   {
     path: 'register', component: RegisterComponent, data: {title: 'Register', name: 'Register'}
+  },
+
+  {
+    path: 'forget-password', component: ForgetPasswordComponent, data: {title: 'ForgetPassword', name: 'ForgetPassword'}
   }
 
   // {
@@ -54,7 +59,7 @@ const routes: Routes = [
   // { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
   //
   // {
-  //   path: 'about', component: RegisterComponent, data: {title: 'About', name: 'About'}
+  //   path: 'about', component: ForgetPasswordComponent, data: {title: 'About', name: 'About'}
   // }
 ];
 

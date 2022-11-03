@@ -28,6 +28,7 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {RegisterComponent} from "./login/register/register.component";
 import {NzAlertModule} from "ng-zorro-antd/alert";
+import {ForgetPasswordComponent} from "./login/forget-password/forget-password.component";
 
 
 
@@ -45,7 +46,8 @@ const COMPONENT = [
   AppFooterComponent,
   AppBodyComponent,
   LoginComponent,
-  RegisterComponent
+  RegisterComponent,
+  ForgetPasswordComponent
 ];
 
 const COMPONENT_IMPORT = [

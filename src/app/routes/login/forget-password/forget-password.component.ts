@@ -4,11 +4,11 @@ import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from 
 
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.less']
+  selector: 'app-forget-password',
+  templateUrl: './forget-password.component.html',
+  styleUrls: ['./forget-password.component.less']
 })
-export class RegisterComponent implements OnInit {
+export class ForgetPasswordComponent implements OnInit {
 
   constructor(
     public el: ElementRef,
@@ -17,13 +17,13 @@ export class RegisterComponent implements OnInit {
   ) {
   }
 
-  username: any;
+  verificationCode: any;
   password: any;
   email: string;
   error: '';
 
   form: FormGroup = this.fb.group({
-    username: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+    verificationCode: [null, [Validators.required,Validators.minLength(6),Validators.maxLength(6)]],
     password: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     email: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.email]],
   });
@@ -32,16 +32,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  register() {
 
-
-  }
-
-  forgetPassword() {
-
-  }
-
-  toRegister() {
+  changePassword() {
     this.disabledButtonFor3seconds();
   }
 
@@ -55,5 +47,4 @@ export class RegisterComponent implements OnInit {
     }, 2000);
 
   }
-
 }
