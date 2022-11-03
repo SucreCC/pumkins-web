@@ -15,35 +15,49 @@
       <div class="login-form">
         <h2>Login</h2>
 
-        <form class="loginForm">
-
-          <nz-form-control>
-            <input
-              class="input-form-control"
-              [(ngModel)]="username"
-              name="username"
-              type="text"
-              placeholder="Username"
-              autocomplete=”off”
-              maxLength="20"
-              minLength="1"
-              required>
-          </nz-form-control>
+<!--模版驱动表单-->
+        <form nzform class="loginForm">
 
 
-          <nz-form-control>
-            <input
-              class="input-form-control"
-              [(ngModel)]="password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              autocomplete=”off”
-              maxLength="50"
-              minLength="1"
-              required>
-          </nz-form-control>
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="combineTp1">
+              <input
+                class="input-form-control"
+                [(ngModel)]="username"
+                name="username"
+                type="text"
+                placeholder="Username"
+                autocomplete=”off”
+                maxLength="20"
+                minLength="1"
+                required>
+              <ng-template #combineTp1 let-control>
+                <ng-container *ngIf="control.hasError('maxlength')">Please input Username</ng-container>
+                <ng-container *ngIf="control.hasError('required')">Username is required</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
 
+
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="combineTp2">
+              <input
+                class="input-form-control"
+                [(ngModel)]="password"
+                name="password"
+                type="password"
+                placeholder="Password"
+                autocomplete=”off”
+                maxLength="20"
+                minLength="1"
+                required>
+
+              <ng-template #combineTp2 let-control>
+                <ng-container *ngIf="control.hasError('maxlength')">Please input Password</ng-container>
+                <ng-container *ngIf="control.hasError('required')">Password is required</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
         </form>
 
         <button class="login-button" [disabled]="isDisabledButton" (click)="toLogin()">Login</button>
