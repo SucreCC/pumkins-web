@@ -112,7 +112,7 @@
               "browserTarget": "pumkins-frontkit:build:production"
             },
             "development": {
-              "browserTarget": "pumkins-frontkit:build:development",
+              "browserTarget": "pumkins-frontkit:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -144,6 +144,5 @@
         }
       }
     }
-  },
-  "defaultProject": "pumkins-frontkit"
+  }
 }
