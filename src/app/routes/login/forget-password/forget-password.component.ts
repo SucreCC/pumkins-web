@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {NzModalService} from "ng-zorro-antd/modal";
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {UntypedFormBuilder, FormControl, UntypedFormGroup, ValidationErrors, Validators} from '@angular/forms';
 
 
 @Component({
@@ -12,7 +12,7 @@ export class ForgetPasswordComponent implements OnInit {
 
   constructor(
     public el: ElementRef,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public modalSrv: NzModalService,
   ) {
   }
@@ -22,7 +22,7 @@ export class ForgetPasswordComponent implements OnInit {
   email: string;
   error: '';
 
-  form: FormGroup = this.fb.group({
+  form: UntypedFormGroup = this.fb.group({
     verificationCode: [null, [Validators.required,Validators.minLength(6),Validators.maxLength(6)]],
     password: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     email: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.email]],

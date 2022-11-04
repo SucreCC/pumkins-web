@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {NzModalService} from "ng-zorro-antd/modal";
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {UntypedFormBuilder, FormControl, UntypedFormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {_HttpClient} from '@delon/theme';
 
 @Component({
@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     public el: ElementRef,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public modalSrv: NzModalService,
     private http: _HttpClient,
   ) {
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
   registerUrl: string = "/register";
 
-  form: FormGroup = this.fb.group({
+  form: UntypedFormGroup = this.fb.group({
     username: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     password: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     email: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50), Validators.email]],

@@ -65,20 +65,19 @@ const COMPONENT_IMPORT = [
 const COMPONENTS_NOROUNT = []
 
 @NgModule({
-  declarations: [
-    ...COMPONENT,
-  ],
+    declarations: [
+        ...COMPONENT,
+    ],
     imports: [
         ...COMPONENT_IMPORT,
         NzFormModule,
         NzInputModule,
         NzAlertModule
     ],
-  providers: [ServiceblogService],
-  exports: [
-    WelcomeComponent
-  ],
-  entryComponents: []
+    providers: [ServiceblogService],
+    exports: [
+        WelcomeComponent
+    ]
 })
 export class RoutesModule {
 }

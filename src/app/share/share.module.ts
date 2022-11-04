@@ -8,16 +8,15 @@ const COMPONENTS: any = [];
 const COMPONENTS_NOROUNT: any = []
 
 @NgModule({
-  declarations: [
-    ...DIRECTIVES,
-    ...COMPONENTS
-  ],
-  imports: [FormsModule],
-  providers: [],
-  entryComponents: [COMPONENTS_NOROUNT],
-  exports: [
-    COMPONENTS
-  ]
+    declarations: [
+        ...DIRECTIVES,
+        ...COMPONENTS
+    ],
+    imports: [FormsModule],
+    providers: [],
+    exports: [
+        COMPONENTS
+    ]
 })
 export class ShareModule {
 }

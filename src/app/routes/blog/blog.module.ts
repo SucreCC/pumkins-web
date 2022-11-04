@@ -34,28 +34,27 @@ const COMPONENT_IMPORT = [
 const COMPONENTS_NOROUNT = []
 
 @NgModule({
-  declarations: [
-    ...COMPONENT,
-  ],
-  imports: [
-    ...COMPONENT_IMPORT,
-    MarkdownModule.forRoot({
-      loader: HttpClient,
-      markedOptions: {
-        provide: MarkedOptions,
-        useValue: {
-          gfm: true,
-          breaks: false,
-          pedantic: false,
-          smartLists: true,
-          smartypants: false,
-        },
-      }
-    }),
-  ],
-  providers: [ServiceblogService],
-  exports: [],
-  entryComponents: []
+    declarations: [
+        ...COMPONENT,
+    ],
+    imports: [
+        ...COMPONENT_IMPORT,
+        MarkdownModule.forRoot({
+            loader: HttpClient,
+            markedOptions: {
+                provide: MarkedOptions,
+                useValue: {
+                    gfm: true,
+                    breaks: false,
+                    pedantic: false,
+                    smartLists: true,
+                    smartypants: false,
+                },
+            }
+        }),
+    ],
+    providers: [ServiceblogService],
+    exports: []
 })
 export class BlogModule {
 }

@@ -27,15 +27,14 @@ const COMPONENT_IMPORT = [
 const COMPONENTS_NOROUNT = []
 
 @NgModule({
-  declarations: [
-    ...COMPONENT,
-  ],
-  imports: [
-    ...COMPONENT_IMPORT,
-  ],
-  providers: [],
-  exports: [],
-  entryComponents: []
+    declarations: [
+        ...COMPONENT,
+    ],
+    imports: [
+        ...COMPONENT_IMPORT,
+    ],
+    providers: [],
+    exports: []
 })
 export class HomeModule {
 }
