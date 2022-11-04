@@ -1,7 +1,11 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "29aff7bb-2f8f-4450-95b1-85108ca3d9a7"
+    "analytics": "29aff7bb-2f8f-4450-95b1-85108ca3d9a7",
+    "schematicCollections": [
+      "@schematics/angular",
+      "ng-alain"
+    ]
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -52,7 +56,6 @@
               "node_modules/reveal.js/plugin/highlight/monokai.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
 
-              "node_modules/vditor/src/assets/scss/index.scss",
               "node_modules/prismjs/themes/prism-okaidia.css",
               "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",
               "node_modules/prismjs/plugins/command-line/prism-command-line.css",
@@ -60,9 +63,6 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
-
-              "node_modules/marked/lib/marked.js",
-
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
               "node_modules/prismjs/components/prism-css.min.js",
@@ -70,6 +70,13 @@
               "node_modules/prismjs/plugins/command-line/prism-command-line.js",
               "node_modules/emoji-toolkit/lib/js/joypixels.min.js",
               "node_modules/katex/dist/katex.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "ajv",
+              "ajv-formats",
+              "extend",
+              "file-saver",
+              "mockjs"
             ]
           },
           "configurations": {
