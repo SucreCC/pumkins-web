@@ -7,13 +7,13 @@ import {
   HttpRequest,
   HttpResponseBase
 } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
-import { Router } from '@angular/router';
-import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
-import { ALAIN_I18N_TOKEN, IGNORE_BASE_URL, _HttpClient, CUSTOM_ERROR, RAW_BODY } from '@delon/theme';
+import {Injectable, Injector} from '@angular/core';
+import {Router} from '@angular/router';
+import {DA_SERVICE_TOKEN, ITokenService} from '@delon/auth';
+import {ALAIN_I18N_TOKEN, IGNORE_BASE_URL, _HttpClient, CUSTOM_ERROR, RAW_BODY} from '@delon/theme';
 import {environment} from '../../../environments/environment'
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { BehaviorSubject, Observable, of, throwError, catchError, filter, mergeMap, switchMap, take } from 'rxjs';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
+import {BehaviorSubject, Observable, of, throwError, catchError, filter, mergeMap, switchMap, take} from 'rxjs';
 
 const CODEMESSAGE: { [key: number]: string } = {
   200: '服务器成功返回请求的数据。',
@@ -79,7 +79,7 @@ export class DefaultInterceptor implements HttpInterceptor {
    */
   private refreshTokenRequest(): Observable<any> {
     const model = this.tokenSrv.get();
-    return this.http.post(`/api/auth/refresh`, null, null, { headers: { refresh_token: model?.['refresh_token'] || '' } });
+    return this.http.post(`/api/auth/refresh`, null, null, {headers: {refresh_token: model?.['refresh_token'] || ''}});
   }
 
   // #region 刷新Token方式一：使用 401 重新刷新 Token
@@ -239,13 +239,14 @@ export class DefaultInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // 统一加上服务端前缀
-    let url = req.url;
+    const urlPrefix = 'pumkins';
+    let url = urlPrefix + req.url;
     if (!req.context.get(IGNORE_BASE_URL) && !url.startsWith('https://') && !url.startsWith('http://')) {
-      const { baseUrl } = environment.api;
+      const {baseUrl} = environment.api;
       url = baseUrl + (baseUrl.endsWith('/') && url.startsWith('/') ? url.substring(1) : url);
     }
 
-    const newReq = req.clone({ url, setHeaders: this.getAdditionalHeaders(req.headers) });
+    const newReq = req.clone({url, setHeaders: this.getAdditionalHeaders(req.headers)});
     return next.handle(newReq).pipe(
       mergeMap(ev => {
         // 允许统一对请求错误处理
