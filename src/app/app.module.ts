@@ -20,15 +20,23 @@ import {NzModalService} from "ng-zorro-antd/modal";
 import {ShareModule} from "./share/share.module";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {JWTInterceptor} from "@delon/auth";
+import { GlobalConfigModule } from './global-config.module';
 
 registerLocaleData(en);
 
 // #网络请求拦截器
 const INTERCEPTOR_PROVIDES = [
   // { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
+  {provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true},
   {provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true},
 ];
+
+import {StartupService} from './core';
+import {Observable} from "rxjs";
+
+export function StartupServiceFactory(startupService: StartupService): () => Observable<void> {
+  return () => startupService.load();
+}
 
 @NgModule({
   declarations: [
@@ -49,6 +57,7 @@ const INTERCEPTOR_PROVIDES = [
     NzNotificationModule,
     ShareModule,
     NzInputModule,
+    GlobalConfigModule.forRoot(),
   ],
   providers: [{provide: NZ_I18N, useValue: en_US}, ...INTERCEPTOR_PROVIDES, NzModalService],
   bootstrap: [AppComponent]

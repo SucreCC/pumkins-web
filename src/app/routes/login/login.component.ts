@@ -7,6 +7,8 @@ import {ReuseTabService} from "@delon/abc/reuse-tab";
 // import {StartupService} from "../../core";
 import {Router} from "@angular/router";
 import {ITokenModel} from "@delon/auth/src/token/interface";
+import {StartupService} from "../../core";
+import {AlainConfig} from "@delon/util/config";
 
 
 @Component({
@@ -67,6 +69,14 @@ export class LoginComponent {
         this.tokenInfo.token = resp.headers.get('Authorization');
         this.tokenInfo.expired = +new Date() + 1000 * 60 * 2;
         this.tokenService.set(this.tokenInfo);
+
+        // this.startupSrv.load().subscribe(() => {
+        //   let url = this.tokenService.referrer!.url || '/';
+        //   if (url.includes('/passport')) {
+        //     url = '/';
+        //   }
+        //   this.router.navigateByUrl(url);
+        // });
 
 
         //
