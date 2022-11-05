@@ -6,6 +6,7 @@ import {HttpContext} from "@angular/common/http";
 import {ReuseTabService} from "@delon/abc/reuse-tab";
 // import {StartupService} from "../../core";
 import {Router} from "@angular/router";
+import {ITokenModel} from "@delon/auth/src/token/interface";
 
 
 @Component({
@@ -24,7 +25,12 @@ export class LoginComponent {
   user = {
     username: null,
     password: null,
-  }
+  };
+
+  tokenInfo: ITokenModel = {
+    token: null,
+    expired: 0,
+  };
 
 
   constructor(
@@ -32,8 +38,8 @@ export class LoginComponent {
     private router: Router,
     public el: ElementRef,
     private http: _HttpClient,
-    // @Inject(DA_SERVICE_TOKEN)
-    // private tokenService: ITokenService,
+    @Inject(DA_SERVICE_TOKEN)
+    private tokenService: ITokenService,
     // @Inject(ReuseTabService)
     // private reuseTabService: ReuseTabService,
     // private startupSrv: StartupService,
@@ -58,10 +64,11 @@ export class LoginComponent {
 
         // 清空路由复用信息
         // this.reuseTabService.clear();
-        // let user = resp.body.data;
+        this.tokenInfo.token = resp.headers.get('Authorization');
+        this.tokenInfo.expired = +new Date() + 1000 * 60 * 2;
+        this.tokenService.set(this.tokenInfo);
 
-        // let jwtToken: any = resp.headers.get('Authorization');
-        // this.tokenService.set(jwtToken);
+
         //
         // // 设置用户Token信息
         // // TODO: Mock expired value

@@ -19,13 +19,14 @@ import {NzNotificationModule} from "ng-zorro-antd/notification";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {ShareModule} from "./share/share.module";
 import {NzInputModule} from "ng-zorro-antd/input";
+import {JWTInterceptor} from "@delon/auth";
 
 registerLocaleData(en);
 
 // #网络请求拦截器
 const INTERCEPTOR_PROVIDES = [
   // { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true },
-  // { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
   {provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true},
 ];
 
