@@ -20,7 +20,7 @@ const routes: Routes = [
         path: '', component: HomeComponent, data: {title: 'Home', name: 'Home'},
       },
 
-      {path: 'index', redirectTo: '/home', pathMatch: 'full'},
+      {path: 'index', redirectTo: '/home', pathMatch: 'full', data: {title: 'Home', name: 'Home'}},
 
       {
         path: 'home', component: HomeComponent, data: {title: 'Home', name: 'Home'},

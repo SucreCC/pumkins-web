@@ -1,14 +1,12 @@
-import {Component, ElementRef, Inject} from '@angular/core';
-import {_HttpClient} from '@delon/theme';
+import {Component, ElementRef, Inject, OnInit} from '@angular/core';
+import {_HttpClient, TitleService} from '@delon/theme';
 import {NzModalService} from "ng-zorro-antd/modal";
 import {ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, ITokenService, TokenService} from '@delon/auth';
 import {HttpContext} from "@angular/common/http";
 import {ReuseTabService} from "@delon/abc/reuse-tab";
-// import {StartupService} from "../../core";
 import {Router} from "@angular/router";
 import {ITokenModel} from "@delon/auth/src/token/interface";
 import {StartupService} from "../../core";
-import {AlainConfig} from "@delon/util/config";
 import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
@@ -16,7 +14,7 @@ import {NzMessageService} from 'ng-zorro-antd/message';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   loginUrl: string = "/login"
   username: string;
@@ -45,7 +43,8 @@ export class LoginComponent {
     @Inject(ReuseTabService)
     private reuseTabService: ReuseTabService,
     private startupSrv: StartupService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private titleService: TitleService,
   ) {
   }
 
@@ -64,24 +63,21 @@ export class LoginComponent {
         context: new HttpContext().set(ALLOW_ANONYMOUS, true)
       }).subscribe(resp => {
       if (resp.body.status === 0) {
-        let data = resp.body.data;
+        let user = resp.body.data;
 
-        if (data === null) {
+        if (user === null) {
           this.message.error("username or password is not correct");
 
         }
 
-        if (data != null) {
-
-          console.log("login success");
-
+        if (user != null) {
           // 清空路由复用信息
           this.reuseTabService.clear();
           this.tokenInfo.token = resp.headers.get('Authorization');
           this.tokenInfo.expired = +new Date() + 1000 * 60 * 60 * 2;
           this.tokenService.set(this.tokenInfo);
 
-          this.startupSrv.load().subscribe(() => {
+          this.startupSrv.load(user).subscribe(() => {
             let url = this.tokenService.referrer!.url || '/';
             if (url.includes('/passport')) {
               url = '/';
@@ -102,5 +98,9 @@ export class LoginComponent {
       this.el.nativeElement.querySelector('.login-button').style.backgroundColor = '#ff7300';
       this.isDisabledButton = false;
     }, 2000);
+  }
+
+  ngOnInit(): void {
+    // this.titleService.suffix = 'login';
   }
 }

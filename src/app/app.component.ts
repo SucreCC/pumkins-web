@@ -8,10 +8,8 @@ import {Router} from "@angular/router";
   `,
 })
 export class AppComponent implements OnInit {
-  title = 'pumkins-frontkit';
 
-
-  constructor(private router: Router,) {
+  constructor() {
   }
 
   ngOnInit(): void {
