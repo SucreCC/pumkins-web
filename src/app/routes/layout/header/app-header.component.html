@@ -29,9 +29,10 @@
 
   <nav class="header-nav">
     <div class="left">
+
       <a [routerLink]="['/home']">Home</a>
 
-      <a [routerLink]="['/blog']">Blog</a>
+      <a [acl]="'host'" [routerLink]="['/blog']">Blog</a>
 
       <a [routerLink]="['/memory']">Memory</a>
 
@@ -39,8 +40,7 @@
 
       <a [routerLink]="['/guide']">Guide</a>
 
-      <a [routerLink]="['/about']">About</a>
-
+      <a [acl]="'normal'" [routerLink]="['/about']">About</a>
 
     </div>
 
@@ -51,9 +51,12 @@
     </div>
   </nav>
 
-  <header class="header-picture" >
+  <header class="header-picture">
     <div class="header-img" *ngFor="let img of imgList">
-      <img class="dynamic-img"  [src]="img" alt="header-picture">
+      <img class="dynamic-img" [src]="img" alt="header-picture">
+    </div>
+    <div class="header-txt">
+      <P>Cindy & Sucre</P>
     </div>
   </header>
 

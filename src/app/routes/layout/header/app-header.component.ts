@@ -1,5 +1,6 @@
 import {Component, OnInit, ElementRef, Pipe, PipeTransform} from '@angular/core';
 import {_HttpClient} from '@delon/theme';
+import {ACLService} from '@delon/acl';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,7 @@ export class AppHeaderComponent implements OnInit {
 
   getDynamicPictureUrl: string = "/layout/header/dynamic-picture";
 
-  constructor(public http: _HttpClient, public el: ElementRef) {
+  constructor(public http: _HttpClient, public el: ElementRef, private aclService: ACLService,) {
   }
 
   ngOnInit(): void {

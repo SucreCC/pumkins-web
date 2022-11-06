@@ -32,11 +32,12 @@ export class StartupService {
 
   load(): Observable<void> {
     const defaultLang = this.i18n.defaultLang;
+
     return zip(this.i18n.loadLangData(defaultLang), this.httpClient.get('assets/tmp/app-data.json')).pipe(
       // 接收其他拦截器后产生的异常消息
       catchError(res => {
         console.warn(`StartupService.load: Network request failed`, res);
-        setTimeout(() => this.router.navigateByUrl(`/exception/500`));
+        // setTimeout(() => this.router.navigateByUrl(`/exception/500`));
         return [];
       }),
       map(([langData, appData]: [Record<string, string>, NzSafeAny]) => {
@@ -48,7 +49,9 @@ export class StartupService {
         // 用户信息：包括姓名、头像、邮箱地址
         this.settingService.setUser(appData.user);
         // ACL：设置权限为全量
-        this.aclService.setFull(true);
+        // this.aclService.setFull(true);
+        console.log("it is a normal user")
+        this.aclService.setRole(["normal"]);
         // 初始化菜单
         this.menuService.add(appData.menu);
         // 设置页面标题的后缀

@@ -167,6 +167,8 @@ export class DefaultInterceptor implements HttpInterceptor {
 
   private toLogin(): void {
     this.notification.error(`未登录或登录已过期，请重新登录。`, ``);
+
+    // 这里的login_url 是 global-config.module.ts 中的  auth: { login_url: '/login' }
     this.goTo(this.tokenSrv.login_url!);
   }
 
@@ -238,9 +240,22 @@ export class DefaultInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // 统一加上服务端前缀
-    const urlPrefix = 'pumkins';
-    let url = urlPrefix + req.url;
+
+
+    // 这里区分一下前端内部资源请求和远程服务的请求，便于proxy.conf.json 的配置
+    const localResourceUrls = [
+      "assets/tmp/app-data.json",
+      "assets/tmp/i18n/zh-CN.json",
+    ]
+
+    let url = req.url;
+
+    if (!localResourceUrls.includes(req.url)) {
+      // 统一加上服务端前缀
+      const urlPrefix = 'pumkins';
+      url = urlPrefix + req.url;
+    }
+
     if (!req.context.get(IGNORE_BASE_URL) && !url.startsWith('https://') && !url.startsWith('http://')) {
       const {baseUrl} = environment.api;
       url = baseUrl + (baseUrl.endsWith('/') && url.startsWith('/') ? url.substring(1) : url);

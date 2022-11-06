@@ -29,6 +29,7 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {RegisterComponent} from "./login/register/register.component";
 import {NzAlertModule} from "ng-zorro-antd/alert";
 import {ForgetPasswordComponent} from "./login/forget-password/forget-password.component";
+import {DelonACLModule} from "@delon/acl";
 
 
 
@@ -72,7 +73,8 @@ const COMPONENTS_NOROUNT = []
         ...COMPONENT_IMPORT,
         NzFormModule,
         NzInputModule,
-        NzAlertModule
+        NzAlertModule,
+        DelonACLModule
     ],
     providers: [ServiceblogService],
     exports: [
