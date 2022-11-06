@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ACLService } from '@delon/acl';
+import {ACLCanType, ACLService} from '@delon/acl';
 import { ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -50,10 +50,12 @@ export class StartupService {
         this.settingService.setUser(appData.user);
         // ACL：设置权限为全量
         // this.aclService.setFull(true);
-        console.log("it is a normal user")
-        this.aclService.setRole(["normal"]);
+
+        this.aclService.setRole(["host"]);
+        console.log( this.aclService)
+
         // 初始化菜单
-        this.menuService.add(appData.menu);
+        // this.menuService.add(appData.menu);
         // 设置页面标题的后缀
         this.titleService.default = '';
         this.titleService.suffix = appData.app.name;

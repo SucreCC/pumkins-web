@@ -7,6 +7,7 @@ import {HomeComponent} from "./home/home.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./login/register/register.component";
 import {ForgetPasswordComponent} from "./login/forget-password/forget-password.component";
+import {ACLGuard, ACLGuardType} from "@delon/acl";
 
 
 const routes: Routes = [
@@ -19,16 +20,23 @@ const routes: Routes = [
         path: '', component: HomeComponent, data: {title: 'Home', name: 'Home'},
       },
 
-      { path: 'index', redirectTo: '/home', pathMatch: 'full' },
+      {path: 'index', redirectTo: '/home', pathMatch: 'full'},
 
       {
         path: 'home', component: HomeComponent, data: {title: 'Home', name: 'Home'},
       },
 
-      { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
+      {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
 
       {
-        path: 'about', component: AboutComponent, data: {title: 'About', name: 'About'}
+        path: 'about',
+        component: AboutComponent,
+        canActivate: [ACLGuard],
+        data: {
+          title: 'About', name: 'About', guard: {
+            role: ['normal'],
+          } as ACLGuardType,
+        },
       }
 
     ]
