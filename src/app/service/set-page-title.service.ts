@@ -19,9 +19,6 @@ export class SetPageTitleService {
       map(() => this.router)
     )
       .subscribe((event) => {
-        console.log(this.router.routerState)
-        console.log(this.router.routerState.root)
-
         const titles = this.getTitle(this.router.routerState, this.router.routerState.root);
         const title = titles[titles.length - 1];
         // console.log(title);
