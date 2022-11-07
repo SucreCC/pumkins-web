@@ -261,6 +261,7 @@ export class DefaultInterceptor implements HttpInterceptor {
       url = baseUrl + (baseUrl.endsWith('/') && url.startsWith('/') ? url.substring(1) : url);
     }
 
+    console.log("22222")
     const newReq = req.clone({url, setHeaders: this.getAdditionalHeaders(req.headers)});
     return next.handle(newReq).pipe(
       mergeMap(ev => {

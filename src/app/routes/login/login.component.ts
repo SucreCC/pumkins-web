@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, OnInit} from '@angular/core';
+import {Component, ElementRef, Inject, Injector, OnInit} from '@angular/core';
 import {_HttpClient, TitleService} from '@delon/theme';
 import {NzModalService} from "ng-zorro-antd/modal";
 import {ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, ITokenService, TokenService} from '@delon/auth';
@@ -9,12 +9,13 @@ import {ITokenModel} from "@delon/auth/src/token/interface";
 import {StartupService} from "../../core";
 import {NzMessageService} from 'ng-zorro-antd/message';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   loginUrl: string = "/login"
   username: string;
@@ -44,7 +45,6 @@ export class LoginComponent implements OnInit{
     private reuseTabService: ReuseTabService,
     private startupSrv: StartupService,
     private message: NzMessageService,
-    private titleService: TitleService,
   ) {
   }
 
@@ -60,14 +60,14 @@ export class LoginComponent implements OnInit{
       {
         observe: 'response',
         responseType: 'json',
-        context: new HttpContext().set(ALLOW_ANONYMOUS, true)
       }).subscribe(resp => {
       if (resp.body.status === 0) {
         let user = resp.body.data;
 
+        // this.notification.error("login error","username or password is not correct");
+
         if (user === null) {
           this.message.error("username or password is not correct");
-
         }
 
         if (user != null) {

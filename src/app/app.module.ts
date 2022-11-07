@@ -15,15 +15,14 @@ import {NzNotificationModule} from "ng-zorro-antd/notification";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {ShareModule} from "./share/share.module";
 import {NzInputModule} from "ng-zorro-antd/input";
-import {JWTInterceptor} from "@delon/auth";
+import {JWTInterceptor, SimpleInterceptor} from "@delon/auth";
 import {GlobalConfigModule} from './global-config.module';
-import { DelonACLModule } from '@delon/acl';
 
 
 // #网络请求拦截器
 const INTERCEPTOR_PROVIDES = [
   // { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true },
-  {provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true},
+  // {provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true},
   {provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true},
 ];
 
@@ -64,6 +63,7 @@ const LANG = {
 // register angular
 import {registerLocaleData} from '@angular/common';
 import {NzMessageModule} from "ng-zorro-antd/message";
+import {DelonACLModule} from "@delon/acl";
 
 registerLocaleData(LANG.ng, LANG.abbr);
 const LANG_PROVIDES = [

@@ -11,6 +11,8 @@ import {ICONS} from '../../../style-icons';
 import {ICONS_AUTO} from '../../../style-icons-auto';
 import {I18NService} from '../i18n/i18n.service';
 import {SetPageTitleService} from "../../service/set-page-title.service";
+import {ITokenModel} from "@delon/auth/src/token/interface";
+import {DA_SERVICE_TOKEN, ITokenService} from "@delon/auth";
 
 /**
  * Used for application startup
@@ -27,10 +29,31 @@ export class StartupService {
     private titleService: TitleService,
     private httpClient: HttpClient,
     private router: Router,
-    private setPageTitleService: SetPageTitleService
+    private setPageTitleService: SetPageTitleService,
+    @Inject(DA_SERVICE_TOKEN)
+    private tokenService: ITokenService,
   ) {
     iconSrv.addIcon(...ICONS_AUTO, ...ICONS);
   }
+
+
+  user = {
+    id: '',
+    username: '',
+    icon: '',
+    email: '',
+    role: 'normal',
+  }
+
+  username_prefix: string = "User#";
+  icon_path_prefix: string = "assets/tmp/img"
+  icon_path_suffix: string = ".png"
+
+
+  tokenInfo: ITokenModel = {
+    token: 'Authorization',
+    expired: 0,
+  };
 
 
   load(user: any): Observable<void> {
@@ -46,6 +69,20 @@ export class StartupService {
       map(([langData, appData]: [Record<string, string>, NzSafeAny]) => {
 
 
+        // 为未登入的用户设置默认头像，权限以及用户名
+        //头像为随机6张图片中的一张
+        //java后台新用户注册时也设置随机头像
+
+        if (user === null) {
+          this.user.username = this.username_prefix + new Date().getTime();
+          let iconNumber = Math.floor(Math.random() * (6 + 1));
+          this.user.icon = this.icon_path_prefix + iconNumber + this.icon_path_suffix;
+
+          // 设置仿造token
+          this.tokenInfo.expired = +new Date() + 1000 * 60 * 60 * 2;
+          this.tokenService.set(this.tokenInfo);
+        }
+
         // setting language data
         this.i18n.use(defaultLang, langData);
 
@@ -53,10 +90,10 @@ export class StartupService {
         this.settingService.setApp(appData.app);
 
         // 用户信息：包括姓名、头像、邮箱地址
-        this.settingService.setUser(user);
+        this.settingService.setUser(this.user);
 
         //ACL 设置用户角色
-        this.aclService.setRole(["host"]);
+        this.aclService.setRole(['normal']);
         // console.log(this.aclService)
 
         // 初始化菜单
@@ -65,7 +102,7 @@ export class StartupService {
         // 设置页面标题
         this.titleService.prefix = 'Pumkins';
         this.titleService.separator = ' | ';
-         this.setPageTitleService.setTitle();
+        this.setPageTitleService.setTitle();
 
       })
     );

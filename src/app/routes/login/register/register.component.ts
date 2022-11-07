@@ -1,7 +1,14 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit} from '@angular/core';
 import {NzModalService} from "ng-zorro-antd/modal";
-import {UntypedFormBuilder, FormControl, UntypedFormGroup, ValidationErrors, Validators} from '@angular/forms';
-import {_HttpClient} from '@delon/theme';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {_HttpClient, SettingsService} from '@delon/theme';
+import {HttpContext} from "@angular/common/http";
+import {ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, ITokenService} from "@delon/auth";
+import {ReuseTabService} from "@delon/abc/reuse-tab";
+import {StartupService} from "../../../core";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {ITokenModel} from "@delon/auth/src/token/interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -15,6 +22,14 @@ export class RegisterComponent implements OnInit {
     private fb: UntypedFormBuilder,
     public modalSrv: NzModalService,
     private http: _HttpClient,
+    private settingService: SettingsService,
+    @Inject(ReuseTabService)
+    private reuseTabService: ReuseTabService,
+    private startupSrv: StartupService,
+    private message: NzMessageService,
+    @Inject(DA_SERVICE_TOKEN)
+    private tokenService: ITokenService,
+    private router: Router,
   ) {
   }
 
@@ -26,9 +41,14 @@ export class RegisterComponent implements OnInit {
   user = {
     username: null,
     password: null,
-    email: null
+    email: null,
+    icon: null
   }
 
+  tokenInfo: ITokenModel = {
+    token: null,
+    expired: 0,
+  };
 
   registerUrl: string = "/register";
 
@@ -50,12 +70,48 @@ export class RegisterComponent implements OnInit {
   toRegister() {
     this.disabledButtonFor3seconds();
 
-    this.user.username=this.form.value.username;
-    this.user.password=this.form.value.password;
-    this.user.email=this.form.value.email;
+    this.user.username = this.form.value.username;
+    this.user.password = this.form.value.password;
+    this.user.email = this.form.value.email;
 
-    this.http.post(this.registerUrl, this.user).subscribe(resp => {
-      if (resp.status === 0) {
+    // @ts-ignore
+    this.user.icon = this.settingService.getUser().icon;
+
+
+    // 必须要让 params 为null， 才能出现让post请求不只是返回 response 的 body，而是返回整个response对象
+    // 默认配置中对所有HTTP请求都会强制 [校验](https://ng-alain.com/auth/getting-started) 用户 Token
+    // 然一般来说登录请求不需要校验，因此加上 `ALLOW_ANONYMOUS` 表示不触发用户 Token 校验
+    this.http.post(this.registerUrl, this.user,
+      null,
+      {
+        observe: 'response',
+        responseType: 'json',
+
+        context: new HttpContext().set(ALLOW_ANONYMOUS, true)
+      }).subscribe(resp => {
+      if (resp.body.status === 0) {
+        let user = resp.body.data;
+
+        if (user === null) {
+          this.message.error("username or password is exist");
+        }
+
+        if (user != null) {
+          // 清空路由复用信息
+          this.reuseTabService.clear();
+          this.tokenInfo.token = resp.headers.get('Authorization');
+          this.tokenInfo.expired = +new Date() + 1000 * 60 * 60 * 2;
+          this.tokenService.set(this.tokenInfo);
+
+          this.startupSrv.load(user).subscribe(() => {
+            let url = this.tokenService.referrer!.url || '/';
+            if (url.includes('/passport')) {
+              url = '/';
+            }
+            this.router.navigateByUrl(url);
+          });
+
+        }
       }
     })
   }

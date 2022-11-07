@@ -4,7 +4,7 @@
     "description": "The blog for Sucre & Cindy"
   },
   "user": {
-    "name": "Admin",
+    "username": "Admin",
     "avatar": "./assets/tmp/img/avatar.jpg",
     "email": "cipchk@qq.com"
   },
