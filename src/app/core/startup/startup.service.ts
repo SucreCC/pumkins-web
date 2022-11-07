@@ -38,7 +38,7 @@ export class StartupService {
 
 
   user = {
-    id: '',
+    id: -1,
     username: '',
     icon: '',
     email: '',
@@ -55,8 +55,45 @@ export class StartupService {
     expired: 0,
   };
 
+// for login register and forget password page
+  loadUser(user: any): Observable<void> {
+    const defaultLang = this.i18n.defaultLang;
+    return zip(this.i18n.loadLangData(defaultLang), this.httpClient.get('assets/tmp/app-data.json')).pipe(
+      // 接收其他拦截器后产生的异常消息
+      catchError(res => {
+        console.warn(`StartupService.load: Network request failed`, res);
+        // setTimeout(() => this.router.navigateByUrl(`/exception/500`));
+        return [];
+      }),
+      map(([langData, appData]: [Record<string, string>, NzSafeAny]) => {
 
-  load(user: any): Observable<void> {
+        // setting language data
+        this.i18n.use(defaultLang, langData);
+
+        // 应用信息：包括站点名、描述、年份
+        this.settingService.setApp(appData.app);
+
+        // 用户信息：包括姓名、头像、邮箱地址
+        this.settingService.setUser(user);
+
+        //ACL 设置用户角色
+        this.aclService.setRole([user.role]);
+        // console.log(this.aclService)
+
+        // 初始化菜单
+        // this.menuService.add(appData.menu);
+
+        // 设置页面标题
+        this.titleService.prefix = 'Pumkins';
+        this.titleService.separator = ' | ';
+        this.setPageTitleService.setTitle();
+
+      })
+    );
+  }
+
+
+  load(): Observable<void> {
     const defaultLang = this.i18n.defaultLang;
 
     return zip(this.i18n.loadLangData(defaultLang), this.httpClient.get('assets/tmp/app-data.json')).pipe(
@@ -68,33 +105,41 @@ export class StartupService {
       }),
       map(([langData, appData]: [Record<string, string>, NzSafeAny]) => {
 
+        let userFromLocalStorage = JSON.parse(<string>localStorage.getItem('user'));
 
-        // 为未登入的用户设置默认头像，权限以及用户名
-        //头像为随机6张图片中的一张
-        //java后台新用户注册时也设置随机头像
-
-        if (user === null) {
+        // 首次进入时如果 浏览器缓存里没有用户信息的话就要设置一个访客用户
+        if (userFromLocalStorage === null) {
           this.user.username = this.username_prefix + new Date().getTime();
           let iconNumber = Math.floor(Math.random() * (6 + 1));
           this.user.icon = this.icon_path_prefix + iconNumber + this.icon_path_suffix;
-
-          // 设置仿造token
-          this.tokenInfo.expired = +new Date() + 1000 * 60 * 60 * 2;
-          this.tokenService.set(this.tokenInfo);
         }
+
+        // 如果非访客登入的话， 沿用缓存中的用户
+        if (userFromLocalStorage != null) {
+          this.user= JSON.parse(<string>localStorage.getItem('user'));
+        }
+
+
+        // 用户信息：包括姓名、头像、邮箱地址
+        this.settingService.setUser(this.user);
+
+        //ACL 设置用户角色
+        this.aclService.setRole([this.user.role]);
+
+
+        // 如果没有token 就设置仿造token 每次刷新页面就
+        let tokenInfo = this.tokenService.get();
+        if (tokenInfo?.token != this.tokenInfo.token) {
+          this.tokenInfo.token = tokenInfo?.token;
+        }
+        this.tokenInfo.expired = +new Date() + 1000 * 60 * 60 * 2;
+        this.tokenService.set(this.tokenInfo);
 
         // setting language data
         this.i18n.use(defaultLang, langData);
 
         // 应用信息：包括站点名、描述、年份
         this.settingService.setApp(appData.app);
-
-        // 用户信息：包括姓名、头像、邮箱地址
-        this.settingService.setUser(this.user);
-
-        //ACL 设置用户角色
-        this.aclService.setRole(['normal']);
-        // console.log(this.aclService)
 
         // 初始化菜单
         // this.menuService.add(appData.menu);

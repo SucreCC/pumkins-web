@@ -1,6 +1,7 @@
-import {Component, OnInit, ElementRef, Pipe, PipeTransform} from '@angular/core';
-import {_HttpClient} from '@delon/theme';
+import {Component, OnInit, ElementRef, Inject} from '@angular/core';
+import {_HttpClient, ALAIN_I18N_TOKEN, SettingsService} from '@delon/theme';
 import {ACLService} from '@delon/acl';
+import {I18NService} from "../../../core";
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,14 @@ export class AppHeaderComponent implements OnInit {
   showHeader: boolean = false;
   prefixPath: string = "/assets/my-assets/images/theme/body/";
   pictureSrc: string = '';
+  user = {
+    id: -1,
+    username: '',
+    icon: '',
+    email: '',
+    role: '',
+  }
+  showSignIn: boolean = true;
 
   imgList: string[] = ["/assets/my-assets/images/theme/body/body1.jpeg",
     "/assets/my-assets/images/theme/body/body2.jpeg",
@@ -23,15 +32,31 @@ export class AppHeaderComponent implements OnInit {
 
   getDynamicPictureUrl: string = "/layout/header/dynamic-picture";
 
-  constructor(public http: _HttpClient, public el: ElementRef, private aclService: ACLService,) {
+  constructor(public http: _HttpClient,
+              public el: ElementRef,
+              private aclService: ACLService,
+              @Inject(ALAIN_I18N_TOKEN) private i18n: I18NService,
+              private settingService: SettingsService,) {
   }
+
 
   ngOnInit(): void {
     this.dynamicPicture();
     this.getPicture();
 
+    if (this.user.id != -1) {
+      this.showSignIn = false;
+    }
 
-    // this.test();
+    // console.log(this.showSignIn)
+    //   console.log(this.settingService.getUser())
+
+
+    // setTimeout(() => {
+    //   this.user.username = "sucre";
+    //   console.log(this.settingService.getUser())
+    //   console.log("app-header--2--" + this.settingService.getUser())
+    // }, 3000)
 
   }
 

@@ -30,7 +30,7 @@ import {StartupService} from './core';
 import {Observable} from "rxjs";
 
 export function StartupServiceFactory(startupService: StartupService): () => Observable<void> {
-  return () => startupService.load(null);
+  return () => startupService.load();
 }
 
 const APPINIT_PROVIDES = [

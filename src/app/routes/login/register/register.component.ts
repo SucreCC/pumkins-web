@@ -103,7 +103,7 @@ export class RegisterComponent implements OnInit {
           this.tokenInfo.expired = +new Date() + 1000 * 60 * 60 * 2;
           this.tokenService.set(this.tokenInfo);
 
-          this.startupSrv.load(user).subscribe(() => {
+          this.startupSrv.loadUser(user).subscribe(() => {
             let url = this.tokenService.referrer!.url || '/';
             if (url.includes('/passport')) {
               url = '/';

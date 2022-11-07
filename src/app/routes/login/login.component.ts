@@ -63,9 +63,6 @@ export class LoginComponent implements OnInit {
       }).subscribe(resp => {
       if (resp.body.status === 0) {
         let user = resp.body.data;
-
-        // this.notification.error("login error","username or password is not correct");
-
         if (user === null) {
           this.message.error("username or password is not correct");
         }
@@ -77,7 +74,7 @@ export class LoginComponent implements OnInit {
           this.tokenInfo.expired = +new Date() + 1000 * 60 * 60 * 2;
           this.tokenService.set(this.tokenInfo);
 
-          this.startupSrv.load(user).subscribe(() => {
+          this.startupSrv.loadUser(user).subscribe(() => {
             let url = this.tokenService.referrer!.url || '/';
             if (url.includes('/passport')) {
               url = '/';

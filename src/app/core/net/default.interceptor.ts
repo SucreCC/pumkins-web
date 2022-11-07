@@ -238,11 +238,14 @@ export class DefaultInterceptor implements HttpInterceptor {
       res['Accept-Language'] = lang;
     }
 
-    // @ts-ignore
     // req.headers.set("Authorization", token);
     // console.log(req.headers);
+    // @ts-ignore
+    if (this.tokenService.get().token) {
+      // @ts-ignore
+      res['Authorization'] = this.tokenService.get().token;
+    }
 
-    res['Authorization'] = this.tokenService.get().token;
     return res;
   }
 
