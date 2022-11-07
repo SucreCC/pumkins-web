@@ -51,7 +51,7 @@ export class StartupService {
 
 
   tokenInfo: ITokenModel = {
-    token: 'Authorization',
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0aW1lU3RhbXAiOjE2Njc3OTYzMzUsImlkIjoxNCwiZXhwIjoxNjY3ODAzNTM1LCJ1c2VybmFtZSI6Imxhb2RvbmdAbGFvZG9uZyJ9.0Hxj5G_G1n9tD4VG86WjPyzicEPE67XXgTI667jULzw',
     expired: 0,
   };
 
