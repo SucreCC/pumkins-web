@@ -45,12 +45,28 @@
     </div>
 
     <div class="right">
-      <!--      <img class="right-img" src="assets/my-assets/images/theme/header/right-image.png" alt="pumkins"/>-->
+<!--      <img *ngIf="!showIcon" class="right-img" [src]="user.icon" alt="pumkins"/>-->
+      <img class="right-img" [src]="user.icon" alt="pumkins"/>
+      <a *ngIf="!showIcon" class="right-username">
+        <ellipsis length="8" tail="" tooltip="false" nz-dropdown nz-icon nzType="down"
+                  [nzDropdownMenu]="menu2">{{user.username}}
+        </ellipsis>
+      </a>
 
-      <!--      <a [(ngModel)]="user.username">{{user.username}}</a>-->
-      <a *ngIf="!showSignIn">{{user.username}}</a>
-      <a *ngIf="showSignIn" [routerLink]="['/login']">Sign in</a>
-      <a *ngIf="showSignIn" [routerLink]="['/register']">Register</a>
+      <nz-dropdown-menu #menu2="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item>个人中心</li>
+          <li nz-menu-item>后台管理</li>
+          <li nz-menu-item>修改头像</li>
+          <li nz-menu-item>发布文章</li>
+          <li nz-menu-item (click)="logout()">logout</li>
+        </ul>
+      </nz-dropdown-menu>
+
+      <a *ngIf="showIcon" [routerLink]="['/login']">Sign in</a>
+      <a *ngIf="showIcon" [routerLink]="['/register']">Register</a>
+
+
     </div>
   </nav>
 

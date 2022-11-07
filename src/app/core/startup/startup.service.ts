@@ -46,7 +46,7 @@ export class StartupService {
   }
 
   username_prefix: string = "User#";
-  icon_path_prefix: string = "assets/tmp/img"
+  icon_path_prefix: string = "assets/tmp/img/"
   icon_path_suffix: string = ".png"
 
 

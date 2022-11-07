@@ -30,6 +30,9 @@ import {RegisterComponent} from "./login/register/register.component";
 import {NzAlertModule} from "ng-zorro-antd/alert";
 import {ForgetPasswordComponent} from "./login/forget-password/forget-password.component";
 import {DelonACLModule} from "@delon/acl";
+import {EllipsisModule} from "@delon/abc/ellipsis";
+import {NzDropDownModule} from "ng-zorro-antd/dropdown";
+import {NzIconModule} from "ng-zorro-antd/icon";
 
 
 
@@ -69,13 +72,16 @@ const COMPONENTS_NOROUNT = []
     declarations: [
         ...COMPONENT,
     ],
-    imports: [
-        ...COMPONENT_IMPORT,
-        NzFormModule,
-        NzInputModule,
-        NzAlertModule,
-        DelonACLModule
-    ],
+  imports: [
+    ...COMPONENT_IMPORT,
+    NzFormModule,
+    NzInputModule,
+    NzAlertModule,
+    DelonACLModule,
+    EllipsisModule,
+    NzDropDownModule,
+    NzIconModule
+  ],
     providers: [ServiceblogService],
     exports: [
         WelcomeComponent

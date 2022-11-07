@@ -23,7 +23,7 @@ export class AppHeaderComponent implements OnInit {
     email: '',
     role: '',
   }
-  showSignIn: boolean = true;
+  showIcon: boolean = false;
 
   imgList: string[] = ["/assets/my-assets/images/theme/body/body1.jpeg",
     "/assets/my-assets/images/theme/body/body2.jpeg",
@@ -43,22 +43,9 @@ export class AppHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.dynamicPicture();
     this.getPicture();
-
-    if (this.user.id != -1) {
-      this.showSignIn = false;
-    }
-
-    // console.log(this.showSignIn)
-    //   console.log(this.settingService.getUser())
-
-
-    // setTimeout(() => {
-    //   this.user.username = "sucre";
-    //   console.log(this.settingService.getUser())
-    //   console.log("app-header--2--" + this.settingService.getUser())
-    // }, 3000)
-
+    this.getUserFromLocalStorage();
   }
+
 
   // dynamicPicture() {
   //   let layout = 1;
@@ -105,4 +92,13 @@ export class AppHeaderComponent implements OnInit {
     });
   }
 
+  private getUserFromLocalStorage() {
+    this.user = JSON.parse(<string>localStorage.getItem('user'));
+    this.showIcon = this.user.email.length === 0
+  }
+
+  logout() {
+
+
+  }
 }
