@@ -8,7 +8,7 @@ import {WelcomeComponent} from "./welcome/welcome.component";
 import {IndexComponent} from "./layout/index.component";
 
 import {AboutComponent} from './about/about.component';
-import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
+import {ArticleDetailComponent} from './blog/article/article-detail.component';
 
 import {ServiceblogService} from './blog/data/blog-service.service';
 import {RelayOnComponent} from './about/About-Components/relay-on/relay-on.component';
@@ -41,7 +41,7 @@ const COMPONENT = [
   IndexComponent,
   IndexComponent,
   AboutComponent,
-  BlogDetailComponent,
+  ArticleDetailComponent,
   RelayOnComponent,
   TopContentComponent,
   AppHeaderComponent,

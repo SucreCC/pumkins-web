@@ -45,8 +45,8 @@
     </div>
 
     <div class="right">
-<!--      <img *ngIf="!showIcon" class="right-img" [src]="user.icon" alt="pumkins"/>-->
-      <img class="right-img" [src]="user.icon" alt="pumkins"/>
+      <!--      <img *ngIf="!showIcon" class="right-img" [src]="user.icon" alt="pumkins"/>-->
+      <img *ngIf="!showIcon" class="right-img" [src]="user.icon" alt="pumkins"/>
       <a *ngIf="!showIcon" class="right-username">
         <ellipsis length="8" tail="" tooltip="false" nz-dropdown nz-icon nzType="down"
                   [nzDropdownMenu]="menu2">{{user.username}}
@@ -56,9 +56,9 @@
       <nz-dropdown-menu #menu2="nzDropdownMenu">
         <ul nz-menu>
           <li nz-menu-item>个人中心</li>
-          <li nz-menu-item>后台管理</li>
           <li nz-menu-item>修改头像</li>
           <li nz-menu-item>发布文章</li>
+          <li nz-menu-item>后台管理</li>
           <li nz-menu-item (click)="logout()">logout</li>
         </ul>
       </nz-dropdown-menu>

@@ -10,6 +10,7 @@ import {BlogRecentComponent} from "./blog-recent/blog-recent.component";
 import {MarkdownModule, MarkedOptions} from "ngx-markdown";
 import {BlogSaveComponent} from "./blog-save/blog-save.component";
 import {CommonModule} from "@angular/common";
+import {ArticleDetailComponent} from "./article/article-detail.component";
 
 
 
@@ -20,7 +21,8 @@ const COMPONENT = [
   BlogWriteComponent,
   BlogComponent,
   BlogRecentComponent,
-  BlogSaveComponent
+  BlogSaveComponent,
+  // ArticleDetailComponent
 ];
 
 const COMPONENT_IMPORT = [

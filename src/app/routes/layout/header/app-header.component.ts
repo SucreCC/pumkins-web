@@ -2,6 +2,8 @@ import {Component, OnInit, ElementRef, Inject} from '@angular/core';
 import {_HttpClient, ALAIN_I18N_TOKEN, SettingsService} from '@delon/theme';
 import {ACLService} from '@delon/acl';
 import {I18NService} from "../../../core";
+import {ITokenModel} from "@delon/auth/src/token/interface";
+import {DA_SERVICE_TOKEN, ITokenService} from "@delon/auth";
 
 @Component({
   selector: 'app-header',
@@ -25,6 +27,11 @@ export class AppHeaderComponent implements OnInit {
   }
   showIcon: boolean = false;
 
+  tokenInfo: ITokenModel = {
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0aW1lU3RhbXAiOjE2Njc3OTYzMzUsImlkIjoxNCwiZXhwIjoxNjY3ODAzNTM1LCJ1c2VybmFtZSI6Imxhb2RvbmdAbGFvZG9uZyJ9.0Hxj5G_G1n9tD4VG86WjPyzicEPE67XXgTI667jULzw',
+    expired: 0,
+  };
+
   imgList: string[] = ["/assets/my-assets/images/theme/body/body1.jpeg",
     "/assets/my-assets/images/theme/body/body2.jpeg",
     "/assets/my-assets/images/theme/body/body3.jpeg"
@@ -36,7 +43,9 @@ export class AppHeaderComponent implements OnInit {
               public el: ElementRef,
               private aclService: ACLService,
               @Inject(ALAIN_I18N_TOKEN) private i18n: I18NService,
-              private settingService: SettingsService,) {
+              private settingService: SettingsService,
+              @Inject(DA_SERVICE_TOKEN)
+              private tokenService: ITokenService,) {
   }
 
 
@@ -98,7 +107,9 @@ export class AppHeaderComponent implements OnInit {
   }
 
   logout() {
-
-
+    let user: any = null;
+    this.settingService.setUser(user);
+    this.tokenService.set(this.tokenInfo);
+    window.location.reload();
   }
 }

@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {BlogWriteComponent} from "./blog-write/blog-write.component";
 import {BlogComponent} from "./blog.component";
 import {BlogRecentComponent} from "./blog-recent/blog-recent.component";
+import {ArticleDetailComponent} from "./article/article-detail.component";
 
 
 const routes: Routes = [
@@ -14,6 +15,11 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'recent', pathMatch: 'full'},
       {path: 'recent', component: BlogRecentComponent, data: {title: 'BlogRecent', name: 'BlogRecent'}},
+      {
+        path: 'article-detail',
+        component: ArticleDetailComponent,
+        data: {title: 'ArticleDetail', name: 'ArticleDetail'}
+      },
     ]
   },
 
