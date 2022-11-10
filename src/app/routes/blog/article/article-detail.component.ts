@@ -20,12 +20,12 @@ export class ArticleDetailComponent implements OnInit {
     blogDetail: '',
   }
 
+  comment:string="This is submit comment"
+
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     let articleId = this.route.snapshot.queryParams['id'];
-
-
   }
 }

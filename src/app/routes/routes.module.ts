@@ -3,18 +3,12 @@ import {RoutesRoutingModule} from './routes-routing.module';
 import {CommonModule} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {IndexComponent} from "./layout/index.component";
-
 import {AboutComponent} from './about/about.component';
-import {ArticleDetailComponent} from './blog/article/article-detail.component';
-
 import {ServiceblogService} from './blog/data/blog-service.service';
 import {RelayOnComponent} from './about/About-Components/relay-on/relay-on.component';
 import {TopContentComponent} from './about/About-Components/top-content/top-content.component';
-
-
 import {AppHeaderComponent} from './layout/header/app-header.component';
 import {HeaderMenuComponent} from './layout/header/header-menu/header-menu.component';
 import {AppFooterComponent} from './layout/footer/app-footer.component';
@@ -41,7 +35,6 @@ const COMPONENT = [
   IndexComponent,
   IndexComponent,
   AboutComponent,
-  ArticleDetailComponent,
   RelayOnComponent,
   TopContentComponent,
   AppHeaderComponent,
