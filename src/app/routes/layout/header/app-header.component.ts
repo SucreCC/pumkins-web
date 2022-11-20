@@ -97,7 +97,7 @@ export class AppHeaderComponent implements OnInit {
       elementRefs[index].style.opacity = 1;
 
       index++;
-    }, 1000)
+    }, 5000)
   }
 
 
