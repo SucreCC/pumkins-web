@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Article} from "../data/blog-type";
 
@@ -20,12 +20,18 @@ export class ArticleDetailComponent implements OnInit {
     blogDetail: '',
   }
 
-  comment:string="This is submit comment"
+  commentList: any[] = [
+    {name: '', description: '', subComment: ''},
+    {name: '', description: '', subComment: ''},
+    {name: '', description: '', subComment: ''}];
 
-  constructor(private route: ActivatedRoute) {
+  comment: string = "This is submit comment"
+
+  constructor(private route: ActivatedRoute, public el: ElementRef,) {
   }
 
   ngOnInit(): void {
     let articleId = this.route.snapshot.queryParams['id'];
   }
+
 }

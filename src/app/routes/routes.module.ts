@@ -77,7 +77,8 @@ const COMPONENTS_NOROUNT = []
   ],
     providers: [ServiceblogService],
     exports: [
-        WelcomeComponent
+        WelcomeComponent,
+        AppHeaderComponent
     ]
 })
 export class RoutesModule {

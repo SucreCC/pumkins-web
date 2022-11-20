@@ -92,7 +92,7 @@ export class StartupService {
     );
   }
 
-
+  // for first time load page and page refresh
   load(): Observable<void> {
     const defaultLang = this.i18n.defaultLang;
 

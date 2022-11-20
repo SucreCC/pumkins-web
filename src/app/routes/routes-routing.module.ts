@@ -8,6 +8,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./login/register/register.component";
 import {ForgetPasswordComponent} from "./login/forget-password/forget-password.component";
 import {ACLGuard, ACLGuardType} from "@delon/acl";
+import {ArticleDetailComponent} from "./blog/article/article-detail.component";
 
 
 const routes: Routes = [
@@ -43,6 +44,12 @@ const routes: Routes = [
 
 
   },
+
+  // {
+  //   path: 'article-detail',
+  //   component: ArticleDetailComponent,
+  //   data: {title: 'ArticleDetail', name: 'ArticleDetail'}
+  // },
 
   {
     path: 'login', component: LoginComponent, data: {title: 'Login', name: 'Login'}
