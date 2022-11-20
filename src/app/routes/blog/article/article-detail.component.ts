@@ -1,6 +1,7 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Article} from "../data/blog-type";
+import {GlobalVariableService} from "../../../service/global-variable.service";
 
 @Component({
   selector: 'app-article-detail',
@@ -8,7 +9,7 @@ import {Article} from "../data/blog-type";
   styleUrls: ['./article-detail.component.less']
 })
 
-export class ArticleDetailComponent implements OnInit {
+export class ArticleDetailComponent implements OnInit, OnDestroy {
 
 
   article: Article = {
@@ -27,11 +28,25 @@ export class ArticleDetailComponent implements OnInit {
 
   comment: string = "This is submit comment"
 
-  constructor(private route: ActivatedRoute, public el: ElementRef,) {
+  constructor(private route: ActivatedRoute,
+              public el: ElementRef,
+              private transferValueService: GlobalVariableService,) {
   }
 
+
   ngOnInit(): void {
+    let stringImgList = localStorage.getItem('articleImgList');
+
+    if (stringImgList != null) {
+      let imgList = stringImgList.split(',');
+      this.transferValueService.imgList.next(imgList);
+    }
+
     let articleId = this.route.snapshot.queryParams['id'];
+  }
+
+  ngOnDestroy(): void {
+    this.transferValueService.imgList.next(this.transferValueService.originalImgList);
   }
 
 }

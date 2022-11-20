@@ -4,6 +4,9 @@ import {ACLService} from '@delon/acl';
 import {I18NService} from "../../../core";
 import {ITokenModel} from "@delon/auth/src/token/interface";
 import {DA_SERVICE_TOKEN, ITokenService} from "@delon/auth";
+import {GlobalVariableService} from "../../../service/global-variable.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-header',
@@ -45,14 +48,21 @@ export class AppHeaderComponent implements OnInit {
               @Inject(ALAIN_I18N_TOKEN) private i18n: I18NService,
               private settingService: SettingsService,
               @Inject(DA_SERVICE_TOKEN)
-              private tokenService: ITokenService,) {
+              private tokenService: ITokenService,
+              private transferValueService: GlobalVariableService,
+  ) {
   }
 
 
   ngOnInit(): void {
+    this.transferValueService.imgList.subscribe(imgList => {
+      this.imgList = this.transferValueService.imgList.getValue();
+    })
+
     this.dynamicPicture();
     this.getPicture();
     this.getUserFromLocalStorage();
+
   }
 
 
@@ -87,7 +97,7 @@ export class AppHeaderComponent implements OnInit {
       elementRefs[index].style.opacity = 1;
 
       index++;
-    }, 5000)
+    }, 1000)
   }
 
 
