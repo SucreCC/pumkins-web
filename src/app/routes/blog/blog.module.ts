@@ -9,6 +9,7 @@ import {BlogRecentComponent} from "./blog-recent/blog-recent.component";
 import {BlogSaveComponent} from "./blog-save/blog-save.component";
 import {CommonModule} from "@angular/common";
 import {ArticleDetailComponent} from "./article/article-detail.component";
+import {EditorMdDirective} from "./config/editor-md.directive";
 
 
 const COMPONENT = [
@@ -26,12 +27,14 @@ const COMPONENT_IMPORT = [
   BlogRoutingModule,
 ]
 
+
 // 用于存放共享组件
 const COMPONENTS_NOROUNT = []
 
 @NgModule({
   declarations: [
     ...COMPONENT,
+    EditorMdDirective,
   ],
   imports: [...COMPONENT_IMPORT],
   providers: [ServiceblogService],
