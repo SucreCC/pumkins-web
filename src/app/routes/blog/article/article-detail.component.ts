@@ -17,7 +17,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   option: IOptions = {
     mode: 'sv',
     height: 'auto',
-    width: "100%",
+    // width: "100%",
     theme: 'classic',
     toolbarConfig: {
       pin: true,
@@ -41,7 +41,8 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   content: any = '';
   options: ModalHelperOptions = {
     /** 大小；例如：lg、600，默认：`lg` */
-    size: 1200
+    // size: 1200
+    size: 'lg'
   };
 
 

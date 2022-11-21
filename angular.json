@@ -59,7 +59,8 @@
               "node_modules/prismjs/themes/prism-okaidia.css",
               "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",
               "node_modules/prismjs/plugins/command-line/prism-command-line.css",
-              "node_modules/katex/dist/katex.min.css"
+              "node_modules/katex/dist/katex.min.css",
+              "node_modules/vditor/src/assets/less/index.less"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
