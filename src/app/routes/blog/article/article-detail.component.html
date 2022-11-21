@@ -1,4 +1,3 @@
-
 <div class="article-detail">
 
   <div class="article-title">
@@ -20,7 +19,14 @@
 
   <div class="article-content">this is content
 
+    <!--    <div *ngIf="false" id="vditor"></div>-->
+<!--    <div id="vditor" [innerHTML]="innerHTML"></div>-->
     <div id="vditor"></div>
+
+    <div [innerHTML]="innerHTML"></div>
+
+
+    <button (click)="change()"></button>
   </div>
 
 
