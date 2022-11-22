@@ -17,19 +17,11 @@
     </div>
   </div>
 
-  <div class="article-content">this is content
-
-    <!--    <div *ngIf="false" id="vditor"></div>-->
-<!--    <div id="vditor" [innerHTML]="innerHTML"></div>-->
-    <div id="vditor"></div>
-
-    <div [innerHTML]="innerHTML"></div>
-
-
-    <button (click)="change()"></button>
+  <div class="article-content">
+    <div hidden id="vditor"></div>
+    <div class="vditor-reset article-content-innerHTML" [innerHTML]="innerHTML | safeHtml"></div>
+    <div id="md-view" [innerHTML]="innerHTML | safeHtml"></div>
   </div>
-
-
   <div class="submit-comment">
     <div class="submit-comment-title">Submit Comment</div>
 
@@ -119,6 +111,7 @@
 
   </div>
 </div>
+
 
 
 

@@ -10,6 +10,7 @@ import {BlogSaveComponent} from "./blog-save/blog-save.component";
 import {CommonModule} from "@angular/common";
 import {ArticleDetailComponent} from "./article/article-detail.component";
 import {EditorMdDirective} from "./config/editor-md.directive";
+import {SafeHtmlPipe} from "./config/safe-htlm-pipe";
 
 
 const COMPONENT = [
@@ -34,7 +35,7 @@ const COMPONENTS_NOROUNT = []
 @NgModule({
   declarations: [
     ...COMPONENT,
-    EditorMdDirective,
+    SafeHtmlPipe,
   ],
   imports: [...COMPONENT_IMPORT],
   providers: [ServiceblogService],

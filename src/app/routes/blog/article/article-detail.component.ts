@@ -3,7 +3,6 @@ import {ActivatedRoute} from "@angular/router";
 import {Article} from "../data/blog-type";
 import {GlobalVariableService} from "../../../service/global-variable.service";
 import Vditor from "vditor";
-import {ModalHelperOptions} from "@delon/theme";
 
 @Component({
   selector: 'app-article-detail',
@@ -31,7 +30,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     },
     after: () => {
       this.vditor.setValue(this.content);
-      this.innerHTML = this.vditor.getHTML()
+      this.innerHTML = this.vditor.getHTML();
     },
     input(md) {
       localStorage.setItem("oldMarkdown", md);
@@ -97,8 +96,8 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     '\n' +
     '5. 800句绕口令，有时间拿出来练习舌头。\n' +
     '\n';
-  innerHTML: string = ''
 
+  innerHTML: string = '';
 
   article: Article = {
     id: 0,
@@ -125,28 +124,18 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let stringImgList = localStorage.getItem('articleImgList');
 
-    this.vditor = new Vditor('vditor', this.option);
-
-    this.innerHTML = this.vditor.getHTML()
-
-
     if (stringImgList != null) {
       let imgList = stringImgList.split(',');
       this.transferValueService.imgList.next(imgList);
     }
 
+    this.vditor = new Vditor('vditor', this.option);
     let articleId = this.route.snapshot.queryParams['id'];
-
   }
 
 
   ngOnDestroy(): void {
     this.transferValueService.imgList.next(this.transferValueService.originalImgList);
-  }
-
-  change() {
-    this.innerHTML = this.vditor.getHTML()
-    console.log(this.vditor.getHTML())
   }
 
 }
