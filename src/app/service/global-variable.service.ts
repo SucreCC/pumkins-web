@@ -16,4 +16,7 @@ export class GlobalVariableService {
 
   public imgList = new BehaviorSubject<string[]>(this.originalImgList);
 
+  public nodeList = new BehaviorSubject<any>(this.originalImgList);
+
+
 }

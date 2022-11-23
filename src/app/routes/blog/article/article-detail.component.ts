@@ -1,8 +1,10 @@
 import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Article} from "../data/blog-type";
+import {Article, Title} from "../data/blog-type";
 import {GlobalVariableService} from "../../../service/global-variable.service";
 import Vditor from "vditor";
+import {timeout, timer} from "rxjs";
+import {title} from 'process';
 
 @Component({
   selector: 'app-article-detail',
@@ -11,6 +13,7 @@ import Vditor from "vditor";
 })
 
 export class ArticleDetailComponent implements OnInit, OnDestroy {
+
   vditor: Vditor;
   // vditor 初始化时的配置
   option: IOptions = {
@@ -21,6 +24,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     toolbarConfig: {
       pin: true,
     },
+
     preview: {
       markdown: {
         autoSpace: true,
@@ -28,6 +32,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
         mark: true,
       }
     },
+
     after: () => {
       this.vditor.setValue(this.content);
       this.innerHTML = this.vditor.getHTML();
@@ -37,7 +42,6 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     },
   };
 
-  title: string = '';
   content: any = '# 听力\n' +
     '\n' +
     '\n' +
@@ -98,6 +102,8 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     '\n';
 
   innerHTML: string = '';
+  outline: Title[] = [];
+  tagTypes: string[] = ["H1", "H2", "H3"];
 
   article: Article = {
     id: 0,
@@ -122,6 +128,17 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+
+    this.getImgList()
+
+    this.vditor = new Vditor('vditor', this.option);
+    let articleId = this.route.snapshot.queryParams['id'];
+
+    this.getOutline();
+
+  }
+
+  private getImgList() {
     let stringImgList = localStorage.getItem('articleImgList');
 
     if (stringImgList != null) {
@@ -129,8 +146,40 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
       this.transferValueService.imgList.next(imgList);
     }
 
-    this.vditor = new Vditor('vditor', this.option);
-    let articleId = this.route.snapshot.queryParams['id'];
+  }
+
+  private getOutline() {
+    // 通过node节点获取目录结构
+    let elementById = document.getElementById(`innerHTML-content`);
+
+    // 子节点只有在页面渲染完毕后才能通过document获取到所以这里设置了一个延迟获取
+    timer(500).subscribe(() => {
+
+      // @ts-ignore
+      let children = elementById.children;
+
+      for (let i = 0; i < children.length; i++) {
+        // @ts-ignore
+        if (this.tagTypes.includes(children.item(i).nodeName)) {
+
+          const id = "header-" + i;
+          // @ts-ignore
+          children.item(i).setAttribute("id", id);
+
+          // @ts-ignore
+          this.outline.push({
+            // @ts-ignore
+            id: id,
+            // @ts-ignore
+            name: children.item(i).innerHTML,
+            // @ts-ignore
+            level: Number(children.item(i).nodeName.substring(1, 2)),
+            // @ts-ignore
+            tagType: children.item(i).nodeName
+          })
+        }
+      }
+    })
   }
 
 
@@ -138,4 +187,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     this.transferValueService.imgList.next(this.transferValueService.originalImgList);
   }
 
+  editArticle() {
+
+  }
 }

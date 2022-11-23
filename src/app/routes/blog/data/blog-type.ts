@@ -16,3 +16,12 @@ export class Blog {
   blogDate: string = '';
   blogDetail: string = '';
 }
+
+
+export class Title {
+  id: number = 0;
+  name: string = '';
+  level: number = 0;
+  tagType: string = ''
+}
+
