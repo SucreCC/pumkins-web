@@ -19,7 +19,7 @@ export class Blog {
 
 
 export class Title {
-  id: number = 0;
+  id: string = '';
   name: string = '';
   level: number = 0;
   tagType: string = ''

@@ -2,9 +2,9 @@
   <div class="article-detail">
     <div class="slider-bar">
 
-      <div class="slider-bar-title">this is title</div>
+      <div class="slider-bar-title">Agenda</div>
       <div *ngFor="let title of outline" class="slider-bar-body">
-        <p [class]="title.tagType">{{title.name}}</p>
+        <p [class]="title.tagType" (click)="jumpToContent(title.id)">{{title.name}}</p>
       </div>
     </div>
 

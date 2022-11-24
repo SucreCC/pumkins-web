@@ -190,4 +190,8 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   editArticle() {
 
   }
+
+  jumpToContent(id: string) {
+    window.location.hash = id;
+  }
 }

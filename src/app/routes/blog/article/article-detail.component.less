@@ -23,29 +23,42 @@
 
     .slider-bar {
       width: calc(250px - 40px);
-      height: 300px;
-      background-color: white;
+      min-height: 200px;
+      //background-color: white;
+      color: #333333;
       border-radius: 5px;
       position: absolute;
       top: 20px;
       left: -95px;
-      padding: 20px;
 
       .slider-bar-title {
-        font-size: 18px;
+        position: relative;
+        font-size: 20px;
         font-weight: 600;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
+        text-align: center;
+        background-color:white;
+        padding: 5px 10px;
       }
 
       .slider-bar-body {
+        background-color:white;
+        padding: 0 20px;
         p {
           transition: all 0.3s;
           cursor: pointer;
           height: 30px;
           line-height: 30px;
           margin-bottom: 0;
+          //color: rgba(102, 0, 255, 0.76);
+
+          // 单行文字截断
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
 
           &:hover {
+            color: #ff7300;
             //background-color: darkgray;
           }
           &.H1{
@@ -53,6 +66,10 @@
           }
           &.H2{
             padding-left: 10px;
+          }
+
+          &.H3{
+            padding-left: 15px;
           }
         }
 
