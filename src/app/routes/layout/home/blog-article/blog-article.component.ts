@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {Article} from "../../blog/data/blog-type";
-import {GlobalVariableService} from "../../../service/global-variable.service";
+import {Article} from "../../../blog/data/blog-type";
+import {GlobalVariableService} from "../../../../service/global-variable.service";
 
 @Component({
   selector: 'app-blog-article',

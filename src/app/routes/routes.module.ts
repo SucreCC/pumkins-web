@@ -15,7 +15,7 @@ import {AppFooterComponent} from './layout/footer/app-footer.component';
 import {HeaderContentComponent} from "./layout/header/header-content/header-content.component";
 import {AppBodyComponent} from "./layout/body/app-body.component";
 import {BrowserModule} from "@angular/platform-browser";
-import {HomeModule} from "./home/home.module";
+import {HomeModule} from "./layout/home/home.module";
 import {LoginComponent} from "./login/login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NzFormModule} from "ng-zorro-antd/form";
