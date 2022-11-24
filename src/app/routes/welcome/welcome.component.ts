@@ -27,7 +27,7 @@ export class WelcomeComponent implements OnInit {
       // Display presentation control arrows
       controls: true,
 
-      // Help the user learn the controls by providing hints, for example by
+      // Help the user-center learn the controls by providing hints, for example by
       // bouncing the down arrow when they first encounter a vertical slide
 
       // controlsTutorial: true,

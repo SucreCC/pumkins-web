@@ -50,6 +50,10 @@ const routes: Routes = [
   //   component: ArticleDetailComponent,
   //   data: {title: 'ArticleDetail', name: 'ArticleDetail'}
   // },
+  //
+  // {
+  //   path: 'user-center-center', component: userCenterComponent, data: {title: 'UserCenter', name: 'UserCenter'}
+  // },
 
   {
     path: 'login', component: LoginComponent, data: {title: 'Login', name: 'Login'}

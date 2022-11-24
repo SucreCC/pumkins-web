@@ -27,6 +27,7 @@ import {DelonACLModule} from "@delon/acl";
 import {EllipsisModule} from "@delon/abc/ellipsis";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import {NzIconModule} from "ng-zorro-antd/icon";
+import {BackendModule} from "./backend/backend.module";
 
 
 
@@ -56,6 +57,7 @@ const COMPONENT_IMPORT = [
   BrowserModule,
   FormsModule,
   ReactiveFormsModule,
+  BackendModule
 ]
 
 // 用于存放共享组件
