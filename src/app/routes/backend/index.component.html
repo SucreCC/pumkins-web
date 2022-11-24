@@ -1,0 +1,37 @@
+<body>
+<aside>
+
+  <div class="slogan">
+    <img [src]="user.icon">
+  </div>
+
+  <div class="aside-menu">
+    <ul>
+      <li>
+        <a [routerLink]="['/home']">首页</a>
+      </li>
+      <li>
+        <a [routerLink]="['/user-center']">个人中心</a>
+      </li>
+      <li>
+        <a [routerLink]="['/backend-manage']">修改头像</a>
+      </li>
+      <li>
+        <a>修改密码</a>
+      </li>
+
+      <li>
+        <a [routerLink]="['/add-blog']">添加博客</a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+</body>
+
+
