@@ -34,7 +34,11 @@ const COMPONENTS_NOROUNT = []
         ...COMPONENT_IMPORT,
     ],
     providers: [],
-    exports: []
+  exports: [
+    BlogArticleComponent,
+    TagsComponent,
+    FeaturedArticleComponent
+  ]
 })
 export class HomeModule {
 }
