@@ -1,1 +1,194 @@
-<div>this is add blog</div>
+<main>
+  <div class="add-blog-actions">
+    <button nz-button nzType="primary" (click)="open()" nzDefault>完善文章信息</button>
+  </div>
+
+
+  <div class="add-article">
+    <div id="vditor"></div>
+  </div>
+
+
+  <nz-drawer
+    [nzBodyStyle]="{ overflow: 'auto' }"
+    [nzMaskClosable]="false"
+    [nzWidth]="900"
+    [nzVisible]="visible"
+    nzTitle="Blog Details"
+    [nzFooter]="footerTpl"
+    (nzOnClose)="close()"
+  >
+
+
+    <form nz-form *nzDrawerContent>
+      <div class="add-blog-info">
+
+
+        <div class="info-item">
+          <div class="info-item-left">
+            <span>Title:</span>
+          </div>
+
+          <div class="info-item-right">
+            <input
+              class="info-item-input"
+              [(ngModel)]="title"
+              name="title"
+              placeholder="please input blog title"/>
+          </div>
+        </div>
+
+
+        <div class="info-item">
+          <div class="info-item-left">
+            <span>Cover:</span>
+          </div>
+          <div class="info-item-right">
+            <nz-radio-group [(ngModel)]="radioValue" name="radioValue" nzName="radiogroup">
+              <label class="radio-value-item" nz-radio nzValue="defaultCover">Use Default Cover</label>
+              <label class="radio-value-item" nz-radio nzValue="addCover">Add Cover</label>
+            </nz-radio-group>
+          </div>
+
+          <div class="info-item-upload-cover"></div>
+
+        </div>
+
+        <div *ngIf="radioValue==='addCover'" class="upload-cover">
+          <nz-upload
+            class="upload"
+            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            nzListType="picture-card"
+            [(nzFileList)]="fileList"
+            [nzShowButton]="fileList.length < 3"
+            [nzPreview]="handlePreview"
+          >
+            <div>
+              <span nz-icon nzType="plus"></span>
+              <div style="margin-top: 8px">Upload</div>
+            </div>
+          </nz-upload>
+
+          <nz-modal
+            [nzVisible]="previewVisible"
+            [nzContent]="modalContent"
+            [nzFooter]="null"
+            (nzOnCancel)="previewVisible = false"
+          >
+            <ng-template #modalContent>
+              <img [src]="previewImage" [ngStyle]="{ width: '100%' }"/>
+            </ng-template>
+          </nz-modal>
+        </div>
+
+        <div class="info-item">
+          <div class="info-item-left">
+            <span>Tags:</span>
+          </div>
+
+          <div class="info-item-right">
+            <nz-tag
+              class="info-item-right-tag"
+              *ngFor="let tag of tags; let i = index"
+              [nzMode]="'closeable'"
+              (nzOnClose)="handleClose(tag)"
+              name="tags"
+            >
+              {{ sliceTagName(tag) }}
+            </nz-tag>
+
+            <nz-tag *ngIf="!inputVisible" class="editable-tag" name="tags" nzNoAnimation
+                    (click)="showInput()">
+              <span nz-icon nzType="plus"> New Tag </span>
+            </nz-tag>
+
+            <input
+              class="editable-tag"
+              #inputElement
+              nz-input
+              nzSize="small"
+              *ngIf="inputVisible"
+              type="text"
+              [(ngModel)]="inputValue"
+              style="width: 78px;"
+              name="tage"
+              (blur)="handleInputConfirm()"
+              (keydown.enter)="handleInputConfirm()"
+            />
+          </div>
+        </div>
+
+
+        <div class="info-item">
+          <div class="info-item-left">
+            <span>Category:</span>
+          </div>
+
+          <div class="info-item-right">
+            <nz-select
+              style="width: 100px"
+              nzShowSearch
+              [(ngModel)]="category"
+              name="category"
+              nzAllowClear
+              nzPlaceHolder="Choose"
+              [nzOptions]="listOfGroupOption"
+            ></nz-select>
+          </div>
+        </div>
+
+
+        <div class="info-item">
+          <div class="info-item-left">
+            <span>Add Category:</span>
+          </div>
+
+          <div class="info-item-right">
+            <input
+              class="info-item-input"
+              [(ngModel)]="addCategory"
+              name="category"
+              placeholder="please input blog title"/>
+          </div>
+        </div>
+
+
+        <div class="info-item">
+          <div class="info-item-left">
+            <span>Description:</span>
+          </div>
+
+          <div class="info-item-right">
+            <input
+              class="info-item-input"
+              [(ngModel)]="description"
+              name="description"
+              placeholder="please input blog title"/>
+          </div>
+        </div>
+
+
+        <div class="info-item">
+          <div class="info-item-left">
+            <span>仅自己可见:</span>
+          </div>
+
+          <nz-switch [(ngModel)]="isVisitable" name="isVisitable"></nz-switch>
+        </div>
+
+      </div>
+    </form>
+
+    <ng-template #footerTpl>
+      <div style="float: right">
+        <button nz-button style="margin-right: 8px;" (click)="close()">Cancel</button>
+        <button nz-button nzType="primary" (click)="close()">Submit</button>
+      </div>
+    </ng-template>
+  </nz-drawer>
+
+
+</main>
+
+
+
