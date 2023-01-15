@@ -57,8 +57,9 @@
         <div *ngIf="radioValue==='addCover'" class="upload-cover">
           <nz-upload
             class="upload"
-            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            nzAction="/blog/blog-picture"
             nzListType="picture-card"
+            nzSize="1000000"
             [(nzFileList)]="fileList"
             [nzShowButton]="fileList.length < 3"
             [nzPreview]="handlePreview"
@@ -159,12 +160,16 @@
           </div>
 
           <div class="info-item-right">
-            <input
-              class="info-item-input"
-              [(ngModel)]="description"
-              name="description"
-              placeholder="please input blog title"/>
+<!--            <input-->
+<!--              class="info-item-input"-->
+<!--              [(ngModel)]="description"-->
+<!--              name="description"-->
+<!--              placeholder="please input blog title"/>-->
+
+            <textarea  class="info-item-description" rows="4" nz-input [(ngModel)]="description" name="description"></textarea>
+
           </div>
+
         </div>
 
 
@@ -173,7 +178,9 @@
             <span>仅自己可见:</span>
           </div>
 
+          <span> no &nbsp; </span>
           <nz-switch [(ngModel)]="isVisitable" name="isVisitable"></nz-switch>
+          <span> &nbsp; yes </span>
         </div>
 
       </div>
