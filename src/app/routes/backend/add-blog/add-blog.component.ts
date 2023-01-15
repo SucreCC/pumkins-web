@@ -10,6 +10,15 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
     reader.onerror = error => reject(error);
   });
 
+export class Blog {
+  id: number;
+  images: NzUploadFile[] = [];
+  title: string = '';
+  tags: string[];
+  markdown: string;
+  category: string = '';
+  description: string = '';
+}
 
 @Component({
   selector: 'app-add-blog',
@@ -50,24 +59,24 @@ export class AddBlogComponent implements OnInit {
   };
 
   visible: boolean = false;
-
-  blog: {
-    name: ''
-  }
-
+  blog: Blog = new Blog();
   title: string = '';
   cover: string[] = [];
   radioValue = 'defaultCover';
   fileList: NzUploadFile[] = [];
-  description:'';
+  description: '';
   addCategory: any;
   category: any;
-
-
 
   previewImage: string | undefined = '';
   previewVisible = false;
   content: any = '';
+
+  listOfGroupOption = [
+    {label: 'Jack', value: 'jack'},
+    {label: 'Lucy', value: 'lucy'},
+    {label: 'Tom', value: 'tom'}
+  ];
 
   handlePreview = async (file: NzUploadFile): Promise<void> => {
     if (!file.url && !file['preview']) {
@@ -84,7 +93,25 @@ export class AddBlogComponent implements OnInit {
 
   close() {
     this.visible = false;
+    this.buildBlog();
+    console.log(this.blog)
   }
+
+  buildBlog(){
+    this.blog.title = this.title;
+    this.blog.markdown = this.vditor.getValue();
+
+    if (this.radioValue === "addCover") {
+      this.fileList.forEach(element => {
+        this.blog.images.push(element.response.data)
+      })
+    }
+
+    this.blog.tags = this.tags;
+    this.blog.category = this.category;
+    this.blog.description = this.description;
+  }
+
 
   open() {
     this.visible = true;
@@ -95,8 +122,9 @@ export class AddBlogComponent implements OnInit {
   }
 
 
+
   // tags
-  tags = ['Unremovable', 'Tag 2', 'Tag 3'];
+  tags = [];
   inputVisible = false;
   inputValue = '';
   @ViewChild('inputElement', {static: false}) inputElement?: ElementRef;
@@ -119,21 +147,14 @@ export class AddBlogComponent implements OnInit {
   }
 
   handleInputConfirm(): void {
-    console.log(this.inputValue)
+    // @ts-ignore
     if (this.inputValue && this.tags.indexOf(this.inputValue) === -1) {
+      // @ts-ignore
       this.tags = [...this.tags, this.inputValue];
     }
     this.inputValue = '';
     this.inputVisible = false;
   }
-
-//  Category
-  listOfGroupOption = [
-    { label: 'Jack', value: 'jack', groupLabel: 'Manager' },
-    { label: 'Lucy', value: 'lucy', groupLabel: 'Manager' },
-    { label: 'Tom', value: 'tom', groupLabel: 'Engineer' }
-  ];
-
 }
 
 
