@@ -149,9 +149,12 @@
               class="info-item-input"
               [(ngModel)]="addCategory"
               name="category"
-              placeholder="please input blog title"/>
+              (change)="addNewCategory()"
+              placeholder="please input the new category"/>
           </div>
         </div>
+
+
 
 
         <div class="info-item">
@@ -172,14 +175,24 @@
 
         </div>
 
+        <div class="info-item">
+          <div class="info-item-left">
+            <span>workOrLife:</span>
+          </div>
+
+          <span> life &nbsp; </span>
+          <nz-switch [(ngModel)]="workOrLife" name="workOrLife"></nz-switch>
+          <span> &nbsp; work </span>
+        </div>
+
 
         <div class="info-item">
           <div class="info-item-left">
-            <span>仅自己可见:</span>
+            <span>isVisible:</span>
           </div>
 
           <span> no &nbsp; </span>
-          <nz-switch [(ngModel)]="isVisitable" name="isVisitable"></nz-switch>
+          <nz-switch [(ngModel)]="isVisible" name="isVisible"></nz-switch>
           <span> &nbsp; yes </span>
         </div>
 

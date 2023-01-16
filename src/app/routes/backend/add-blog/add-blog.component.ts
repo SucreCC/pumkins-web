@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import Vditor from "vditor";
 import {NzUploadFile} from "ng-zorro-antd/upload";
+import {_HttpClient, SettingsService} from "@delon/theme";
 
 const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   new Promise((resolve, reject) => {
@@ -16,8 +17,11 @@ export class Blog {
   title: string = '';
   tags: string[];
   markdown: string;
-  category: string = '';
+  category: number;
   description: string = '';
+  username: string = '';
+  isVisible: boolean;
+  workOrLife: boolean = true;
 }
 
 @Component({
@@ -28,8 +32,12 @@ export class Blog {
 
 export class AddBlogComponent implements OnInit {
 
-  constructor() {
+  constructor(private settingService: SettingsService,
+              private http: _HttpClient,) {
   }
+
+  saveBlogUrl: string = "/blog/save"
+
 
   vditor: Vditor;
   // vditor 初始化时的配置
@@ -66,17 +74,21 @@ export class AddBlogComponent implements OnInit {
   fileList: NzUploadFile[] = [];
   description: '';
   addCategory: any;
-  category: any;
+  category: number;
 
   previewImage: string | undefined = '';
   previewVisible = false;
   content: any = '';
 
   listOfGroupOption = [
-    {label: 'Jack', value: 'jack'},
-    {label: 'Lucy', value: 'lucy'},
-    {label: 'Tom', value: 'tom'}
+    {label: 'Jack', value: 0},
+    {label: 'Lucy', value: 1},
+    {label: 'Tom', value: 2}
   ];
+
+  isVisible: boolean = true;
+  workOrLife: boolean = true;
+
 
   handlePreview = async (file: NzUploadFile): Promise<void> => {
     if (!file.url && !file['preview']) {
@@ -94,10 +106,18 @@ export class AddBlogComponent implements OnInit {
   close() {
     this.visible = false;
     this.buildBlog();
-    console.log(this.blog)
+    this.saveBlog();
   }
 
-  buildBlog(){
+  saveBlog() {
+    this.http.post(this.saveBlogUrl, this.blog).subscribe(resp => {
+      if (resp.status === 0) {
+        console.log(resp.data);
+      }
+    })
+  }
+
+  buildBlog() {
     this.blog.title = this.title;
     this.blog.markdown = this.vditor.getValue();
 
@@ -110,6 +130,10 @@ export class AddBlogComponent implements OnInit {
     this.blog.tags = this.tags;
     this.blog.category = this.category;
     this.blog.description = this.description;
+    // @ts-ignore
+    this.blog.username = this.settingService.getUser().username;
+    this.blog.isVisible = this.isVisible;
+    this.blog.workOrLife = this.workOrLife;
   }
 
 
@@ -122,13 +146,11 @@ export class AddBlogComponent implements OnInit {
   }
 
 
-
   // tags
   tags = [];
   inputVisible = false;
   inputValue = '';
   @ViewChild('inputElement', {static: false}) inputElement?: ElementRef;
-  isVisitable: boolean = false;
 
   handleClose(removedTag: {}): void {
     this.tags = this.tags.filter(tag => tag !== removedTag);
@@ -154,6 +176,11 @@ export class AddBlogComponent implements OnInit {
     }
     this.inputValue = '';
     this.inputVisible = false;
+  }
+
+  addNewCategory(): void {
+    let newCategory: any = {label: this.addCategory, value: this.listOfGroupOption.length}
+    this.listOfGroupOption = [...this.listOfGroupOption, newCategory]
   }
 }
 
