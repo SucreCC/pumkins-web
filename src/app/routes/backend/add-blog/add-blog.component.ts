@@ -13,7 +13,7 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
 
 export class Blog {
   id: number;
-  images: NzUploadFile[] = [];
+  images: number[] = [];
   title: string = '';
   tags: string[];
   markdown: string;
@@ -36,8 +36,8 @@ export class AddBlogComponent implements OnInit {
               private http: _HttpClient,) {
   }
 
-  saveBlogUrl: string = "/blog/save"
-
+  saveBlogUrl: string = "/blog/save-blog"
+  saveTagsUrl: string = "/blog/save-tags"
 
   vditor: Vditor;
   // vditor 初始化时的配置
@@ -105,8 +105,17 @@ export class AddBlogComponent implements OnInit {
 
   close() {
     this.visible = false;
+    this.saveTags();
     this.buildBlog();
     this.saveBlog();
+  }
+
+  saveTags(){
+    this.http.post(this.saveTagsUrl, this.tags).subscribe(resp => {
+      if (resp.status === 0) {
+        console.log(resp.data);
+      }
+    })
   }
 
   saveBlog() {
