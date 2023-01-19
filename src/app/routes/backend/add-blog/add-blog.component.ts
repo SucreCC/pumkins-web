@@ -22,6 +22,7 @@ export class Blog {
   username: string = '';
   isVisible: boolean;
   workOrLife: boolean = true;
+  isDraft: boolean = false;
 }
 
 @Component({
@@ -38,6 +39,7 @@ export class AddBlogComponent implements OnInit {
 
   saveBlogUrl: string = "/blog/save-blog"
   saveTagsUrl: string = "/blog/save-tags"
+  saveCategoryUrl: string = "/blog/save-category"
 
   vditor: Vditor;
   // vditor 初始化时的配置
@@ -88,6 +90,7 @@ export class AddBlogComponent implements OnInit {
 
   isVisible: boolean = true;
   workOrLife: boolean = true;
+  isDraft: boolean = false;
 
 
   handlePreview = async (file: NzUploadFile): Promise<void> => {
@@ -105,12 +108,26 @@ export class AddBlogComponent implements OnInit {
 
   close() {
     this.visible = false;
-    this.saveTags();
-    this.buildBlog();
-    this.saveBlog();
+    // this.saveTags();
+    this.saveCategory();
+    // this.buildBlog();
+    // this.saveBlog();
   }
 
-  saveTags(){
+  saveCategory() {
+    for (const value of this.listOfGroupOption.values()) {
+      if (value.value === this.category) {
+        let category = {label: value.label, value: this.category}
+        this.http.post(this.saveCategoryUrl, category).subscribe(resp => {
+          if (resp.status === 0) {
+            console.log(resp.data);
+          }
+        })
+      }
+    }
+  }
+
+  saveTags() {
     this.http.post(this.saveTagsUrl, this.tags).subscribe(resp => {
       if (resp.status === 0) {
         console.log(resp.data);
@@ -143,6 +160,7 @@ export class AddBlogComponent implements OnInit {
     this.blog.username = this.settingService.getUser().username;
     this.blog.isVisible = this.isVisible;
     this.blog.workOrLife = this.workOrLife;
+    this.blog.isDraft = this.isDraft;
   }
 
 
