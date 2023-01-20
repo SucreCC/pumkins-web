@@ -5,6 +5,7 @@ import {GlobalVariableService} from "../../../service/global-variable.service";
 import Vditor from "vditor";
 import {timeout, timer} from "rxjs";
 import {title} from 'process';
+import {_HttpClient} from "@delon/theme";
 
 @Component({
   selector: 'app-article-detail',
@@ -41,6 +42,8 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
       localStorage.setItem("oldMarkdown", md);
     },
   };
+
+  getBlogUrl: string = "/blog/get-blog-by-id";
 
   content: any = '# 听力\n' +
     '\n' +
@@ -123,7 +126,8 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               public el: ElementRef,
-              private transferValueService: GlobalVariableService,) {
+              private transferValueService: GlobalVariableService,
+              private http: _HttpClient,) {
   }
 
 
@@ -132,7 +136,9 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     this.getImgList()
 
     this.vditor = new Vditor('vditor', this.option);
-    let articleId = this.route.snapshot.queryParams['id'];
+    let blogId = this.route.snapshot.queryParams['id'];
+
+    this.getBlogByBlogId(blogId);
 
     this.getOutline();
 
@@ -193,5 +199,15 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   jumpToContent(id: string) {
     window.location.hash = id;
+  }
+
+  private getBlogByBlogId(blogId: number) {
+
+    this.http.get(this.getBlogUrl, {"blogId": blogId}).subscribe(resp => {
+      if (resp.status === 0) {
+        console.log(resp.data);
+      }
+    })
+
   }
 }

@@ -3,6 +3,7 @@ import Vditor from "vditor";
 import {NzUploadFile} from "ng-zorro-antd/upload";
 import {_HttpClient, SettingsService} from "@delon/theme";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {Router} from "@angular/router";
 
 const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   new Promise((resolve, reject) => {
@@ -36,7 +37,8 @@ export class AddBlogComponent implements OnInit {
 
   constructor(private settingService: SettingsService,
               private http: _HttpClient,
-              private message: NzMessageService,) {
+              private message: NzMessageService,
+              private router: Router,) {
   }
 
   saveBlogUrl: string = "/blog/save-blog"
@@ -127,6 +129,7 @@ export class AddBlogComponent implements OnInit {
     this.http.post(this.saveBlogUrl, this.blog).subscribe(resp => {
       if (resp.status === 0) {
         this.blog.id = resp.data;
+        this.router.navigate(['/blog/article-detail'], {queryParams: {id: this.blog.id}})
       }
     })
   }
