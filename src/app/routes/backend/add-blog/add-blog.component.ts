@@ -107,8 +107,6 @@ export class AddBlogComponent implements OnInit {
 
   // @ts-ignore
   close() {
-    // this.saveTags();
-    // this.saveCategory();
     this.buildBlog();
 
     if (this.title === "") {
@@ -122,44 +120,18 @@ export class AddBlogComponent implements OnInit {
     }
 
     this.visible = false;
-
-    // 需要解决异步请求带来的返回值延迟的问题
-    // 解决方案： 可以组合成一个请求交给后端处理
     this.saveBlog();
   }
-
-  // saveCategory() {
-  //   for (const value of this.listOfGroupOption.values()) {
-  //     // @ts-ignore
-  //     if (value.value === this.categoryValue) {
-  //       // @ts-ignore
-  //       let category = {label: value.label, value: this.categoryValue}
-  //       this.http.post(this.saveCategoryUrl, category).subscribe(resp => {
-  //         if (resp.status === 0) {
-  //           this.categoryId = resp.data.id;
-  //         }
-  //       })
-  //     }
-  //   }
-  // }
-
-  // saveTags() {
-  //   this.http.post(this.saveTagsUrl, this.tags).subscribe(resp => {
-  //     if (resp.status === 0) {
-  //       this.tagsId = [...this.tagsId, ...resp.data]
-  //     }
-  //   })
-  // }
 
   saveBlog() {
     this.http.post(this.saveBlogUrl, this.blog).subscribe(resp => {
       if (resp.status === 0) {
-        console.log(resp.data);
+        this.blog.id = resp.data;
       }
     })
   }
 
-   buildBlog() {
+  buildBlog() {
     this.blog.title = this.title;
     this.blog.markdown = this.vditor.getValue();
 
@@ -170,13 +142,13 @@ export class AddBlogComponent implements OnInit {
     }
 
     this.blog.tags = this.tags;
-     for (const value of this.listOfGroupOption.values()) {
-       // @ts-ignore
-       if (value.value === this.categoryValue) {
-         // @ts-ignore
-          this.blog.category=value.label;
-       }
-     }
+    for (const value of this.listOfGroupOption.values()) {
+      // @ts-ignore
+      if (value.value === this.categoryValue) {
+        // @ts-ignore
+        this.blog.category = value.label;
+      }
+    }
 
     this.blog.blogDescription = this.blogDescription;
     // @ts-ignore
