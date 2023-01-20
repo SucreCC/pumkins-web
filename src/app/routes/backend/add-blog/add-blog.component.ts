@@ -16,10 +16,10 @@ export class Blog {
   id: number;
   images: number[] = [];
   title: string = '';
-  tags: string[];
+  tags: string[] = [];
   markdown: string;
-  categoryId: number;
-  description: string = '';
+  category: string;
+  blogDescription: string = '';
   username: string = '';
   isVisible: boolean;
   workOrLife: boolean = true;
@@ -77,10 +77,10 @@ export class AddBlogComponent implements OnInit {
   cover: string[] = [];
   radioValue = 'defaultCover';
   fileList: NzUploadFile[] = [];
-  description: '';
+  blogDescription: '';
   addCategory: any;
   categoryValue: number;
-  categoryId: number;
+  // categoryId: number;
   previewImage: string | undefined = '';
   previewVisible = false;
   content: any = '';
@@ -107,8 +107,8 @@ export class AddBlogComponent implements OnInit {
 
   // @ts-ignore
   close() {
-    this.saveTags();
-    this.saveCategory();
+    // this.saveTags();
+    // this.saveCategory();
     this.buildBlog();
 
     if (this.title === "") {
@@ -116,36 +116,40 @@ export class AddBlogComponent implements OnInit {
       return false;
     }
 
-    if (!this.categoryValue) {
+    if (!this.blog.category) {
       this.message.warning("please choose the category");
       return false;
     }
+
     this.visible = false;
+
+    // 需要解决异步请求带来的返回值延迟的问题
+    // 解决方案： 可以组合成一个请求交给后端处理
     this.saveBlog();
   }
 
-  saveCategory() {
-    for (const value of this.listOfGroupOption.values()) {
-      // @ts-ignore
-      if (value.value === this.categoryValue) {
-        // @ts-ignore
-        let category = {label: value.label, value: this.categoryValue}
-        this.http.post(this.saveCategoryUrl, category).subscribe(resp => {
-          if (resp.status === 0) {
-            this.categoryId = resp.data.id;
-          }
-        })
-      }
-    }
-  }
+  // saveCategory() {
+  //   for (const value of this.listOfGroupOption.values()) {
+  //     // @ts-ignore
+  //     if (value.value === this.categoryValue) {
+  //       // @ts-ignore
+  //       let category = {label: value.label, value: this.categoryValue}
+  //       this.http.post(this.saveCategoryUrl, category).subscribe(resp => {
+  //         if (resp.status === 0) {
+  //           this.categoryId = resp.data.id;
+  //         }
+  //       })
+  //     }
+  //   }
+  // }
 
-  saveTags() {
-    this.http.post(this.saveTagsUrl, this.tags).subscribe(resp => {
-      if (resp.status === 0) {
-        console.log(resp.data);
-      }
-    })
-  }
+  // saveTags() {
+  //   this.http.post(this.saveTagsUrl, this.tags).subscribe(resp => {
+  //     if (resp.status === 0) {
+  //       this.tagsId = [...this.tagsId, ...resp.data]
+  //     }
+  //   })
+  // }
 
   saveBlog() {
     this.http.post(this.saveBlogUrl, this.blog).subscribe(resp => {
@@ -155,7 +159,7 @@ export class AddBlogComponent implements OnInit {
     })
   }
 
-  buildBlog() {
+   buildBlog() {
     this.blog.title = this.title;
     this.blog.markdown = this.vditor.getValue();
 
@@ -166,8 +170,15 @@ export class AddBlogComponent implements OnInit {
     }
 
     this.blog.tags = this.tags;
-    this.blog.categoryId = this.categoryId;
-    this.blog.description = this.description;
+     for (const value of this.listOfGroupOption.values()) {
+       // @ts-ignore
+       if (value.value === this.categoryValue) {
+         // @ts-ignore
+          this.blog.category=value.label;
+       }
+     }
+
+    this.blog.blogDescription = this.blogDescription;
     // @ts-ignore
     this.blog.username = this.settingService.getUser().username;
     this.blog.isVisible = this.isVisible;
@@ -185,8 +196,6 @@ export class AddBlogComponent implements OnInit {
     this.http.get(this.getCategoryUrl).subscribe(resp => {
       if (resp.status === 0) {
         this.listOfGroupOption = resp.data;
-        console.log(this.listOfGroupOption);
-
       }
     })
   }
@@ -224,7 +233,7 @@ export class AddBlogComponent implements OnInit {
   }
 
   addNewCategory(): void {
-    if(this.listOfGroupOption!=null){
+    if (this.listOfGroupOption != null) {
       let newCategory: any = {label: this.addCategory, value: this.listOfGroupOption.length}
       // @ts-ignore
       this.listOfGroupOption = [...this.listOfGroupOption, newCategory]
