@@ -30,7 +30,7 @@ export class Category {
 export class EditBlogComponent implements OnInit {
 
 
-  saveBlogUrl: string = "/blog/save-blog"
+  saveEditBlogUrl: string = "/blog/save-edit-blog"
   saveTagsUrl: string = "/blog/save-tags"
   saveCategoryUrl: string = "/blog/save-category"
   getCategoryUrl: string = "/blog/get-category"
@@ -73,20 +73,13 @@ export class EditBlogComponent implements OnInit {
 
   visible: boolean = false;
   blog: Blog = new Blog();
-  title: string = '';
-  cover: string[] = [];
   radioValue = 'defaultCover';
   fileList: NzUploadFile[] = [];
-  blogDescription: '';
   addCategory: any;
   categoryValue: any;
   previewImage: string | undefined = '';
   previewVisible = false;
-  content: any = '';
   listOfGroupOption: Category[] = [];
-  isVisible: boolean = true;
-  workOrLife: boolean = true;
-  isDraft: boolean = false;
 
   handlePreview = async (file: NzUploadFile): Promise<void> => {
     if (!file.url && !file['preview']) {
@@ -120,7 +113,7 @@ export class EditBlogComponent implements OnInit {
   close() {
     this.buildBlog();
 
-    if (this.title === "") {
+    if (this.blog.title === "") {
       this.message.warning("please input the title");
       return false;
     }
@@ -132,15 +125,6 @@ export class EditBlogComponent implements OnInit {
 
     this.visible = false;
     this.saveBlog();
-  }
-
-  saveBlog() {
-    this.http.post(this.saveBlogUrl, this.blog).subscribe(resp => {
-      if (resp.status === 0) {
-        this.blog.id = resp.data;
-        this.router.navigate(['/blog/article-detail'], {queryParams: {id: this.blog.id}})
-      }
-    })
   }
 
   buildBlog() {
@@ -161,6 +145,15 @@ export class EditBlogComponent implements OnInit {
     }
   }
 
+
+  saveBlog() {
+    this.http.post(this.saveEditBlogUrl, this.blog).subscribe(resp => {
+      if (resp.status === 0) {
+        this.blog.id = resp.data;
+        this.router.navigate(['/blog/article-detail'], {queryParams: {id: this.blog.id}})
+      }
+    })
+  }
 
   open() {
     this.getCategoryList();
