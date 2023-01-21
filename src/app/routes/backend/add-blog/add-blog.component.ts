@@ -15,7 +15,7 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
 
 export class Blog {
   id: number;
-  images: number[] = [];
+  images: any[] = [];
   title: string = '';
   tags: string[] = [];
   markdown: string;
@@ -25,6 +25,12 @@ export class Blog {
   isVisible: boolean;
   workOrLife: boolean = true;
   isDraft: boolean = false;
+  createDate: any;
+  updateDate: any;
+  numberOfThumbUp: number;
+  numberOfView: number;
+  numberOfComment: number;
+  numberOfFavorite: number;
 }
 
 @Component({

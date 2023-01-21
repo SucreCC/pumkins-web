@@ -9,46 +9,31 @@
 
   <div class="card-content">
 
-    <ul *ngFor="let article of articleList">
+    <ul *ngFor="let blog of blogList">
       <li>
         <div class="left">
 
           <div>
-            <img src="/assets/my-assets/images/home/body5.jpeg" alt="blog-image">
+            <img [src]="blog.images[0]" alt="blog-image">
           </div>
 
         </div>
         <div class="right">
-          <h2><a href="#">The basic use of React</a></h2>
+          <h2><a href="#">{{blog.title}}</a></h2>
 
           <p>
-            install React package
-            python npm install react
-            use react
-            react basic use
-
-            install React package
-            python npm install react
-            use react
-            react basic use
-
-            install React package
-            python npm install react
-            use react
-            react basic use
-
+            {{blog.blogDescription}}
           </p>
 
-
           <div class="blog-info">
-            <span><i class="fa-regular fa-clock"> </i>2022-10-30</span>
-            <span> <i class="fa-regular fa-thumbs-up"></i>123</span>
-            <span><i class="fa fa-eye"></i>123</span>
-            <span><i class="fa-regular fa-comment"></i>123</span>
-            <span><i class="fa-regular fa-star"></i>123</span>
+            <span><i class="fa-regular fa-clock"> </i>{{blog.updateDate}}</span>
+            <span> <i class="fa-regular fa-thumbs-up"></i>{{blog.numberOfThumbUp}}</span>
+            <span><i class="fa fa-eye"></i>{{blog.numberOfView}}</span>
+            <span><i class="fa-regular fa-comment"></i>{{blog.numberOfComment}}</span>
+            <span><i class="fa-regular fa-star"></i>{{blog.numberOfFavorite}}</span>
 
             <span class="show-detail">
-                    <a (click)="showDetail(article)" class="linking font-medium text-themecolor m-t-10 cursor-pointer">
+                    <a (click)="showDetail(blog)" class="linking font-medium text-themecolor m-t-10 cursor-pointer">
                       <span>Show Detail</span>
                       <i class="ti-arrow-right"></i>
                     </a>
