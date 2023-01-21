@@ -7,6 +7,7 @@ import {AddBlogComponent} from "./add-blog/add-blog.component";
 import * as path from "path";
 import {FavouriteBlogComponent} from "./favourite-blog/favourite-blog.component";
 import {title} from "process";
+import {EditBlogComponent} from "./edit-blog/edit-blog.component";
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
       },
       {path: 'backend-manage', component: BackendManageComponent, data: {title: 'BackedManage', name: 'BackedManage'}},
       {path: 'add-blog', component: AddBlogComponent, data: {title: 'AddBlog', name: 'AddBlog'}},
+      {path: 'edit-blog', component: EditBlogComponent, data: {title: 'EditBlog', name: 'EditBlog'}},
     ]
   },
 

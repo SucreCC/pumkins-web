@@ -23,6 +23,7 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzNoAnimationModule} from "ng-zorro-antd/core/no-animation";
 import {NzTagModule} from "ng-zorro-antd/tag";
 import {NzSwitchModule} from "ng-zorro-antd/switch";
+import {EditBlogComponent} from "./edit-blog/edit-blog.component";
 
 
 const COMPONENT = [
@@ -30,7 +31,8 @@ const COMPONENT = [
   BackendManageComponent,
   IndexComponent,
   AddBlogComponent,
-  FavouriteBlogComponent
+  FavouriteBlogComponent,
+  EditBlogComponent
 ];
 
 const COMPONENT_IMPORT = [

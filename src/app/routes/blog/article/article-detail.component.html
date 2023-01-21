@@ -15,15 +15,15 @@
       </h2>
 
       <p>
-        <span>发布时间 :<i>2021-12-12</i></span>
-        <span>作者 :<i>Sucre</i></span>
-        <span>来源 :<i>Sucre的博客</i></span>
+        <span>发布时间 :<i>{{blog.updateDate}}</i></span>
+        <span>作者 :<i>{{blog.username}}</i></span>
       </p>
 
       <div>
         <i title="Tag" class="fas fa-tags"></i>
-        <i>HTML</i>
-        <i>CSS</i>
+        <span *ngFor="let tag of blog.tags">
+          <i style="margin-right: 10px; font-size:14px; color:#e4ad0d; margin-bottom: 5px;">{{tag}}</i>
+        </span>
       </div>
     </div>
 

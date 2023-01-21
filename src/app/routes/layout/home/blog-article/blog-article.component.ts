@@ -25,25 +25,13 @@ export class BlogArticleComponent implements OnInit {
 
 
   showDetail(blog: Blog) {
-    console.log(blog.id)
-    // this.article.heading = "this is heading";
-    // this.article.id = 2;
-    // this.imgList.push("/assets/my-assets/images/home/body5.jpeg")
-    // this.imgList.push("/assets/my-assets/images/theme/body/body3.jpeg")
-    // this.imgList.push("/assets/my-assets/images/theme/body/body1.jpeg")
-    //
-    //
-    // this.transferValueService.imgList.next(this.imgList);
-    // localStorage.setItem("articleImgList", this.imgList.toString())
-    // this.router.navigate(['/blog/article-detail'], {queryParams: {id: this.article.id, heading: this.article.heading}})
+    localStorage.setItem("articleImgList", blog.images.toString());
+    this.router.navigate(['/blog/article-detail'], {queryParams: {id: blog.id, title: blog.title}})
   }
 
   ngOnInit(): void {
     this.http.get(this.getArticleBlogUrl).subscribe(resp => {
       if (resp.status === 0) {
-        resp.data.forEach((data: Blog) => {
-          data.updateDate = data.updateDate.toString().split(" ")[0]
-        })
         this.blogList = resp.data;
       }
     })
