@@ -5,6 +5,7 @@ import {_HttpClient, SettingsService} from "@delon/theme";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Blog} from "../add-blog/add-blog.component";
+import {DateHeaderComponent} from "ng-zorro-antd/date-picker/lib/date-header.component";
 
 const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   new Promise((resolve, reject) => {
@@ -129,6 +130,9 @@ export class EditBlogComponent implements OnInit {
 
   buildBlog() {
     this.blog.markdown = this.vditor.getValue();
+
+    this.blog.updateDate = new Date(this.blog.updateDate);
+    this.blog.createDate = new Date(this.blog.createDate)
 
     if (this.radioValue === "addCover") {
       this.fileList.forEach(element => {
