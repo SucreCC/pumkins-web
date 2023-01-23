@@ -7,6 +7,16 @@ import {timeout, timer} from "rxjs";
 import {_HttpClient} from "@delon/theme";
 import {Blog} from "../../backend/add-blog/add-blog.component";
 
+export class BlogComment {
+  id: number;
+  blogId: number;
+  parentId: number;
+  // childrenId: number;
+  commentContent: string;
+  createDate: any;
+  updateDate: any;
+}
+
 @Component({
   selector: 'app-article-detail',
   templateUrl: './article-detail.component.html',
@@ -51,12 +61,14 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   };
 
   getBlogUrl: string = "/blog/get-blog-by-id";
+  saveBlogCommentUrl: string = "/comment/save-blog-comment";
 
   content: any = "";
   innerHTML: string = '';
   outline: Title[] = [];
   tagTypes: string[] = ["H1", "H2", "H3"];
   blog: Blog = new Blog();
+  blogComment: BlogComment = new BlogComment();
 
   commentList: any[] = [
     {name: '', description: '', subComment: ''},
@@ -138,4 +150,26 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     })
 
   }
+
+  saveComment() {
+    this.commentList = [...this.commentList, this.comment]
+    console.log(this.commentList)
+    this.buildBlogComment()
+    this.http.post(this.saveBlogCommentUrl, this.blogComment).subscribe(resp => {
+      if (resp.status === 0) {
+        console.log(resp.data)
+      }
+    })
+
+  }
+
+  buildBlogComment() {
+    this.blogComment.blogId = this.blog.id;
+    this.blogComment.parentId = 0;
+    this.blogComment.commentContent = this.comment;
+    let date = new Date();
+    this.blogComment.createDate = date;
+    this.blogComment.updateDate = date;
+  }
+
 }

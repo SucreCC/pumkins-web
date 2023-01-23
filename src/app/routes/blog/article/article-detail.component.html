@@ -38,7 +38,7 @@
 
       <div class="submit-comment-body">
         <textarea class="submit-comment-body-textarea" [(ngModel)]="comment" rows="10"></textarea>
-        <button class="submit-comment-body-button"> submit</button>
+        <button (click)="saveComment()" class="submit-comment-body-button">submit</button>
       </div>
 
 
