@@ -201,9 +201,9 @@ export class EditBlogComponent implements OnInit {
 
   handleInputConfirm(): void {
     // @ts-ignore
-    if (this.inputValue && this.tags.indexOf(this.inputValue) === -1) {
+    if (this.inputValue) {
       // @ts-ignore
-      this.tags = [...this.tags, this.inputValue];
+      this.blog.tags = [...this.blog.tags, this.inputValue];
     }
     this.inputValue = '';
     this.inputVisible = false;
