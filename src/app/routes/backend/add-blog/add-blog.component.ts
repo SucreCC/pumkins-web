@@ -20,6 +20,7 @@ export class Blog {
   tags: string[] = [];
   markdown: string;
   category: string;
+  categoryValue: number;
   blogDescription: string = '';
   username: string = '';
   isVisible: boolean;
@@ -156,6 +157,8 @@ export class AddBlogComponent implements OnInit {
       if (value.value === this.categoryValue) {
         // @ts-ignore
         this.blog.category = value.label;
+        // @ts-ignore
+        this.blog.categoryValue = value.value;
       }
     }
 
