@@ -55,32 +55,33 @@
       <ul>
         <li>
           <div class="comment-list-left">
-            <img src="assets/tmp/img/1.png">
+<!--            <img src="assets/tmp/img/1.png">-->
+            <img [src]="comment.icon">
           </div>
 
           <div class="comment-list-right">
-            <h4>Sucre</h4>
+            <h4>{{comment.username}}</h4>
             <div class="comment-list-content">
-              <p>hello</p>
+              <p>{{comment.commentContent}}</p>
 
-              <div>
-                <img src="assets/tmp/img/1.png">
-                <img src="assets/tmp/img/1.png">
-                <img src="assets/tmp/img/1.png">
-              </div>
+<!--              <div>-->
+<!--                <img src="assets/tmp/img/1.png">-->
+<!--                <img src="assets/tmp/img/1.png">-->
+<!--                <img src="assets/tmp/img/1.png">-->
+<!--              </div>-->
             </div>
 
             <div class="comment-list-info">
-              <span>just now</span>
+              <span>{{comment.createDate}}</span>
               <div>
-                <span>thumb up</span>
+                <span>thumb up {{comment.numberOfThumbUp}}</span>
                 <span>reply</span>
-                <span class="comment-list-info-delete">delete</span>
+                <span *ngIf= "comment.username === this.user.username" (click)="deleteComment(comment.id)" class="comment-list-info-delete">delete</span>
               </div>
             </div>
 
 
-            <div class="sub-comment-list" *ngFor="let subComment of commentList">
+            <div class="sub-comment-list" *ngFor="let subComment of comment">
               <div class="sub-comment-item">
 
                 <div class="sub-comment-list-left">
@@ -92,11 +93,11 @@
                   <div class="sub-comment-list-content">
                     <p>hello</p>
 
-                    <div>
-                      <img src="assets/tmp/img/1.png">
-                      <img src="assets/tmp/img/1.png">
-                      <img src="assets/tmp/img/1.png">
-                    </div>
+<!--                    <div>-->
+<!--                      <img src="assets/tmp/img/1.png">-->
+<!--                      <img src="assets/tmp/img/1.png">-->
+<!--                      <img src="assets/tmp/img/1.png">-->
+<!--                    </div>-->
                   </div>
                   <div class="sub-comment-list-info">
                     <span>1s ago</span>

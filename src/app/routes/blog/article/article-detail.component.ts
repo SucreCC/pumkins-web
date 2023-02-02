@@ -4,8 +4,9 @@ import {Article, Title} from "../data/blog-type";
 import {GlobalVariableService} from "../../../service/global-variable.service";
 import Vditor from "vditor";
 import {timeout, timer} from "rxjs";
-import {_HttpClient} from "@delon/theme";
+import {_HttpClient, SettingsService} from "@delon/theme";
 import {Blog} from "../../backend/add-blog/add-blog.component";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 export class BlogComment {
   id: number;
@@ -15,6 +16,9 @@ export class BlogComment {
   commentContent: string;
   createDate: any;
   updateDate: any;
+  username: string;
+  icon: string;
+  numberOfThumbUp: number;
 }
 
 @Component({
@@ -29,7 +33,9 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
               private router: Router,
               public el: ElementRef,
               private transferValueService: GlobalVariableService,
-              private http: _HttpClient,) {
+              private http: _HttpClient,
+              private settingService: SettingsService,
+              private message: NzMessageService,) {
   }
 
   vditor: Vditor;
@@ -61,7 +67,9 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   };
 
   getBlogUrl: string = "/blog/get-blog-by-id";
+  getBlogCommentUrl: string = "/comment/get-blog-comment";
   saveBlogCommentUrl: string = "/comment/save-blog-comment";
+  deleteBlogCommentUrl: string = "/comment/delete-blog-comment";
 
   content: any = "";
   innerHTML: string = '';
@@ -69,6 +77,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   tagTypes: string[] = ["H1", "H2", "H3"];
   blog: Blog = new Blog();
   blogComment: BlogComment = new BlogComment();
+  user: any;
 
   commentList: any[] = [
     {name: '', description: '', subComment: ''},
@@ -80,6 +89,8 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let blogId = this.route.snapshot.queryParams['id'];
     this.getBlogByBlogId(blogId);
+    this.getBlogComment(blogId);
+    this.user = this.settingService.getUser();
   }
 
   private getImgList() {
@@ -148,16 +159,13 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
         this.getOutline();
       }
     })
-
   }
 
   saveComment() {
-    this.commentList = [...this.commentList, this.comment]
-    console.log(this.commentList)
     this.buildBlogComment()
     this.http.post(this.saveBlogCommentUrl, this.blogComment).subscribe(resp => {
       if (resp.status === 0) {
-        console.log(resp.data)
+        this.getBlogComment(this.blog.id);
       }
     })
 
@@ -170,6 +178,27 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     let date = new Date();
     this.blogComment.createDate = date;
     this.blogComment.updateDate = date;
+
+    this.blogComment.username = this.user.username;
+    this.blogComment.icon = this.user.icon;
+    this.blogComment.numberOfThumbUp = 0;
+
   }
 
+  private getBlogComment(blogId: any) {
+    this.http.get(this.getBlogCommentUrl, {"blogId": blogId}).subscribe(resp => {
+      if (resp.status === 0) {
+        this.commentList = resp.data;
+      }
+    })
+  }
+
+  deleteComment(id: number) {
+    this.http.get(this.deleteBlogCommentUrl, {"id": id}).subscribe(resp => {
+      if (resp.status === 0) {
+        this.getBlogComment(this.blog.id);
+        this.message.success("delete comment was successful");
+      }
+    })
+  }
 }

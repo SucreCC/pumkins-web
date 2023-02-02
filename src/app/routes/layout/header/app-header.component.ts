@@ -82,10 +82,10 @@ export class AppHeaderComponent implements OnInit {
 
   dynamicPicture() {
     let index = 0;
-    this.pictureNumber = this.imgList.length;
-
+    // @ts-ignore
     setInterval(() => {
       let elementRefs = this.el.nativeElement.querySelectorAll(".header-img");
+      this.pictureNumber = elementRefs.length;
       for (let e of elementRefs) {
         e.style.opacity = 0;
       }
@@ -93,7 +93,7 @@ export class AppHeaderComponent implements OnInit {
       if (index === this.pictureNumber) {
         index = 0;
       }
-
+      // @ts-ignore
       elementRefs[index].style.opacity = 1;
 
       index++;

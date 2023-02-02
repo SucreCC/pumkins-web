@@ -110,13 +110,13 @@ export class StartupService {
         // 首次进入时如果 浏览器缓存里没有用户信息的话就要设置一个访客用户
         if (userFromLocalStorage === null) {
           this.user.username = this.username_prefix + new Date().getTime();
-          let iconNumber = Math.floor(Math.random() * (6 + 1));
+          let iconNumber = Math.floor(Math.random() * 6) + 1;
           this.user.icon = this.icon_path_prefix + iconNumber + this.icon_path_suffix;
         }
 
         // 如果非访客登入的话， 沿用缓存中的用户
         if (userFromLocalStorage != null) {
-          this.user= JSON.parse(<string>localStorage.getItem('user'));
+          this.user = JSON.parse(<string>localStorage.getItem('user'));
         }
 
 

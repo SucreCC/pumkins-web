@@ -145,6 +145,7 @@ export class EditBlogComponent implements OnInit {
       if (value.value === this.categoryValue) {
         // @ts-ignore
         this.blog.category = value.label;
+        this.blog.categoryValue=value.value;
       }
     }
   }
