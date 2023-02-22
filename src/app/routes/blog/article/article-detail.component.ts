@@ -78,19 +78,19 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   blog: Blog = new Blog();
   blogComment: BlogComment = new BlogComment();
   user: any;
+  reply: string = "";
+  subReply: string = "";
+  comment: string = ""
 
-  commentList: any[] = [
-    {name: '', description: '', subComment: ''},
-    {name: '', description: '', subComment: ''},
-    {name: '', description: '', subComment: ''}];
-
-  comment: string = "This is submit comment"
+  commentList: any[] = [];
 
   ngOnInit(): void {
     let blogId = this.route.snapshot.queryParams['id'];
     this.getBlogByBlogId(blogId);
     this.getBlogComment(blogId);
     this.user = this.settingService.getUser();
+
+    console.log(new Date().getMilliseconds() + Math.floor(Math.random() * 9) * 1000)
   }
 
   private getImgList() {
@@ -163,22 +163,16 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   saveComment() {
     this.buildBlogComment()
+    this.commentList = [this.blogComment, ...this.commentList];
+    this.comment = "";
     this.http.post(this.saveBlogCommentUrl, this.blogComment).subscribe(resp => {
-      if (resp.status === 0) {
-        this.getBlogComment(this.blog.id);
-      }
     })
-
   }
 
   buildBlogComment() {
     this.blogComment.blogId = this.blog.id;
     this.blogComment.parentId = 0;
     this.blogComment.commentContent = this.comment;
-    let date = new Date();
-    this.blogComment.createDate = date;
-    this.blogComment.updateDate = date;
-
     this.blogComment.username = this.user.username;
     this.blogComment.icon = this.user.icon;
     this.blogComment.numberOfThumbUp = 0;
@@ -200,5 +194,46 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
         this.message.success("delete comment was successful");
       }
     })
+  }
+
+  showReply(id: number) {
+    let elementById = document.getElementById("comment" + "-" + id);
+    // @ts-ignore
+    elementById.hidden = !elementById.hidden;
+  }
+
+  replyComment(parentId: number, subCommentId: number, username: string) {
+    let elementById = document.getElementById("comment" + "-" + subCommentId);
+    // @ts-ignore
+    elementById.hidden = !elementById.hidden;
+    this.buildReplyComment(parentId, username)
+    this.http.post(this.saveBlogCommentUrl, this.blogComment).subscribe(resp => {
+      if (resp.status === 0) {
+        this.getBlogComment(this.blog.id);
+      }
+    })
+  }
+
+  buildReplyComment(parentId: number, username: string) {
+    this.blogComment.blogId = this.blog.id;
+    this.blogComment.parentId = parentId;
+    this.blogComment.commentContent = this.reply;
+    this.blogComment.username = this.user.username + "@" + username.split("@")[0];
+    this.blogComment.icon = this.user.icon;
+    this.blogComment.numberOfThumbUp = 0;
+  }
+
+  thumbColor: string = "#ff7300";
+
+  thumbUp(id: number) {
+    let elementById = document.getElementById("thumb-up" + "-" + id);
+
+    // @ts-ignore
+    elementById.style.color = this.thumbColor;
+
+    this.thumbColor
+
+    // @ts-ignore
+    elementById.style.color = "black";
   }
 }

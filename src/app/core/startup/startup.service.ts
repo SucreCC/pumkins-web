@@ -45,7 +45,7 @@ export class StartupService {
     role: 'normal',
   }
 
-  username_prefix: string = "User#";
+  username_prefix: string = "User_";
   icon_path_prefix: string = "assets/tmp/img/"
   icon_path_suffix: string = ".png"
 
@@ -109,7 +109,8 @@ export class StartupService {
 
         // 首次进入时如果 浏览器缓存里没有用户信息的话就要设置一个访客用户
         if (userFromLocalStorage === null) {
-          this.user.username = this.username_prefix + new Date().getTime();
+          // this.user.username = this.username_prefix + new Date().getTime();
+          this.user.username = this.username_prefix + (new Date().getMilliseconds() + Math.floor(Math.random() * 9) * 1000);
           let iconNumber = Math.floor(Math.random() * 6) + 1;
           this.user.icon = this.icon_path_prefix + iconNumber + this.icon_path_suffix;
         }
