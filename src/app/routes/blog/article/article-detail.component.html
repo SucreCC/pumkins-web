@@ -18,7 +18,6 @@
         <span>发布时间 :<i>{{blog.updateDate}}</i></span>
         <span>作者 :<i>{{blog.username}}</i></span>
       </p>
-
       <div>
         <i title="Tag" class="fas fa-tags"></i>
         <span *ngFor="let tag of blog.tags">
@@ -43,10 +42,7 @@
 
 
       <div class="submit-comment-footer">
-        <p>
-          <span>49</span> 人参与，
-          <span>3</span> 条评论
-        </p>
+<!--          <span><i (click)="thumbUp()" class="fa-regular fa-thumbs-up comment-thumb-up"> {{blog.numberOfThumbUp}}</i>&nbsp;</span>-->
 
       </div>
     </div>
@@ -74,7 +70,7 @@
             <div class="comment-list-info">
               <span>{{comment.createDate}}</span>
               <div>
-                <span><i (click)="thumbUp(comment.id)" id="thumb-up-{{comment.id}}" class="fa-regular fa-thumbs-up comment-thumb-up"></i>&nbsp; {{comment.numberOfThumbUp}}</span>
+<!--                <span><i (click)="thumbUp(comment.id)" id="thumb-up-{{comment.id}}" class="fa-regular fa-thumbs-up comment-thumb-up"></i>&nbsp; {{comment.numberOfThumbUp}}</span>-->
                 <span class="comment-reply" (click)="showReply(comment.id)">reply</span>
 <!--                <span *ngIf="comment.username === this.user.username" (click)="deleteComment(comment.id)"-->
 <!--                      class="comment-list-info-delete">delete</span>-->
@@ -113,15 +109,13 @@
                   <div class="sub-comment-list-info">
                     <span>{{subComment.createDate}}</span>
                     <div>
-                      <span>{{subComment.numberOfThumbUp}}</span>
+<!--                      <span>{{subComment.numberOfThumbUp}}</span>-->
                       <span class="comment-reply" (click)="showReply(subComment.id)">reply</span>
 <!--                      <span *ngIf="subComment.username === this.user.username" (click)="deleteComment(subComment.id)"-->
 <!--                            class="comment-list-info-delete">delete</span>-->
                     </div>
 
                   </div>
-
-
 
                   <div hidden id="comment-{{subComment.id}}" class="submit-comment">
                     <!--              <div class="submit-comment-title">Submit Comment</div>-->
@@ -131,31 +125,14 @@
                       </button>
                     </div>
                   </div>
-
-
-
                 </div>
-
-
-
-
-
               </div>
-
-
             </div>
-
-
           </div>
-
         </li>
       </ul>
-
-
     </div>
-
   </div>
-
 </div>
 
 

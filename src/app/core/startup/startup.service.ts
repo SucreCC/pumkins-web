@@ -2,7 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {ACLCanType, ACLService} from '@delon/acl';
-import {ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService} from '@delon/theme';
+import {_HttpClient, ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService} from '@delon/theme';
 import {NzSafeAny} from 'ng-zorro-antd/core/types';
 import {NzIconService} from 'ng-zorro-antd/icon';
 import {Observable, zip, catchError, map} from 'rxjs';
@@ -109,7 +109,6 @@ export class StartupService {
 
         // 首次进入时如果 浏览器缓存里没有用户信息的话就要设置一个访客用户
         if (userFromLocalStorage === null) {
-          // this.user.username = this.username_prefix + new Date().getTime();
           this.user.username = this.username_prefix + (new Date().getMilliseconds() + Math.floor(Math.random() * 9) * 1000);
           let iconNumber = Math.floor(Math.random() * 6) + 1;
           this.user.icon = this.icon_path_prefix + iconNumber + this.icon_path_suffix;

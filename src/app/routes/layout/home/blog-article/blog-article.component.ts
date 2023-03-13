@@ -14,6 +14,7 @@ import {Blog} from "../../../backend/add-blog/add-blog.component";
 export class BlogArticleComponent implements OnInit {
 
   getArticleBlogUrl: string = "/blog/article-blog"
+  getBlogViewUrl: string = "/blog/blog-view"
   blogList: Blog[] = [];
   imgList: string[] = [];
 
@@ -26,7 +27,9 @@ export class BlogArticleComponent implements OnInit {
 
   showDetail(blog: Blog) {
     localStorage.setItem("articleImgList", blog.images.toString());
-    this.router.navigate(['/blog/article-detail'], {queryParams: {id: blog.id, title: blog.title}})
+    this.router.navigate(['/blog/article-detail'], {queryParams: {id: blog.id, title: blog.title}});
+    this.http.get(this.getBlogViewUrl, {id:blog.id}).subscribe(resp=>{
+    });
   }
 
   ngOnInit(): void {

@@ -70,6 +70,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   getBlogCommentUrl: string = "/comment/get-blog-comment";
   saveBlogCommentUrl: string = "/comment/save-blog-comment";
   deleteBlogCommentUrl: string = "/comment/delete-blog-comment";
+  thumbUpUrl: string = "/blog/thumb-up";
 
   content: any = "";
   innerHTML: string = '';
@@ -221,19 +222,5 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     this.blogComment.username = this.user.username + "@" + username.split("@")[0];
     this.blogComment.icon = this.user.icon;
     this.blogComment.numberOfThumbUp = 0;
-  }
-
-  thumbColor: string = "#ff7300";
-
-  thumbUp(id: number) {
-    let elementById = document.getElementById("thumb-up" + "-" + id);
-
-    // @ts-ignore
-    elementById.style.color = this.thumbColor;
-
-    this.thumbColor
-
-    // @ts-ignore
-    elementById.style.color = "black";
   }
 }
