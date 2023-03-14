@@ -28,6 +28,7 @@ import {EllipsisModule} from "@delon/abc/ellipsis";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {BackendModule} from "./backend/backend.module";
+import {MemoryComponent} from "./memory/memory.component";
 
 
 
@@ -45,7 +46,8 @@ const COMPONENT = [
   AppBodyComponent,
   LoginComponent,
   RegisterComponent,
-  ForgetPasswordComponent
+  ForgetPasswordComponent,
+  MemoryComponent
 ];
 
 const COMPONENT_IMPORT = [

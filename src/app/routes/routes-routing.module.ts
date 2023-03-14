@@ -9,6 +9,7 @@ import {RegisterComponent} from "./login/register/register.component";
 import {ForgetPasswordComponent} from "./login/forget-password/forget-password.component";
 import {ACLGuard, ACLGuardType} from "@delon/acl";
 import {ArticleDetailComponent} from "./blog/article/article-detail.component";
+import {MemoryComponent} from "./memory/memory.component";
 
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
       },
 
       {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
+
+      {
+        path: 'memory', component: MemoryComponent, data: {title: 'Memory', name: 'Memory'},
+      },
 
       {
         path: 'about',
@@ -65,7 +70,12 @@ const routes: Routes = [
 
   {
     path: 'forget-password', component: ForgetPasswordComponent, data: {title: 'ForgetPassword', name: 'ForgetPassword'}
-  }
+  },
+
+  //
+  // {
+  //   path: 'memory', component: MemoryComponent, data: {title: 'Memory', name: 'Memory'},
+  // },
 
   // {
   //   path: '', component: WelcomeComponent, data: {title: 'Welcome', name: 'Welcome'}
