@@ -1,6 +1,13 @@
 <section id="cd-timeline" class="cd-container">
-  <div class="cd-timeline-block">
-    <div class="cd-timeline-img cd-picture">
+
+
+  <!--  <span [hidden]="showButton" class="button-list" nz-icon nzType="plus" nzTheme="outline"></span>-->
+  <span (click)="addNode()" [hidden]="showButton" class="button-list">
+  <span nz-icon nzType="plus" nzTheme="outline"></span>
+  </span>
+
+  <div *ngFor="let node of testDate" class="cd-timeline-block">
+    <div (click)="edit()" class="cd-timeline-img cd-picture">
     </div>
 
     <div class="cd-timeline-content">
@@ -15,7 +22,11 @@
             June 2016 - Present
           </span>
       </div>
-      <p>Working alongside the designer team implementing the designs, also developing custom solutions to address team necessities.</p>
+      <p>Working alongside the designer team implementing the designs, also developing custom solutions to address team
+        necessities.
+        Working alongside the designer team implementing the designs, also d
+        Working alongside the designer team implementing the designs, also d
+        Working alongside the designer team implementing the designs, also d</p>
       <ul class="content-skills">
         <li>HTML5</li>
         <li>CSS3</li>
@@ -23,61 +34,210 @@
         <li>jQuery</li>
         <li>Wordpress</li>
       </ul>
+
+      <ul class="content-skills">
+        <li>HTML5</li>
+      </ul>
     </div> <!-- cd-timeline-content -->
   </div> <!-- cd-timeline-block -->
 
-  <div class="cd-timeline-block">
-    <div class="cd-timeline-img cd-movie">
-    </div> <!-- cd-timeline-img -->
+  <!--  <div class="cd-timeline-block">-->
+  <!--    <div class="cd-timeline-img cd-movie">-->
+  <!--    </div> &lt;!&ndash; cd-timeline-img &ndash;&gt;-->
 
-    <div class="cd-timeline-content">
-      <h2>Title of section 2</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
-      <span class="cd-date">Jan 18</span>
-    </div> <!-- cd-timeline-content -->
-  </div> <!-- cd-timeline-block -->
+  <!--    <div class="cd-timeline-content">-->
+  <!--      <h2>Title of section 2</h2>-->
+  <!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi-->
+  <!--        placeat iure tempora laudantium ipsa ad debitis unde?</p>-->
+  <!--      <span class="cd-date">Jan 18</span>-->
+  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
+  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
 
-  <div class="cd-timeline-block">
-    <div class="cd-timeline-img cd-picture">
-    </div> <!-- cd-timeline-img -->
+  <!--  <div class="cd-timeline-block">-->
+  <!--    <div class="cd-timeline-img cd-picture">-->
+  <!--    </div> &lt;!&ndash; cd-timeline-img &ndash;&gt;-->
 
-    <div class="cd-timeline-content">
-      <h2>Title of section 3</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
-      <span class="cd-date">Jan 24</span>
-    </div> <!-- cd-timeline-content -->
-  </div> <!-- cd-timeline-block -->
+  <!--    <div class="cd-timeline-content">-->
+  <!--      <h2>Title of section 3</h2>-->
+  <!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque-->
+  <!--        asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem-->
+  <!--        ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur-->
+  <!--        temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore-->
+  <!--        possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>-->
+  <!--      <span class="cd-date">Jan 24</span>-->
+  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
+  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
 
-  <div class="cd-timeline-block">
-    <div class="cd-timeline-img cd-location">
-    </div> <!-- cd-timeline-img -->
+  <!--  <div class="cd-timeline-block">-->
+  <!--    <div class="cd-timeline-img cd-location">-->
+  <!--    </div> &lt;!&ndash; cd-timeline-img &ndash;&gt;-->
 
-    <div class="cd-timeline-content">
-      <h2>Title of section 4</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-      <span class="cd-date">Feb 14</span>
-    </div> <!-- cd-timeline-content -->
-  </div> <!-- cd-timeline-block -->
+  <!--    <div class="cd-timeline-content">-->
+  <!--      <h2>Title of section 4</h2>-->
+  <!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi-->
+  <!--        placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>-->
+  <!--      <span class="cd-date">Feb 14</span>-->
+  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
+  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
 
-  <div class="cd-timeline-block">
-    <div class="cd-timeline-img cd-location">
+  <!--  <div class="cd-timeline-block">-->
+  <!--    <div class="cd-timeline-img cd-location">-->
+  <!--    </div>-->
+
+  <!--    <div class="cd-timeline-content">-->
+  <!--      <h2>Title of section 5</h2>-->
+  <!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>-->
+  <!--      <span class="cd-date">Feb 18</span>-->
+  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
+  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
+
+  <!--  <div class="cd-timeline-block">-->
+  <!--    <div class="cd-timeline-img cd-movie">-->
+  <!--    </div> &lt;!&ndash; cd-timeline-img &ndash;&gt;-->
+
+  <!--    <div class="cd-timeline-content">-->
+  <!--      <h2>Final Section</h2>-->
+  <!--      <p>This is the content of the last section</p>-->
+  <!--      <span class="cd-date">Feb 26</span>-->
+  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
+  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
+</section> <!-- cd-timeline -->
+
+
+<nz-drawer
+  [nzClosable]="false"
+  [nzOffsetX]="childrenVisible ? 180 : 0"
+  [nzWidth]="600"
+  [nzVisible]="visible"
+  [nzTitle]="drawerTitle"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="cancel()"
+>
+
+  <form *nzDrawerContent nz-form>
+    <div class="info-item">
+      <div class="info-item-left">
+        <span>Title:</span>
+      </div>
+
+      <div class="info-item-right">
+        <input
+          required
+          class="info-item-input"
+          [(ngModel)]="timeNode.title"
+          name="title"
+          placeholder="please input the title"/>
+      </div>
     </div>
 
-    <div class="cd-timeline-content">
-      <h2>Title of section 5</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
-      <span class="cd-date">Feb 18</span>
-    </div> <!-- cd-timeline-content -->
-  </div> <!-- cd-timeline-block -->
+    <div class="info-item-create-date">
+      <div class="info-item-left">
+        <span>Create Date:</span>
+      </div>
 
-  <div class="cd-timeline-block">
-    <div class="cd-timeline-img cd-movie">
-    </div> <!-- cd-timeline-img -->
+      <div class="info-item-right">
+        <nz-date-picker name="createDate" [(ngModel)]="timeNode.createDate"></nz-date-picker>
+      </div>
+    </div>
 
-    <div class="cd-timeline-content">
-      <h2>Final Section</h2>
-      <p>This is the content of the last section</p>
-      <span class="cd-date">Feb 26</span>
-    </div> <!-- cd-timeline-content -->
-  </div> <!-- cd-timeline-block -->
-</section> <!-- cd-timeline -->
+    <div class="info-item">
+      <div class="info-item-left">
+        <span>Tags:</span>
+      </div>
+
+      <div class="info-item-right">
+        <nz-tag
+          class="info-item-right-tag"
+          *ngFor="let tag of tags; let i = index"
+          [nzMode]="'closeable'"
+          (nzOnClose)="handleClose(tag)"
+          name="tags"
+        >
+          {{ sliceTagName(tag) }}
+        </nz-tag>
+
+        <nz-tag *ngIf="!inputVisible" class="editable-tag" name="tags" nzNoAnimation
+                (click)="showInput()">
+          <span nz-icon nzType="plus"> Tag </span>
+        </nz-tag>
+
+        <input
+          class="editable-tag"
+          #inputElement
+          nz-input
+          nzSize="small"
+          *ngIf="inputVisible"
+          type="text"
+          [(ngModel)]="inputValue"
+          style="width: 78px;"
+          name="tag"
+          (blur)="handleInputConfirm()"
+          (keydown.enter)="handleInputConfirm()"
+        />
+      </div>
+    </div>
+
+    <div class="info-item-link-blog">
+      <div class="info-item-left">
+        <span>Link Blog:</span>
+      </div>
+
+      <div class="info-item-right">
+        <button class="login-button" (click)="chooseBlog()">Link Blog</button>
+      </div>
+    </div>
+
+
+    <nz-modal
+      [(nzVisible)]="isTransferVisible"
+      nzTitle="Blog List"
+      (nzOnCancel)="handleCancel()"
+      (nzOnOk)="handleOk()"
+      [nzMask]="true"
+      [nzWidth]=800>
+
+      <ng-container *nzModalContent>
+        <nz-transfer
+          [nzDataSource]="blogTimeLineList"
+          nzShowSearch
+          [nzListStyle]="{ 'width.px': 400, 'height.px': 300 }"
+          [nzRender]="render"
+          (nzSelectChange)="select($event)"
+          (nzChange)="change($event)"
+          name="linkBlog"
+        >
+          <ng-template #render let-item>{{ item.title }}</ng-template>
+        </nz-transfer>
+      </ng-container>
+    </nz-modal>
+
+    <div class="info-item-description">
+      <div class="info-item-left">
+        <span>Description:</span>
+      </div>
+
+      <div class="info-item-right">
+        <textarea class="info-item-description" rows="5" nz-input [(ngModel)]="timeNode.timeDescription"
+                  name="description"></textarea>
+      </div>
+    </div>
+
+
+    <div class="info-item-update-location">
+      <div class="info-item-left">
+        <span>Update Location:</span>
+      </div>
+
+      <span> No &nbsp; </span>
+      <nz-switch [(ngModel)]="isUpdateLocation" name="updateLocation"></nz-switch>
+      <span> &nbsp; Yes </span>
+    </div>
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 20px;" (click)="cancel()">Cancel</button>
+      <button nz-button nzType="primary" (click)="close()">Submit</button>
+    </div>
+  </ng-template>
+</nz-drawer>

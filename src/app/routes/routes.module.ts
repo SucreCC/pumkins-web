@@ -29,6 +29,16 @@ import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {BackendModule} from "./backend/backend.module";
 import {MemoryComponent} from "./memory/memory.component";
+import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import {NzTagModule} from "ng-zorro-antd/tag";
+import {NzListModule} from "ng-zorro-antd/list";
+import {NzWaveModule} from "ng-zorro-antd/core/wave";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
+import {NzNoAnimationModule} from "ng-zorro-antd/core/no-animation";
+import {NzTransferModule} from "ng-zorro-antd/transfer";
+import {NzModalModule} from "ng-zorro-antd/modal";
+import {NzSwitchModule} from "ng-zorro-antd/switch";
 
 
 
@@ -77,7 +87,17 @@ const COMPONENTS_NOROUNT = []
     DelonACLModule,
     EllipsisModule,
     NzDropDownModule,
-    NzIconModule
+    NzIconModule,
+    NzDrawerModule,
+    NzTagModule,
+    NzListModule,
+    NzWaveModule,
+    NzButtonModule,
+    NzDatePickerModule,
+    NzNoAnimationModule,
+    NzTransferModule,
+    NzModalModule,
+    NzSwitchModule
   ],
     providers: [ServiceblogService],
     exports: [

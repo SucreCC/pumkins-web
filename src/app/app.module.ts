@@ -64,6 +64,8 @@ const LANG = {
 import {registerLocaleData} from '@angular/common';
 import {NzMessageModule} from "ng-zorro-antd/message";
 import {DelonACLModule} from "@delon/acl";
+import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import {NzFormModule} from "ng-zorro-antd/form";
 
 registerLocaleData(LANG.ng, LANG.abbr);
 const LANG_PROVIDES = [
@@ -101,7 +103,9 @@ const I18NSERVICE_PROVIDES = [{provide: ALAIN_I18N_TOKEN, useClass: I18NService,
     NzInputModule,
     GlobalConfigModule.forRoot(),
     DelonACLModule.forRoot(),
-    NzMessageModule
+    NzMessageModule,
+    NzDrawerModule,
+    NzFormModule,
   ],
   providers: [...LANG_PROVIDES, ...I18NSERVICE_PROVIDES, ...INTERCEPTOR_PROVIDES, ...APPINIT_PROVIDES, NzModalService],
   bootstrap: [AppComponent]

@@ -27,7 +27,8 @@
 
 <div class="app-header">
 
-  <nav class="header-nav">
+<!--  <nav [hidden]="getTheHighOfScroll() >= 550" class="header-nav">-->
+  <nav [hidden]="showNav" class="header-nav">
     <div class="left">
 
       <a [routerLink]="['/home']">Home</a>

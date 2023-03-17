@@ -29,6 +29,7 @@ export class AppHeaderComponent implements OnInit {
     role: '',
   }
   showIcon: boolean = false;
+  showNav: boolean = true;
 
   tokenInfo: ITokenModel = {
     token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0aW1lU3RhbXAiOjE2Njc3OTYzMzUsImlkIjoxNCwiZXhwIjoxNjY3ODAzNTM1LCJ1c2VybmFtZSI6Imxhb2RvbmdAbGFvZG9uZyJ9.0Hxj5G_G1n9tD4VG86WjPyzicEPE67XXgTI667jULzw',
@@ -62,7 +63,7 @@ export class AppHeaderComponent implements OnInit {
     this.dynamicPicture();
     this.getPicture();
     this.getUserFromLocalStorage();
-
+    this.showNavCheck();
   }
 
 
@@ -121,5 +122,15 @@ export class AppHeaderComponent implements OnInit {
     this.settingService.setUser(user);
     this.tokenService.set(this.tokenInfo);
     window.location.reload();
+  }
+
+  getTheHighOfScroll(): number {
+    return document.documentElement.scrollTop;
+  }
+
+  showNavCheck() {
+    setInterval(() => {
+      this.showNav = document.documentElement.scrollTop >= 650;
+    }, 1)
   }
 }
