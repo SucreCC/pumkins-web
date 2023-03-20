@@ -1,42 +1,91 @@
+<nz-card class="search-card" [nzBordered]='false'>
+  <form class="search-form" nz-form>
+    <div class="search-row" nz-row>
+      <div class="column-search"  nz-col [nzSpan]="3" nzMd='3' nzSm='3'>
+        <nz-form-item>
+          <nz-form-label nzFor='batchName'>UserName</nz-form-label>
+          <nz-form-control>
+            <nz-select [ngModel]="searchOptions.userName" name="searchUser">
+              <nz-option
+                *ngFor="let user of listOfUser"
+                [nzLabel]="user"
+                [nzValue]="user"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="column-search" nz-col [nzSpan]="9" nzMd='4' nzSm='6'>
+        <nz-form-item>
+          <nz-form-label nzFor='date'>Date</nz-form-label>
+          <nz-form-control class="column-search-range-picker">
+            <nz-range-picker [nzPlaceHolder]="placeHolder" [(ngModel)]='rangeDate' name="searchDate" ></nz-range-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+
+      <div class="column-search" nz-col [nzSpan]="6" nzMd='6' nzSm='24'>
+        <nz-form-item>
+          <nz-form-label nzFor='date'>Tags</nz-form-label>
+          <nz-form-control>
+
+            <nz-select nzMode="multiple" name="searchTags" (ngModelChange)="tagChange($event,listOfOption)"
+                       [(ngModel)]="listOfSelectedValue" nzPlaceHolder="Please select no more two">
+              <nz-option
+                *ngFor="let option of listOfOption"
+                [nzLabel]="option"
+                [nzValue]="option"
+                [nzHide]="!isNotSelected(option)"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="6" nzMd='6' nzSm='24'>
+        <button class="search-btn" (btnClick)='getTableList()'>
+          <span>查询</span>
+        </button>
+        <button class="search-btn" (btnClick)='resetTableList()'>
+          <span>重置</span>
+        </button>
+      </div>
+
+    </div>
+  </form>
+</nz-card>
+
+
 <section id="cd-timeline" class="cd-container">
-
-
-  <!--  <span [hidden]="showButton" class="button-list" nz-icon nzType="plus" nzTheme="outline"></span>-->
   <span (click)="addNode()" [hidden]="showButton" class="button-list">
   <span nz-icon nzType="plus" nzTheme="outline"></span>
   </span>
 
-  <div *ngFor="let node of testDate" class="cd-timeline-block">
-    <div (click)="edit()" class="cd-timeline-img cd-picture">
+  <div *ngFor="let node of nodeList" class="cd-timeline-block">
+    <div (click)="edit(node)" class="cd-timeline-img cd-picture">
     </div>
 
     <div class="cd-timeline-content">
-      <h2>Penta Consulting</h2>
+      <h2>{{node.title}}</h2>
       <div class="timeline-content-info">
           <span class="timeline-content-info-title">
             <i class="fa fa-certificate" aria-hidden="true"></i>
-            Front End Developer
+            {{node.username}}
           </span>
         <span class="timeline-content-info-date">
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            June 2016 - Present
+            {{node.createDate}}
           </span>
       </div>
-      <p>Working alongside the designer team implementing the designs, also developing custom solutions to address team
-        necessities.
-        Working alongside the designer team implementing the designs, also d
-        Working alongside the designer team implementing the designs, also d
-        Working alongside the designer team implementing the designs, also d</p>
+      <p>{{node.timeDescription}}</p>
       <ul class="content-skills">
-        <li>HTML5</li>
-        <li>CSS3</li>
-        <li>JavaScript</li>
-        <li>jQuery</li>
-        <li>Wordpress</li>
+        <li *ngFor="let tag of node.tags">{{tag}}</li>
       </ul>
 
       <ul class="content-skills">
-        <li>HTML5</li>
+        <li *ngFor="let blog of node.linkBlog">{{blog.blogTitle}}</li>
       </ul>
     </div> <!-- cd-timeline-content -->
   </div> <!-- cd-timeline-block -->

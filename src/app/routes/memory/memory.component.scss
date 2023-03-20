@@ -14,7 +14,7 @@ html, body {
   padding: 0 10%;
   border-radius: 2px;
 
-  .button-list{
+  .button-list {
     width: 80px;
     height: 80px;
     background-color: #ffffff;
@@ -390,6 +390,7 @@ Main components
 
     .info-item-right {
       width: 90%;
+
       > button {
         border: none;
         height: 32px;
@@ -397,14 +398,13 @@ Main components
         background-color: #ff7300;
         color: white;
         cursor: pointer;
-        font-family:serif;
+        font-family: serif;
         //font-family: cursive;
 
       }
 
     }
   }
-
 
 
   .info-item-update-location {
@@ -420,6 +420,7 @@ Main components
 
     .info-item-right {
       width: 90%;
+
       > button {
         border: none;
         height: 32px;
@@ -427,11 +428,53 @@ Main components
         background-color: #ff7300;
         color: white;
         cursor: pointer;
-        font-family:serif;
+        font-family: serif;
         //font-family: cursive;
 
       }
 
     }
   }
+
+
+  .search-card {
+    width: 100%;
+    text-align:center;
+    align-items: center;
+    line-height:100%;
+
+    .search-form{
+      width:100%;
+      align-items: center;
+
+      .search-row{
+        align-items: center;
+
+        .column-search{
+          height:32px;
+          margin-left:40px;
+          align-items: center;
+          .column-search-range-picker{
+            margin-left:0px;
+            padding:0px;
+          }
+        }
+      }
+    }
+
+    .search-btn {
+      width: 70px;
+      height: 30px;
+      border-radius: 10px;
+      background-color: #77adea;
+      color: white;
+      border: none;
+      cursor: pointer;
+      bottom: 15px;
+      right: 15px;
+      margin-left: 20px;
+    }
+  }
+
+
 }

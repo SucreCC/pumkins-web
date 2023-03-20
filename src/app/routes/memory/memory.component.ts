@@ -6,6 +6,7 @@ import {ReuseTabService} from "@delon/abc/reuse-tab";
 import {Router} from "@angular/router";
 import {StartupService} from "../../core";
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {format} from "date-fns";
 
 
 export class TimeNode {
@@ -14,9 +15,9 @@ export class TimeNode {
   createDate = new Date;
   updateDate = new Date();
   timeDescription: string;
-  latitude: number;
-  longitude: number;
-  linkBlog: [];
+  latitude: any = 0;
+  longitude: any = 0;
+  linkBlog: any;
   tags: [] = [];
   username: string;
   userId: number;
@@ -31,20 +32,16 @@ export class MemoryComponent implements OnInit {
 
   getBlogListUrl: string = "/time-line/blog-list"
   saveTimeNodeUrl: string = "/time-line/save-time-node"
+  getTimeNodeUrl: string = "/time-line/get-time-node"
 
-  title: string = "";
-  createDate = null;
-  timeDescription: string = "";
-  testDate = [1, 2, 3, 4, 5, 6, 7];
-  testDate2 = {};
+  nodeList: TimeNode[];
   timeNode: TimeNode = new TimeNode()
   blogTimeLineList: [] = [];
   linkBlog: [] = [];
-  latitude: number = 0;
-  longitude: number = 0;
   location: any;
   isUpdateLocation: boolean = false;
   drawerTitle = "Add Time Node"
+  rangeDate: Date[] = [];
 
 
   constructor(
@@ -62,16 +59,14 @@ export class MemoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTimelineBlogList();
     navigator.geolocation.getCurrentPosition(this.setPosition);
+    this.getTimeNode();
+    this.getTimelineBlogList();
     this.showButtonCheck();
-
   }
 
   setPosition = (position: any) => {
     this.location = position.coords;
-    // this.longitude = this.location.longitude;
-    // this.latitude = this.location.latitude;
   }
 
 
@@ -80,7 +75,7 @@ export class MemoryComponent implements OnInit {
   }
 
 
-  edit() {
+  edit(node: any) {
     this.drawerTitle = "Edit Time Node"
     this.visible = true;
   }
@@ -179,26 +174,19 @@ export class MemoryComponent implements OnInit {
     // @ts-ignore
     this.timeNode.tags = this.tags;
 
-    if (this.drawerTitle === "Add Time Node") {
-      let user = JSON.parse(<string>localStorage.getItem('user'));
-
-      // @ts-ignore
-      this.timeNode.username = user.username;
-      // @ts-ignore
-      this.timeNode.userId = user.id;
-      this.timeNode.latitude = this.location.latitude;
-      this.timeNode.longitude = this.location.longitude;
-
-      this.http.post(this.saveTimeNodeUrl, this.timeNode).subscribe(resp => {
-        if (resp.status === 0) {
-          this.blogTimeLineList = resp.data;
-        }
-      })
-    }
-
-    if (this.drawerTitle === "Edit Time Node") {
-
-    }
+    let user = JSON.parse(<string>localStorage.getItem('user'));
+    // @ts-ignore
+    this.timeNode.username = user.username;
+    // @ts-ignore
+    this.timeNode.userId = user.id;
+    this.timeNode.latitude = this.location.latitude;
+    this.timeNode.longitude = this.location.longitude;
+    this.http.post(this.saveTimeNodeUrl, this.timeNode).subscribe(resp => {
+      if (resp.status === 0) {
+        this.blogTimeLineList = resp.data;
+      }
+    })
+    this.timeNode = new TimeNode();
   }
 
   openChildren(): void {
@@ -224,5 +212,62 @@ export class MemoryComponent implements OnInit {
 
   addNode() {
     this.visible = true;
+  }
+
+  getTimeNode() {
+    this.http.get(this.getTimeNodeUrl).subscribe(resp => {
+      if (resp.status === 0) {
+        this.nodeList = resp.data;
+      }
+    })
+  }
+
+
+  // nz-card
+
+  placeHolder = ["startDate", "endDate"];
+  // rangePickerSize="";
+
+  searchOptions: any = {
+    templateName: '',
+    username: '',
+    userId: '',
+    startDate: this.rangeDate[0],
+    endDate: this.rangeDate[1],
+
+    // startDate: getDayStartTime(new Date(), 8),
+    // endDate: getDayEndTime(new Date(), 1)
+  };
+
+  getTableList() {
+    // this.st.reset({
+    //   params: {
+    //     templateName: this.searchOptions.templateName,
+    //     startDate: format(this.searchOptions.startDate, 'YYYY-MM-DD HH:mm:ss'),
+    //     endDate: format(this.searchOptions.endDate, 'YYYY-MM-DD HH:mm:ss'),
+    //   },
+    // });
+  }
+
+  resetTableList() {
+    // 重置搜索条件
+    this.searchOptions.templateName = '';
+    // this.searchOptions.startDate = getDayStartTime(new Date(), 8);
+    // this.searchOptions.endDate = getDayEndTime(new Date(), 1);
+    this.getTableList();
+  }
+
+  // tags
+  listOfOption = ['Apples', 'Nails', 'Bananas', 'Helicopters'];
+  listOfUser = ['Apples', 'Nails', 'Bananas', 'Helicopters'];
+  listOfSelectedValue: string[] = [];
+
+  isNotSelected(value: string): boolean {
+    return this.listOfSelectedValue.indexOf(value) === -1;
+  }
+
+  tagChange($event: any, listOfSelectedValue: string[]) {
+    console.log(event)
+    console.log(listOfSelectedValue)
   }
 }

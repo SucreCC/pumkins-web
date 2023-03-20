@@ -39,6 +39,8 @@ import {NzNoAnimationModule} from "ng-zorro-antd/core/no-animation";
 import {NzTransferModule} from "ng-zorro-antd/transfer";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzSwitchModule} from "ng-zorro-antd/switch";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzSelectModule} from "ng-zorro-antd/select";
 
 
 
@@ -97,7 +99,9 @@ const COMPONENTS_NOROUNT = []
     NzNoAnimationModule,
     NzTransferModule,
     NzModalModule,
-    NzSwitchModule
+    NzSwitchModule,
+    NzCardModule,
+    NzSelectModule
   ],
     providers: [ServiceblogService],
     exports: [
