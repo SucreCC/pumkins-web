@@ -6,8 +6,6 @@ import {ReuseTabService} from "@delon/abc/reuse-tab";
 import {Router} from "@angular/router";
 import {StartupService} from "../../core";
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {format} from "date-fns";
-
 
 export class TimeNode {
   title: string;
@@ -23,6 +21,11 @@ export class TimeNode {
   userId: number;
 }
 
+export class TimeLineUser {
+  username: string;
+  userId: number;
+}
+
 @Component({
   selector: 'app-memory',
   templateUrl: './memory.component.html',
@@ -30,10 +33,35 @@ export class TimeNode {
 })
 export class MemoryComponent implements OnInit {
 
-  getBlogListUrl: string = "/time-line/blog-list"
-  saveTimeNodeUrl: string = "/time-line/save-time-node"
-  getTimeNodeUrl: string = "/time-line/get-time-node"
+  getBlogListUrl: string = "/time-line/blog-list";
+  saveTimeNodeUrl: string = "/time-line/save-time-node";
+  getTimeNodeUrl: string = "/time-line/get-time-node";
+  getUserListUrl: string = "/time-line/get-user-list";
+  getTagListUrl: string = "/time-line/get-tag-list";
 
+
+
+  // search
+  listOfUser: Array<{ username: string; userId: number }> = [];
+  listOfOption = [];
+  listOfSelectedTags: string[] = [];
+  selectedUserId: number;
+  searchOptions: any = {
+    // templateName: '',
+    userId: null,
+    // startDate: this.rangeDate[0],
+    // endDate: this.rangeDate[1],
+    // startDate: getDayStartTime(new Date(), 8),
+    // endDate: getDayEndTime(new Date(), 1)
+  };
+
+  // tags
+  tags = [];
+  inputVisible = false;
+  inputValue = '';
+  @ViewChild('inputElement', {static: false}) inputElement?: ElementRef;
+
+  // drawer
   nodeList: TimeNode[];
   timeNode: TimeNode = new TimeNode()
   blogTimeLineList: [] = [];
@@ -42,7 +70,13 @@ export class MemoryComponent implements OnInit {
   isUpdateLocation: boolean = false;
   drawerTitle = "Add Time Node"
   rangeDate: Date[] = [];
+  showButton: boolean = false;
 
+  // Link Blog
+  visible = false;
+  childrenVisible = false;
+
+  placeHolder = ["startDate", "endDate"];
 
   constructor(
     modalSrv: NzModalService,
@@ -63,6 +97,8 @@ export class MemoryComponent implements OnInit {
     this.getTimeNode();
     this.getTimelineBlogList();
     this.showButtonCheck();
+    this.getUserList();
+    this.getTagList();
   }
 
   setPosition = (position: any) => {
@@ -78,13 +114,14 @@ export class MemoryComponent implements OnInit {
   edit(node: any) {
     this.drawerTitle = "Edit Time Node"
     this.visible = true;
+    this.timeNode = node;
+    this.tags = node.tags;
+
+    // @ts-ignore
+    // node.linksblog.forEach(linkBlog => this.linkBlog.direction = "right")
   }
 
-  // tags
-  tags = [];
-  inputVisible = false;
-  inputValue = '';
-  @ViewChild('inputElement', {static: false}) inputElement?: ElementRef;
+
 
   handleClose(removedTag: {}): void {
     this.tags = this.tags.filter(tag => tag !== removedTag);
@@ -157,10 +194,7 @@ export class MemoryComponent implements OnInit {
     this.isTransferVisible = true;
   }
 
-  // Link Blog
 
-  visible = false;
-  childrenVisible = false;
 
   vegetables = ['asparagus', 'bamboo', 'potato', 'carrot', 'cilantro', 'potato', 'eggplant'];
 
@@ -175,8 +209,6 @@ export class MemoryComponent implements OnInit {
     this.timeNode.tags = this.tags;
 
     let user = JSON.parse(<string>localStorage.getItem('user'));
-    // @ts-ignore
-    this.timeNode.username = user.username;
     // @ts-ignore
     this.timeNode.userId = user.id;
     this.timeNode.latitude = this.location.latitude;
@@ -201,7 +233,6 @@ export class MemoryComponent implements OnInit {
     return document.documentElement.scrollTop;
   }
 
-  showButton: boolean = false;
 
   showButtonCheck() {
     setInterval(() => {
@@ -211,6 +242,7 @@ export class MemoryComponent implements OnInit {
 
 
   addNode() {
+    this.timeNode = new TimeNode();
     this.visible = true;
   }
 
@@ -224,50 +256,35 @@ export class MemoryComponent implements OnInit {
 
 
   // nz-card
-
-  placeHolder = ["startDate", "endDate"];
-  // rangePickerSize="";
-
-  searchOptions: any = {
-    templateName: '',
-    username: '',
-    userId: '',
-    startDate: this.rangeDate[0],
-    endDate: this.rangeDate[1],
-
-    // startDate: getDayStartTime(new Date(), 8),
-    // endDate: getDayEndTime(new Date(), 1)
-  };
-
   getTableList() {
-    // this.st.reset({
-    //   params: {
-    //     templateName: this.searchOptions.templateName,
-    //     startDate: format(this.searchOptions.startDate, 'YYYY-MM-DD HH:mm:ss'),
-    //     endDate: format(this.searchOptions.endDate, 'YYYY-MM-DD HH:mm:ss'),
-    //   },
-    // });
+    console.log(this.selectedUserId)
+    console.log(this.rangeDate)
+    console.log(this.listOfSelectedTags)
   }
 
   resetTableList() {
-    // 重置搜索条件
-    this.searchOptions.templateName = '';
-    // this.searchOptions.startDate = getDayStartTime(new Date(), 8);
-    // this.searchOptions.endDate = getDayEndTime(new Date(), 1);
-    this.getTableList();
+  }
+
+  private getUserList() {
+    this.http.get(this.getUserListUrl).subscribe(resp => {
+      if (resp.status === 0) {
+        // @ts-ignore
+        resp.data.forEach(user => this.listOfUser.push({username: user.username, userId: user.userId}))
+      }
+    })
   }
 
   // tags
-  listOfOption = ['Apples', 'Nails', 'Bananas', 'Helicopters'];
-  listOfUser = ['Apples', 'Nails', 'Bananas', 'Helicopters'];
-  listOfSelectedValue: string[] = [];
-
   isNotSelected(value: string): boolean {
-    return this.listOfSelectedValue.indexOf(value) === -1;
+    return this.listOfSelectedTags.indexOf(value) === -1;
   }
 
-  tagChange($event: any, listOfSelectedValue: string[]) {
-    console.log(event)
-    console.log(listOfSelectedValue)
+  private getTagList() {
+    this.http.get(this.getTagListUrl).subscribe(resp => {
+      if (resp.status === 0) {
+        this.listOfOption = resp.data;
+      }
+    })
   }
+
 }

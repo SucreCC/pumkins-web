@@ -1,16 +1,12 @@
 <nz-card class="search-card" [nzBordered]='false'>
   <form class="search-form" nz-form>
     <div class="search-row" nz-row>
-      <div class="column-search"  nz-col [nzSpan]="3" nzMd='3' nzSm='3'>
+      <div class="column-search" nz-col [nzSpan]="3" nzMd='3' nzSm='3'>
         <nz-form-item>
           <nz-form-label nzFor='batchName'>UserName</nz-form-label>
           <nz-form-control>
-            <nz-select [ngModel]="searchOptions.userName" name="searchUser">
-              <nz-option
-                *ngFor="let user of listOfUser"
-                [nzLabel]="user"
-                [nzValue]="user"
-              ></nz-option>
+            <nz-select [(ngModel)]="selectedUserId" name="searchUser" nzShowSearch>
+              <nz-option *ngFor="let user of listOfUser" [nzLabel]="user.username" [nzValue]="user.userId"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
@@ -20,19 +16,17 @@
         <nz-form-item>
           <nz-form-label nzFor='date'>Date</nz-form-label>
           <nz-form-control class="column-search-range-picker">
-            <nz-range-picker [nzPlaceHolder]="placeHolder" [(ngModel)]='rangeDate' name="searchDate" ></nz-range-picker>
+            <nz-range-picker [nzPlaceHolder]="placeHolder" [(ngModel)]='rangeDate' name="searchDate"></nz-range-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
-
 
       <div class="column-search" nz-col [nzSpan]="6" nzMd='6' nzSm='24'>
         <nz-form-item>
           <nz-form-label nzFor='date'>Tags</nz-form-label>
           <nz-form-control>
-
-            <nz-select nzMode="multiple" name="searchTags" (ngModelChange)="tagChange($event,listOfOption)"
-                       [(ngModel)]="listOfSelectedValue" nzPlaceHolder="Please select no more two">
+            <nz-select nzMode="multiple" name="searchTags"
+                       [(ngModel)]="listOfSelectedTags" nzPlaceHolder="Please select no more two">
               <nz-option
                 *ngFor="let option of listOfOption"
                 [nzLabel]="option"
@@ -44,19 +38,13 @@
         </nz-form-item>
       </div>
 
-      <div nz-col [nzSpan]="6" nzMd='6' nzSm='24'>
-        <button class="search-btn" (btnClick)='getTableList()'>
-          <span>查询</span>
-        </button>
-        <button class="search-btn" (btnClick)='resetTableList()'>
-          <span>重置</span>
-        </button>
+      <div class="column-search" nz-col [nzSpan]="6" nzMd='4' nzSm='24'>
+        <button class="search-btn" (click)="getTableList()">Search</button>
+        <button class="search-btn" (click)='resetTableList()'>Reset</button>
       </div>
-
     </div>
   </form>
 </nz-card>
-
 
 <section id="cd-timeline" class="cd-container">
   <span (click)="addNode()" [hidden]="showButton" class="button-list">
@@ -76,7 +64,7 @@
           </span>
         <span class="timeline-content-info-date">
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            {{node.createDate}}
+          {{node.createDate}}
           </span>
       </div>
       <p>{{node.timeDescription}}</p>
@@ -89,67 +77,6 @@
       </ul>
     </div> <!-- cd-timeline-content -->
   </div> <!-- cd-timeline-block -->
-
-  <!--  <div class="cd-timeline-block">-->
-  <!--    <div class="cd-timeline-img cd-movie">-->
-  <!--    </div> &lt;!&ndash; cd-timeline-img &ndash;&gt;-->
-
-  <!--    <div class="cd-timeline-content">-->
-  <!--      <h2>Title of section 2</h2>-->
-  <!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi-->
-  <!--        placeat iure tempora laudantium ipsa ad debitis unde?</p>-->
-  <!--      <span class="cd-date">Jan 18</span>-->
-  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
-  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
-
-  <!--  <div class="cd-timeline-block">-->
-  <!--    <div class="cd-timeline-img cd-picture">-->
-  <!--    </div> &lt;!&ndash; cd-timeline-img &ndash;&gt;-->
-
-  <!--    <div class="cd-timeline-content">-->
-  <!--      <h2>Title of section 3</h2>-->
-  <!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque-->
-  <!--        asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem-->
-  <!--        ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur-->
-  <!--        temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore-->
-  <!--        possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>-->
-  <!--      <span class="cd-date">Jan 24</span>-->
-  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
-  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
-
-  <!--  <div class="cd-timeline-block">-->
-  <!--    <div class="cd-timeline-img cd-location">-->
-  <!--    </div> &lt;!&ndash; cd-timeline-img &ndash;&gt;-->
-
-  <!--    <div class="cd-timeline-content">-->
-  <!--      <h2>Title of section 4</h2>-->
-  <!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi-->
-  <!--        placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>-->
-  <!--      <span class="cd-date">Feb 14</span>-->
-  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
-  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
-
-  <!--  <div class="cd-timeline-block">-->
-  <!--    <div class="cd-timeline-img cd-location">-->
-  <!--    </div>-->
-
-  <!--    <div class="cd-timeline-content">-->
-  <!--      <h2>Title of section 5</h2>-->
-  <!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>-->
-  <!--      <span class="cd-date">Feb 18</span>-->
-  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
-  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
-
-  <!--  <div class="cd-timeline-block">-->
-  <!--    <div class="cd-timeline-img cd-movie">-->
-  <!--    </div> &lt;!&ndash; cd-timeline-img &ndash;&gt;-->
-
-  <!--    <div class="cd-timeline-content">-->
-  <!--      <h2>Final Section</h2>-->
-  <!--      <p>This is the content of the last section</p>-->
-  <!--      <span class="cd-date">Feb 26</span>-->
-  <!--    </div> &lt;!&ndash; cd-timeline-content &ndash;&gt;-->
-  <!--  </div> &lt;!&ndash; cd-timeline-block &ndash;&gt;-->
 </section> <!-- cd-timeline -->
 
 
