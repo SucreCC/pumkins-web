@@ -1,16 +1,12 @@
-import {Component, ElementRef, Inject, Injector, OnInit, ViewChild} from '@angular/core';
-import {_HttpClient, TitleService} from '@delon/theme';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {_HttpClient} from '@delon/theme';
 import {NzModalService} from "ng-zorro-antd/modal";
-import {ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, ITokenService, TokenService} from '@delon/auth';
-import {ReuseTabService} from "@delon/abc/reuse-tab";
-import {Router} from "@angular/router";
-import {StartupService} from "../../core";
 import {NzMessageService} from 'ng-zorro-antd/message';
 
 export class TimeNode {
   title: string;
   // @ts-ignore
-  createDate = new Date;
+  createDate = new Date();
   updateDate = new Date();
   timeDescription: string;
   latitude: any = 0;
@@ -38,21 +34,19 @@ export class MemoryComponent implements OnInit {
   getTimeNodeUrl: string = "/time-line/get-time-node";
   getUserListUrl: string = "/time-line/get-user-list";
   getTagListUrl: string = "/time-line/get-tag-list";
-
+  searchNodeListListUrl: string = "/time-line/search-node-list";
 
 
   // search
   listOfUser: Array<{ username: string; userId: number }> = [];
   listOfOption = [];
   listOfSelectedTags: string[] = [];
-  selectedUserId: number;
+  rangeDate: Date[] = [];
   searchOptions: any = {
-    // templateName: '',
-    userId: null,
-    // startDate: this.rangeDate[0],
-    // endDate: this.rangeDate[1],
-    // startDate: getDayStartTime(new Date(), 8),
-    // endDate: getDayEndTime(new Date(), 1)
+    userId: '',
+    startDate: '',
+    endDate: '',
+    tags: []
   };
 
   // tags
@@ -69,8 +63,8 @@ export class MemoryComponent implements OnInit {
   location: any;
   isUpdateLocation: boolean = false;
   drawerTitle = "Add Time Node"
-  rangeDate: Date[] = [];
   showButton: boolean = false;
+  isTransferVisible = false;
 
   // Link Blog
   visible = false;
@@ -80,14 +74,7 @@ export class MemoryComponent implements OnInit {
 
   constructor(
     modalSrv: NzModalService,
-    private router: Router,
-    public el: ElementRef,
     private http: _HttpClient,
-    @Inject(DA_SERVICE_TOKEN)
-    private tokenService: ITokenService,
-    @Inject(ReuseTabService)
-    private reuseTabService: ReuseTabService,
-    private startupSrv: StartupService,
     public msg: NzMessageService
   ) {
   }
@@ -116,11 +103,7 @@ export class MemoryComponent implements OnInit {
     this.visible = true;
     this.timeNode = node;
     this.tags = node.tags;
-
-    // @ts-ignore
-    // node.linksblog.forEach(linkBlog => this.linkBlog.direction = "right")
   }
-
 
 
   handleClose(removedTag: {}): void {
@@ -153,12 +136,6 @@ export class MemoryComponent implements OnInit {
 
 
   // Transfer start
-
-  reload(direction: string): void {
-    // this.getData();
-    this.msg.success(`your clicked ${direction}!`);
-  }
-
   select(ret: {}): void {
     // console.log('nzSelectChange', ret);
   }
@@ -175,13 +152,10 @@ export class MemoryComponent implements OnInit {
       }
     })
   }
-
   // Transfer end
 
 
   // Link Blog
-  isTransferVisible = false;
-
   handleOk(): void {
     this.isTransferVisible = false;
   }
@@ -193,10 +167,6 @@ export class MemoryComponent implements OnInit {
   chooseBlog() {
     this.isTransferVisible = true;
   }
-
-
-
-  vegetables = ['asparagus', 'bamboo', 'potato', 'carrot', 'cilantro', 'potato', 'eggplant'];
 
   open(): void {
     this.visible = true;
@@ -221,25 +191,15 @@ export class MemoryComponent implements OnInit {
     this.timeNode = new TimeNode();
   }
 
-  openChildren(): void {
-    this.childrenVisible = true;
-  }
-
-  closeChildren(): void {
-    this.childrenVisible = false;
-  }
-
   getTheHighOfScroll(): number {
     return document.documentElement.scrollTop;
   }
 
-
   showButtonCheck() {
     setInterval(() => {
-      this.showButton = document.documentElement.scrollTop <= 300;
+      this.showButton = document.documentElement.scrollTop <= 330;
     }, 1)
   }
-
 
   addNode() {
     this.timeNode = new TimeNode();
@@ -254,15 +214,20 @@ export class MemoryComponent implements OnInit {
     })
   }
 
-
   // nz-card
   getTableList() {
-    console.log(this.selectedUserId)
-    console.log(this.rangeDate)
-    console.log(this.listOfSelectedTags)
+    this.searchOptions.startDate = this.rangeDate[0];
+    this.searchOptions.endDate = this.rangeDate[1];
+    this.http.post(this.searchNodeListListUrl, this.searchOptions).subscribe(resp => {
+      if (resp.status === 0) {
+        this.nodeList = resp.data;
+      }
+    })
   }
 
   resetTableList() {
+    this.searchOptions = {};
+    this.rangeDate = [];
   }
 
   private getUserList() {
