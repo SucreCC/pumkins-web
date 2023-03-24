@@ -11,6 +11,11 @@ import {CommonModule} from "@angular/common";
 import {ArticleDetailComponent} from "./article/article-detail.component";
 import {EditorMdDirective} from "./config/editor-md.directive";
 import {SafeHtmlPipe} from "./config/safe-htlm-pipe";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
+import {NzInputModule} from "ng-zorro-antd/input";
 
 
 const COMPONENT = [
@@ -37,7 +42,7 @@ const COMPONENTS_NOROUNT = []
     ...COMPONENT,
     SafeHtmlPipe,
   ],
-  imports: [...COMPONENT_IMPORT],
+    imports: [...COMPONENT_IMPORT, NzCardModule, NzFormModule, NzSelectModule, NzDatePickerModule, NzInputModule],
   providers: [ServiceblogService],
   exports: []
 })
