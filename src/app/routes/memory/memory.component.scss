@@ -439,24 +439,26 @@ Main components
 
   .search-card {
     width: 100%;
-    text-align:center;
+    min-width: 2000px;
+    text-align: center;
     align-items: center;
-    line-height:100%;
+    line-height: 100%;
 
-    .search-form{
-      width:100%;
+    .search-form {
+      width: 100%;
       align-items: center;
 
-      .search-row{
+      .search-row {
         align-items: center;
 
-        .column-search{
-          height:32px;
-          margin-left:40px;
+        .column-search {
+          height: 32px;
+          margin-left: 40px;
           align-items: center;
-          .column-search-range-picker{
-            margin-left:0px;
-            padding:0px;
+
+          .column-search-range-picker {
+            margin-left: 0px;
+            padding: 0px;
           }
         }
       }

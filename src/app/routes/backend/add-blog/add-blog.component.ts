@@ -22,7 +22,8 @@ export class Blog {
   category: string;
   categoryValue: number;
   blogDescription: string = '';
-  username: string = '';
+  userId: number ;
+  username?: string = '';
   isVisible: boolean;
   workOrLife: boolean = true;
   isDraft: boolean = false;
@@ -164,7 +165,8 @@ export class AddBlogComponent implements OnInit {
 
     this.blog.blogDescription = this.blogDescription;
     // @ts-ignore
-    this.blog.username = this.settingService.getUser().username;
+    // this.blog.username = this.settingService.getUser().username;
+    this.blog.userId= this.settingService.getUser().id;
     this.blog.isVisible = this.isVisible;
     this.blog.workOrLife = this.workOrLife;
     this.blog.isDraft = this.isDraft;

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Blog} from "../data/blog-type";
 import {ServiceblogService} from "../data/blog-service.service";
 import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+// import {HttpClient} from "@angular/common/http";
+import {_HttpClient} from "@delon/theme";
+import {Blog} from "../../backend/add-blog/add-blog.component";
 
 @Component({
   selector: 'app--blog-recent',
@@ -12,19 +13,27 @@ import {HttpClient} from "@angular/common/http";
 export class BlogRecentComponent implements OnInit {
 
   getUserListUrl: string = "/time-line/get-user-list";
+  getCategoryListUrl: string = "/blog/get-category";
+  getBlogTagListUrl: string = "/recent-blog/get-tag-list";
+  getRecentBlogListUrl: string = "/recent-blog/get-recent-blog-list";
   blogsDetail: Blog[] = [];
 
   constructor(
     public service: ServiceblogService,
     public router: Router,
-    public http: HttpClient
+    public http: _HttpClient
   ) {
     this.service.showEdit = false;
   }
 
   ngOnInit(): void {
+    // this.getRecentBlogList();
     this.getUserList();
-    if (this.service.Blogs.length === 0){
+    this.getCategoryList();
+    this.getBlogTagList()
+
+
+    if (this.service.Blogs.length === 0) {
       this.service.getBlog().subscribe((d: any) => (this.service.Blogs = d));
     }
     this.setShowToLocalStorage();
@@ -53,13 +62,16 @@ export class BlogRecentComponent implements OnInit {
   listOfOption = [];
   listOfSelectedTags: string[] = [];
   rangeDate: Date[] = [];
+  blogList: Blog[] = [];
   searchOptions: any = {
     userId: '',
     startDate: '',
     endDate: '',
     tags: [],
-    categoryId:'',
-    title:''
+    categoryName: '',
+    title: '',
+    skipBlogs: 0,
+    pageLimit: 10,
   };
 
   isNotSelected(value: string): boolean {
@@ -70,6 +82,7 @@ export class BlogRecentComponent implements OnInit {
   getTableList() {
     this.searchOptions.startDate = this.rangeDate[0];
     this.searchOptions.endDate = this.rangeDate[1];
+    console.log(this.searchOptions);
     // this.http.post(this.searchNodeListListUrl, this.searchOptions).subscribe(resp => {
     //   if (resp.status === 0) {
     //     this.nodeList = resp.data;
@@ -91,8 +104,6 @@ export class BlogRecentComponent implements OnInit {
       }
     })
   }
-
-
 
 
   workImgList: string[] = ["/assets/my-assets/images/theme/body/body1.jpeg",
@@ -130,5 +141,52 @@ export class BlogRecentComponent implements OnInit {
 
   showDetail() {
 
+  }
+
+  private getCategoryList() {
+    this.http.get(this.getCategoryListUrl).subscribe(resp => {
+      if (resp.status === 0) {
+        // @ts-ignore
+        resp.data.forEach(category => this.listOfCategory.push({categoryName: category.label, categoryId: category.id}))
+      }
+    })
+  }
+
+  private getBlogTagList() {
+    this.http.get(this.getBlogTagListUrl).subscribe(resp => {
+      if (resp.status === 0) {
+        this.listOfOption = resp.data;
+      }
+    })
+  }
+
+  getRecentBlogList() {
+    this.searchOptions.startDate = this.rangeDate[0];
+    this.searchOptions.endDate = this.rangeDate[1];
+    this.searchOptions.skipBlogs = (this.pageIndex - 1) * this.nzPageSize;
+    this.searchOptions.pageLimit = this.nzPageSize;
+
+    console.log(this.searchOptions);
+
+    this.http.post(this.getRecentBlogListUrl, this.searchOptions).subscribe(resp => {
+      if (resp.status === 0) {
+        this.blogList = resp.data;
+      }
+    })
+  }
+
+
+  pageIndex: number = 1;
+  nzTotalPages: number = 200;
+  nzPageSize: number = 10;
+
+  addIndex(page: any, step?: any): void {
+    if (step === 0) {
+      this.pageIndex = page;
+    }
+    if (this.pageIndex > 1 && this.pageIndex < this.nzTotalPages / this.nzPageSize) {
+      this.pageIndex = this.pageIndex + step;
+
+    }
   }
 }

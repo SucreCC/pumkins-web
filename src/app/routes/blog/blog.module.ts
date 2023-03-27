@@ -16,6 +16,7 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {NzInputModule} from "ng-zorro-antd/input";
+import {NzPaginationModule} from "ng-zorro-antd/pagination";
 
 
 const COMPONENT = [
@@ -42,7 +43,7 @@ const COMPONENTS_NOROUNT = []
     ...COMPONENT,
     SafeHtmlPipe,
   ],
-    imports: [...COMPONENT_IMPORT, NzCardModule, NzFormModule, NzSelectModule, NzDatePickerModule, NzInputModule],
+  imports: [...COMPONENT_IMPORT, NzCardModule, NzFormModule, NzSelectModule, NzDatePickerModule, NzInputModule, NzPaginationModule],
   providers: [ServiceblogService],
   exports: []
 })
