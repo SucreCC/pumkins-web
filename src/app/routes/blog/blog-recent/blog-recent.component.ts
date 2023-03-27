@@ -16,7 +16,7 @@ export class BlogRecentComponent implements OnInit {
   getCategoryListUrl: string = "/blog/get-category";
   getBlogTagListUrl: string = "/recent-blog/get-tag-list";
   getRecentBlogListUrl: string = "/recent-blog/get-recent-blog-list";
-  blogsDetail: Blog[] = [];
+  getBlogViewUrl: string = "/blog/blog-view"
 
   constructor(
     public service: ServiceblogService,
@@ -77,22 +77,13 @@ export class BlogRecentComponent implements OnInit {
   pageIndex: number = 1;
   nzTotalPages: number = 0;
   nzPageSize: number = 10;
+  show: boolean = true;
 
   isNotSelected(value: string): boolean {
     return this.listOfSelectedTags.indexOf(value) === -1;
   }
 
   // nz-card
-  getTableList() {
-    this.searchOptions.startDate = this.rangeDate[0];
-    this.searchOptions.endDate = this.rangeDate[1];
-    console.log(this.searchOptions);
-    // this.http.post(this.searchNodeListListUrl, this.searchOptions).subscribe(resp => {
-    //   if (resp.status === 0) {
-    //     this.nodeList = resp.data;
-    //   }
-    // })
-  }
 
   resetTableList() {
     this.searchOptions = {};
@@ -109,26 +100,6 @@ export class BlogRecentComponent implements OnInit {
     })
   }
 
-
-  workImgList: string[] = ["/assets/my-assets/images/theme/body/body1.jpeg",
-    "/assets/my-assets/images/theme/body/body2.jpeg",
-    "/assets/my-assets/images/theme/body/body3.jpeg",
-    "/assets/my-assets/images/theme/body/body3.jpeg",
-    "/assets/my-assets/images/theme/body/body3.jpeg",
-    "/assets/my-assets/images/theme/body/body3.jpeg"
-  ];
-
-
-  lifeImgList: string[] = ["/assets/my-assets/images/theme/body/body2.jpeg",
-    "/assets/my-assets/images/theme/body/body2.jpeg",
-    "/assets/my-assets/images/theme/body/body2.jpeg",
-    "/assets/my-assets/images/theme/body/body3.jpeg",
-    "/assets/my-assets/images/theme/body/body3.jpeg",
-    "/assets/my-assets/images/theme/body/body3.jpeg"
-  ];
-
-  show: boolean = true;
-
   switchShow(show: boolean) {
     this.show = show;
     localStorage.setItem("show", show.toString());
@@ -141,10 +112,6 @@ export class BlogRecentComponent implements OnInit {
     } else {
       this.show = false;
     }
-  }
-
-  showDetail() {
-
   }
 
   private getCategoryList() {
@@ -187,5 +154,12 @@ export class BlogRecentComponent implements OnInit {
       this.pageIndex = this.pageIndex + step;
     }
     this.getRecentBlogList();
+  }
+
+  showDetail(blog: Blog) {
+    localStorage.setItem("articleImgList", blog.images.toString());
+    this.router.navigate(['/blog/article-detail'], {queryParams: {id: blog.id, title: blog.title}});
+    this.http.get(this.getBlogViewUrl, {id:blog.id}).subscribe(resp=>{
+    });
   }
 }

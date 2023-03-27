@@ -24,7 +24,7 @@
         </nz-form-item>
       </div>
 
-      <div class="column-search" nz-col [nzSpan]="4" nzMd='4' nzSm='4'>
+      <div class="column-search" nz-col [nzSpan]="3" nzMd='3' nzSm='4'>
         <nz-form-item>
           <nz-form-label nzFor='batchName'>Title</nz-form-label>
           <nz-form-control>
@@ -44,7 +44,7 @@
           <nz-form-label nzFor='date'>Tags</nz-form-label>
           <nz-form-control>
             <nz-select nzMode="multiple" name="searchTags"
-                       [(ngModel)]="searchOptions.tags" nzPlaceHolder="Please select no more three">
+                       [(ngModel)]="searchOptions.tags">
               <nz-option
                 *ngFor="let option of listOfOption"
                 [nzLabel]="option"
@@ -56,7 +56,7 @@
         </nz-form-item>
       </div>
 
-      <div class="column-search" nz-col [nzSpan]="9" nzMd='4' nzSm='6'>
+      <div class="column-search" nz-col [nzSpan]="9" nzMd='3' nzSm='6'>
         <nz-form-item>
           <nz-form-label nzFor='date'>Date</nz-form-label>
           <nz-form-control class="column-search-range-picker">
@@ -98,7 +98,7 @@
             <!--            <span><i class="fa-regular fa-star"></i>123</span>-->
 
             <span class="show-detail">
-                    <a (click)="showDetail()" class="linking font-medium text-themecolor m-t-10 cursor-pointer">
+                    <a (click)="showDetail(blog)" class="linking font-medium text-themecolor m-t-10 cursor-pointer">
                       <span>Show Detail</span>
                       <i class="ti-arrow-right"></i>
                     </a>
@@ -126,56 +126,3 @@
 
 </div>
 
-
-
-
-
-<!--</div>-->
-
-
-<!--&lt;!&ndash; Row  &ndash;&gt;-->
-<!--<div class="container spacer">-->
-<!--  <div class="row justify-content-center">-->
-<!--    &lt;!&ndash; Column &ndash;&gt;-->
-<!--    <div class="col-md-8 no-trans text-center">-->
-<!--      <h2 class="title">Recent Blogs</h2>-->
-<!--      <h6 class="subtitle">-->
-<!--        You can relay on our amazing features list and also our customer-->
-<!--        services will be great experience for you without doubt and in no-time-->
-<!--      </h6>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; Column &ndash;&gt;-->
-<!--  </div>-->
-<!--  <div class="row m-t-40 justify-content-center">-->
-<!--    &lt;!&ndash; Column &ndash;&gt;-->
-<!--    <div-->
-<!--      class="col-md-8 no-trans border-bottom mb-4"-->
-<!--      *ngFor="let bl of service.Blogs"-->
-<!--    >-->
-<!--      <div class="card" data-aos="flip-left" data-aos-duration="1200">-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-2 no-trans">-->
-<!--            <span class="text-dark font-medium">{{ bl.blogDate }}</span>-->
-<!--            <h6 class="card-subtitle font-12 mt-1">By John Deo</h6>-->
-<!--          </div>-->
-<!--          <div class="col-md-7 no-trans">-->
-<!--            <h5 class="font-medium cursor-pointer" (click)="viewDetail(bl.id)">-->
-<!--              {{ bl.heading.substring(0, 50) }}..-->
-<!--            </h5>-->
-<!--            <p class="m-t-20">-->
-<!--              {{ bl.subHeading }}-->
-<!--            </p>-->
-<!--          </div>-->
-<!--          <div class="col-md-3 no-trans">-->
-<!--            <a-->
-<!--              class="linking font-medium text-themecolor m-t-10 cursor-pointer"-->
-<!--            >-->
-<!--              <span (click)="viewDetail(bl.id)">Show Detail</span>-->
-<!--              <i class="ti-arrow-right"></i>-->
-<!--            </a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
