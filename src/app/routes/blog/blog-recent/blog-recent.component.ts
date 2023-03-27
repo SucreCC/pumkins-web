@@ -27,10 +27,10 @@ export class BlogRecentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getRecentBlogList();
+    this.getRecentBlogList();
     this.getUserList();
     this.getCategoryList();
-    this.getBlogTagList()
+    this.getBlogTagList();
 
 
     if (this.service.Blogs.length === 0) {
@@ -73,6 +73,10 @@ export class BlogRecentComponent implements OnInit {
     skipBlogs: 0,
     pageLimit: 10,
   };
+
+  pageIndex: number = 1;
+  nzTotalPages: number = 0;
+  nzPageSize: number = 10;
 
   isNotSelected(value: string): boolean {
     return this.listOfSelectedTags.indexOf(value) === -1;
@@ -166,19 +170,14 @@ export class BlogRecentComponent implements OnInit {
     this.searchOptions.skipBlogs = (this.pageIndex - 1) * this.nzPageSize;
     this.searchOptions.pageLimit = this.nzPageSize;
 
-    console.log(this.searchOptions);
-
     this.http.post(this.getRecentBlogListUrl, this.searchOptions).subscribe(resp => {
       if (resp.status === 0) {
         this.blogList = resp.data;
+        // @ts-ignore
+        this.nzTotalPages = this.blogList[0].totalBlogs;
       }
     })
   }
-
-
-  pageIndex: number = 1;
-  nzTotalPages: number = 200;
-  nzPageSize: number = 10;
 
   addIndex(page: any, step?: any): void {
     if (step === 0) {
@@ -186,7 +185,7 @@ export class BlogRecentComponent implements OnInit {
     }
     if (this.pageIndex > 1 && this.pageIndex < this.nzTotalPages / this.nzPageSize) {
       this.pageIndex = this.pageIndex + step;
-
     }
+    this.getRecentBlogList();
   }
 }

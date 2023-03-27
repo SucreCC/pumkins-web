@@ -75,41 +75,27 @@
 
 
 <div class="card featured-article">
-  <!--  <div class="card-title">-->
-  <!--    <h2 class="card-h2">Work Bench</h2>-->
-
-  <!--    <div class="switch">-->
-  <!--      <span [style.color]="show===true? '#e4ad0d':'blue'" (click)="switchShow(true)">Work</span>-->
-  <!--      <span>|</span>-->
-  <!--      <span [style.color]="show===false?'#e4ad0d':'blue'" (click)="switchShow(false)">Life</span>-->
-  <!--    </div>-->
-  <!--  </div>-->
 
   <div class="card-content">
 
-    <ul *ngIf="show" class="sucre">
-      <li *ngFor="let img of workImgList">
+    <ul class="sucre">
+      <li *ngFor="let blog of blogList">
         <div class="left">
           <div>
-            <img [src]="img" alt="blog-image">
+            <img [src]="blog.images[0]" alt="blog-image">
           </div>
         </div>
 
-
         <div class="right">
-          <h2>The basic use of React</h2>
-          <p> install React package
-            python npm install react
-            use react
-            react basic use
-          </p>
+          <h2>{{blog.title}}</h2>
+          <p>{{blog.blogDescription}}</p>
 
           <div class="blog-info">
-            <span><i class="fa-regular fa-clock"> </i>2022-10-30</span>
-            <span> <i class="fa-regular fa-thumbs-up"></i>123</span>
-            <span><i class="fa fa-eye"></i>123</span>
-            <span><i class="fa-regular fa-comment"></i>123</span>
-            <span><i class="fa-regular fa-star"></i>123</span>
+            <span><i class="fa-regular fa-clock"> </i>{{blog.createDate}}</span>
+            <!--            <span> <i class="fa-regular fa-thumbs-up"></i>123</span>-->
+            <span class="blog-info-view"><i class="fa fa-eye"></i>{{blog.numberOfView}}</span>
+            <!--            <span><i class="fa-regular fa-comment"></i>123</span>-->
+            <!--            <span><i class="fa-regular fa-star"></i>123</span>-->
 
             <span class="show-detail">
                     <a (click)="showDetail()" class="linking font-medium text-themecolor m-t-10 cursor-pointer">
@@ -122,55 +108,29 @@
 
       </li>
 
-    </ul>
-
-    <ul *ngIf="!show" class="cindy">
-      <li *ngFor="let img of lifeImgList">
-        <div class="left">
-          <div>
-            <img [src]="img" alt="blog-image">
-          </div>
-        </div>
-
-
-        <div class="right">
-          <h2>The basic use of React</h2>
-          <p> install React package
-            python npm install react
-            use react
-            react basic use
-          </p>
-
-          <div class="blog-info">
-            <span><i class="fa-regular fa-clock"> </i>2022-10-30</span>
-            <span> <i class="fa-regular fa-thumbs-up"></i>123</span>
-            <span><i class="fa fa-eye"></i>123</span>
-            <span><i class="fa-regular fa-comment"></i>123</span>
-            <span><i class="fa-regular fa-star"></i>123</span>
-
-            <span class="show-detail">
-                    <a (click)="showDetail()" class="linking font-medium text-themecolor m-t-10 cursor-pointer">
-                      <span>Show Detail</span>
-                      <i class="ti-arrow-right"></i>
-                    </a>
-                  </span>
-          </div>
-        </div>
-      </li>
     </ul>
   </div>
+
+  <nz-pagination class="page-helper-blog" [nzPageIndex]="pageIndex" [nzTotal]="nzTotalPages"
+                 [nzPageSize]="nzPageSize"
+                 [nzItemRender]="renderItemTemplate"></nz-pagination>
+  <ng-template #renderItemTemplate let-type let-page="page">
+    <ng-container [ngSwitch]="type">
+      <a *ngSwitchCase="'page'" (click)="addIndex(page,0)">{{ page }}</a>
+      <a *ngSwitchCase="'prev'" (click)="addIndex(page, -1)">Previous</a>
+      <a *ngSwitchCase="'next'" (click)="addIndex(page,1)">Next</a>
+      <a *ngSwitchCase="'prev_5'" (click)="addIndex(page,-5)"><<</a>
+      <a *ngSwitchCase="'next_5'" (click)="addIndex(page,5)">>></a>
+    </ng-container>
+  </ng-template>
+
 </div>
 
-<nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="nzTotalPages" [nzPageSize]="nzPageSize" [nzItemRender]="renderItemTemplate"></nz-pagination>
-<ng-template #renderItemTemplate let-type let-page="page">
-  <ng-container [ngSwitch]="type">
-    <a *ngSwitchCase="'page'" (click)="addIndex(page,0)">{{ page }}</a>
-    <a *ngSwitchCase="'prev'" (click)="addIndex(page, -1)">Previous</a>
-    <a *ngSwitchCase="'next'" (click)="addIndex(page,1)">Next</a>
-    <a *ngSwitchCase="'prev_5'" (click)="addIndex(page,-5)"><<</a>
-    <a *ngSwitchCase="'next_5'" (click)="addIndex(page,5)">>></a>
-  </ng-container>
-</ng-template>
+
+
+
+
+<!--</div>-->
 
 
 <!--&lt;!&ndash; Row  &ndash;&gt;-->
