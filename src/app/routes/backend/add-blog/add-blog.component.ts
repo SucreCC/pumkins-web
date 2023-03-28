@@ -4,6 +4,7 @@ import {NzUploadFile} from "ng-zorro-antd/upload";
 import {_HttpClient, SettingsService} from "@delon/theme";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {Router} from "@angular/router";
+import {request} from "https";
 
 const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   new Promise((resolve, reject) => {
@@ -22,7 +23,7 @@ export class Blog {
   category: string;
   categoryValue: number;
   blogDescription: string = '';
-  userId: number ;
+  userId: number;
   username?: string = '';
   isVisible: boolean;
   workOrLife: boolean = true;
@@ -55,32 +56,6 @@ export class AddBlogComponent implements OnInit {
   getCategoryUrl: string = "/blog/get-category"
 
   vditor: Vditor;
-  // vditor 初始化时的配置
-  option: IOptions = {
-    mode: 'sv',
-    height: '900px',
-    theme: 'classic',
-    toolbarConfig: {
-      pin: true,
-    },
-    lang: 'en_US',
-
-    preview: {
-      markdown: {
-        autoSpace: true,
-        toc: true,
-        mark: true,
-      }
-    },
-
-    after: () => {
-      this.vditor.setValue(this.content);
-    },
-    input(md) {
-      localStorage.setItem("oldMarkdown", md);
-    },
-  };
-
   visible: boolean = false;
   blog: Blog = new Blog();
   title: string = '';
@@ -108,7 +83,65 @@ export class AddBlogComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.vditor = new Vditor('vditor', this.option);
+    this.buildVditor();
+  }
+
+  buildVditor(): void {
+    this.vditor = new Vditor('vditor', {
+      mode: 'sv',
+      height: '900px',
+      theme: 'classic',
+      toolbarConfig: {
+        pin: true,
+      },
+      lang: 'en_US',
+
+      preview: {
+        markdown: {
+          autoSpace: true,
+          toc: true,
+          mark: true,
+        }
+      },
+
+      after: () => {
+        this.vditor.setValue(this.content);
+      },
+      input(md) {
+        localStorage.setItem("oldMarkdown", md);
+      },
+
+      resize: {
+        enable: true,
+      },
+
+      upload: {
+        url: 'pumkins/blog/save-markdown-images', // 上传url
+        accept: 'image/jpeg,image/png,image/gif,image/jpg,image/bmp', // 图片格式
+        max: 10 * 1024 * 1024,  // 控制大小
+        multiple: false, // 是否允许批量上传
+        fieldName: 'file', // 上传字段名称
+        // 文件名安全处理
+        filename(name) {
+          return name
+            .replace(/[^(a-zA-Z0-9\u4e00-\u9fa5\.)]/g, '')
+            .replace(/[\?\\/:|<>\*\[\]\(\)\$%\{\}@~]/g, '')
+            .replace('/\\s/g', '');
+        },
+        success(editor: HTMLPreElement, msg: string) {
+          let responseData = JSON.parse(msg);
+          let imageUrl = responseData.data;
+          let successFileText = "";
+          successFileText += `\n![${imageUrl}](${imageUrl})`;
+          document.execCommand("insertHTML", false, successFileText);
+          alert("success");
+        },
+      },
+      outline: {
+        enable: true,
+        position: "left",
+      }
+    });
   }
 
   cancel() {
@@ -166,7 +199,7 @@ export class AddBlogComponent implements OnInit {
     this.blog.blogDescription = this.blogDescription;
     // @ts-ignore
     // this.blog.username = this.settingService.getUser().username;
-    this.blog.userId= this.settingService.getUser().id;
+    this.blog.userId = this.settingService.getUser().id;
     this.blog.isVisible = this.isVisible;
     this.blog.workOrLife = this.workOrLife;
     this.blog.isDraft = this.isDraft;
