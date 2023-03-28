@@ -4,7 +4,6 @@ import {NzUploadFile} from "ng-zorro-antd/upload";
 import {_HttpClient, SettingsService} from "@delon/theme";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {Router} from "@angular/router";
-import {request} from "https";
 
 const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   new Promise((resolve, reject) => {
@@ -134,7 +133,6 @@ export class AddBlogComponent implements OnInit {
           let successFileText = "";
           successFileText += `\n![${imageUrl}](${imageUrl})`;
           document.execCommand("insertHTML", false, successFileText);
-          alert("success");
         },
       },
       outline: {
