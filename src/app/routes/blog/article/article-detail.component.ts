@@ -90,8 +90,6 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     this.getBlogByBlogId(blogId);
     this.getBlogComment(blogId);
     this.user = this.settingService.getUser();
-
-    console.log(new Date().getMilliseconds() + Math.floor(Math.random() * 9) * 1000)
   }
 
   private getImgList() {
@@ -142,9 +140,12 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     this.transferValueService.imgList.next(this.transferValueService.originalImgList);
   }
 
+  // @ts-ignore
   editArticle() {
+    if(this.user.role === "normal"){
+      return false;
+    }
     this.router.navigate(['/edit-blog'], {queryParams: {id: this.blog.id}})
-
   }
 
   jumpToContent(id: string) {
