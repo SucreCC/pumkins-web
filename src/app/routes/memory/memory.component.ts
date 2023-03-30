@@ -2,6 +2,8 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {_HttpClient} from '@delon/theme';
 import {NzModalService} from "ng-zorro-antd/modal";
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {Blog} from "../backend/add-blog/add-blog.component";
+import {Router} from "@angular/router";
 
 export class TimeNode {
   title: string;
@@ -35,6 +37,7 @@ export class MemoryComponent implements OnInit {
   getUserListUrl: string = "/time-line/get-user-list";
   getTagListUrl: string = "/time-line/get-tag-list";
   searchNodeListListUrl: string = "/time-line/search-node-list";
+  getBlogViewUrl: string = "/blog/blog-view"
 
 
   // search
@@ -63,8 +66,9 @@ export class MemoryComponent implements OnInit {
   location: any;
   isUpdateLocation: boolean = false;
   drawerTitle = "Add Time Node"
-  showButton: boolean = false;
+  showButton: boolean = true;
   isTransferVisible = false;
+  user: any;
 
   // Link Blog
   visible = false;
@@ -75,11 +79,13 @@ export class MemoryComponent implements OnInit {
   constructor(
     modalSrv: NzModalService,
     private http: _HttpClient,
-    public msg: NzMessageService
+    public msg: NzMessageService,
+    private router: Router,
   ) {
   }
 
   ngOnInit(): void {
+    this.user = JSON.parse(<string>localStorage.getItem('user'));
     navigator.geolocation.getCurrentPosition(this.setPosition);
     this.getTimeNode();
     this.getTimelineBlogList();
@@ -98,9 +104,15 @@ export class MemoryComponent implements OnInit {
   }
 
 
+  // @ts-ignore
   edit(node: any) {
     this.drawerTitle = "Edit Time Node"
-    this.visible = true;
+    if (this.user.role != "normal") {
+      this.visible = true;
+    } else {
+      this.visible = false;
+      return false;
+    }
     this.timeNode = node;
     this.tags = node.tags;
   }
@@ -152,6 +164,7 @@ export class MemoryComponent implements OnInit {
       }
     })
   }
+
   // Transfer end
 
 
@@ -178,9 +191,9 @@ export class MemoryComponent implements OnInit {
     // @ts-ignore
     this.timeNode.tags = this.tags;
 
-    let user = JSON.parse(<string>localStorage.getItem('user'));
+    // let user = JSON.parse(<string>localStorage.getItem('user'));
     // @ts-ignore
-    this.timeNode.userId = user.id;
+    this.timeNode.userId = this.user.id;
     this.timeNode.latitude = this.location.latitude;
     this.timeNode.longitude = this.location.longitude;
     this.http.post(this.saveTimeNodeUrl, this.timeNode).subscribe(resp => {
@@ -197,7 +210,9 @@ export class MemoryComponent implements OnInit {
 
   showButtonCheck() {
     setInterval(() => {
-      this.showButton = document.documentElement.scrollTop <= 330;
+      if (this.user.role != 'normal') {
+        this.showButton = document.documentElement.scrollTop <= 520;
+      }
     }, 1)
   }
 
@@ -250,6 +265,14 @@ export class MemoryComponent implements OnInit {
         this.listOfOption = resp.data;
       }
     })
+  }
+
+
+  showDetail(blog: Blog) {
+    // localStorage.setItem("articleImgList", blog.images.toString());
+    this.router.navigate(['/blog/article-detail'], {queryParams: {id: blog.id, title: blog.title}});
+    this.http.get(this.getBlogViewUrl, {id: blog.id}).subscribe(resp => {
+    });
   }
 
 }
