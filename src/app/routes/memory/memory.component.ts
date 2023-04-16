@@ -222,20 +222,32 @@ export class MemoryComponent implements OnInit {
   }
 
   getTimeNode() {
+    // @ts-ignore
+    document.getElementById('cd-timeline').style.visibility='hidden'
     this.http.get(this.getTimeNodeUrl).subscribe(resp => {
+      this.nodeList = resp.data;
       if (resp.status === 0) {
-        this.nodeList = resp.data;
+        if(this.nodeList.length>0){
+          // @ts-ignore
+          document.getElementById('cd-timeline').style.visibility='visible'
+        }
       }
     })
   }
 
   // nz-card
   getTableList() {
+    // @ts-ignore
+    document.getElementById('cd-timeline').style.visibility='hidden'
     this.searchOptions.startDate = this.rangeDate[0];
     this.searchOptions.endDate = this.rangeDate[1];
     this.http.post(this.searchNodeListListUrl, this.searchOptions).subscribe(resp => {
+      this.nodeList = resp.data;
       if (resp.status === 0) {
-        this.nodeList = resp.data;
+        if(this.nodeList.length>0){
+          // @ts-ignore
+          document.getElementById('cd-timeline').style.visibility='visible'
+        }
       }
     })
   }

@@ -132,6 +132,8 @@ export class BlogRecentComponent implements OnInit {
   }
 
   getRecentBlogList() {
+    // @ts-ignore
+    document.getElementById('featured-article').style.visibility='hidden'
     this.searchOptions.startDate = this.rangeDate[0];
     this.searchOptions.endDate = this.rangeDate[1];
     this.searchOptions.skipBlogs = (this.pageIndex - 1) * this.nzPageSize;
@@ -142,6 +144,11 @@ export class BlogRecentComponent implements OnInit {
         this.blogList = resp.data;
         // @ts-ignore
         this.nzTotalPages = this.blogList[0].totalBlogs;
+
+        if(this.blogList.length > 0) {
+          // @ts-ignore
+          document.getElementById('featured-article').style.visibility='visible'
+        }
       }
     })
   }
