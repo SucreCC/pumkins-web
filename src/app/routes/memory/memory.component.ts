@@ -194,8 +194,10 @@ export class MemoryComponent implements OnInit {
     // let user = JSON.parse(<string>localStorage.getItem('user'));
     // @ts-ignore
     this.timeNode.userId = this.user.id;
-    this.timeNode.latitude = this.location.latitude;
-    this.timeNode.longitude = this.location.longitude;
+    if (this.location.latitude && this.location.longitude) {
+      this.timeNode.latitude = this.location.latitude;
+      this.timeNode.longitude = this.location.longitude;
+    }
     this.http.post(this.saveTimeNodeUrl, this.timeNode).subscribe(resp => {
       if (resp.status === 0) {
         this.blogTimeLineList = resp.data;
@@ -223,13 +225,15 @@ export class MemoryComponent implements OnInit {
 
   getTimeNode() {
     // @ts-ignore
-    document.getElementById('cd-timeline').style.visibility='hidden'
+    document.getElementById('cd-timeline').style.visibility = 'hidden'
     this.http.get(this.getTimeNodeUrl).subscribe(resp => {
       this.nodeList = resp.data;
       if (resp.status === 0) {
-        if(this.nodeList.length>0){
+        if (this.nodeList.length > 0) {
           // @ts-ignore
-          document.getElementById('cd-timeline').style.visibility='visible'
+          document.getElementById('cd-timeline').style.visibility = 'visible'
+        } else {
+          this.visible = true;
         }
       }
     })
@@ -238,15 +242,15 @@ export class MemoryComponent implements OnInit {
   // nz-card
   getTableList() {
     // @ts-ignore
-    document.getElementById('cd-timeline').style.visibility='hidden'
+    document.getElementById('cd-timeline').style.visibility = 'hidden'
     this.searchOptions.startDate = this.rangeDate[0];
     this.searchOptions.endDate = this.rangeDate[1];
     this.http.post(this.searchNodeListListUrl, this.searchOptions).subscribe(resp => {
       this.nodeList = resp.data;
       if (resp.status === 0) {
-        if(this.nodeList.length>0){
+        if (this.nodeList.length > 0) {
           // @ts-ignore
-          document.getElementById('cd-timeline').style.visibility='visible'
+          document.getElementById('cd-timeline').style.visibility = 'visible'
         }
       }
     })

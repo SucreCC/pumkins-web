@@ -476,6 +476,13 @@ Main components
       bottom: 15px;
       right: 15px;
       margin-left: 20px;
+
+      &:hover {
+        //color: #e4ad0d;
+        color: white;
+        //color: #ff4d00;
+        font-weight: bold;
+      }
     }
   }
 
