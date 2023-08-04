@@ -284,10 +284,10 @@ export class MemoryComponent implements OnInit {
   }
 
 
-  showDetail(blog: Blog) {
+  showDetail(blog: any) {
     // localStorage.setItem("articleImgList", blog.images.toString());
-    this.router.navigate(['/blog/article-detail'], {queryParams: {id: blog.id, title: blog.title}});
-    this.http.get(this.getBlogViewUrl, {id: blog.id}).subscribe(resp => {
+    this.router.navigate(['/blog/article-detail'], {queryParams: {id: blog.blogId, title: blog.title}});
+    this.http.get(this.getBlogViewUrl, {id: blog.blogId}).subscribe(resp => {
     });
   }
 
