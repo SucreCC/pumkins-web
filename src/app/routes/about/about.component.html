@@ -1,81 +1,109 @@
-<!--<div-->
-<!--  class="banner-innerpage"-->
-<!--  style="background-image: url(/assets/images/landingpage/banner-bg2.jpg)"-->
-<!--&gt;-->
-<!--  <div class="container">-->
-<!--    &lt;!&ndash; Row  &ndash;&gt;-->
-<!--    <div class="row justify-content-center">-->
-<!--      &lt;!&ndash; Column &ndash;&gt;-->
-<!--      <div class="col-lg-9 col-md-6 no-trans align-self-center text-center">-->
-<!--        <h1 class="title">ABOUT PAGE</h1>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; Column &ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: url('/assets/my-assets/about/a.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+    }
 
-<!-- ==============================================================-->
-<!-- Feature 22-->
-<!-- ==============================================================-->
+    .container {
+      display: flex;
+      width: 80%;
+      max-width: 1200px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
 
-<div class="spacer feature22">
-  <div class="container">
-    <app-top-content></app-top-content>
+    .person {
+      width: 50%;
+      padding: 40px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      margin: 20px;
+    }
+
+    .person.male {
+      order: 1; /* 设置男生在左边 */
+    }
+
+    .person.female {
+      order: 2; /* 设置女生在右边 */
+    }
+
+    .person img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 40px;
+      animation: rotate 6s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .person h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .person p {
+      margin: 30px 0;
+      font-size: 18px;
+    }
+
+    .fade-in {
+      animation: fade-in 3s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="person fade-in male">
+    <img src="/assets/my-assets/about/sucre.jpg" alt="Person 1">
+    <h2>Sucre</h2>
+    <p>Hi, I'm Sucre! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at nulla volutpat, dignissim odio ut, sollicitudin ante.</p>
+    <p>Our website is all about sharing our story and experiences with the world. We want to inspire others to pursue their dreams and create beautiful memories together.</p>
+    <p>In the future, we hope to travel the world, explore new cultures, and build a strong and loving relationship that lasts a lifetime.</p>
+  </div>
+  <div class="person fade-in female">
+    <img src="/assets/my-assets/about/cindy.jpg" alt="Person 2">
+    <h2>Cindy</h2>
+    <p>Hello, I'm Cindy! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at nulla volutpat, dignissim odio ut, sollicitudin ante.</p>
+    <p>This website serves as a platform to document our journey and share our adventures with family, friends, and fellow travel enthusiasts.</p>
+    <p>We look forward to making cherished memories, discovering new places, and embracing the wonderful moments life has in store for us.</p>
   </div>
 </div>
-<!-- ============================================================== -->
-<!-- End Feature 22  -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Feature 1  -->
-<!-- ============================================================== -->
-<div class="bg-light spacer feature1">
-  <div class="container">
-    <!-- Row  -->
-    <div class="row justify-content-center">
-      <div class="col-md-7 text-center no-trans">
-        <h2 class="title">Create beautiful Websites in Record Time</h2>
-        <h6 class="subtitle">
-          You can relay on our amazing features list and also our customer
-          services will be great experience for you without doubt and in no-time
-        </h6>
-      </div>
-    </div>
-    <app-relay-on></app-relay-on>
-  </div>
-</div>
-<!-- ============================================================== -->
-<!-- End Feature 1  -->
-<!-- ============================================================== -->
 
-<!-- ============================================================== -->
-<!-- Call to action -->
-<!-- ============================================================== -->
-<div class="spacer">
-  <div class="container">
-    <div class="row justify-content-center m-b-30">
-      <div class="col-md-7 text-center no-trans">
-        <h2 class="title">
-          Are you happy with what we offer? Grab your WrapKit Angular Blog Copy
-          Now
-        </h2>
-        <h6 class="subtitle">
-          Yeah ! Its pretty cool about what you are offering and i starterd to
-          feel in love with your Amazing UI Kit. I want it Yea!
-        </h6>
-        <a
-          class="btn btn-info-gradiant btn-md btn-arrow m-t-20"
-          data-toggle="collapse"
-          href="#"
-          ><span>View Details <i class="ti-arrow-right"></i></span
-        ></a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ============================================================== -->
-<!-- End Call to action -->
-<!-- ============================================================== -->
-
-
-
+</body>
+</html>

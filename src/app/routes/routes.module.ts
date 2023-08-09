@@ -5,10 +5,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {IndexComponent} from "./layout/index.component";
-import {AboutComponent} from './about/about.component';
 import {ServiceblogService} from './blog/data/blog-service.service';
-import {RelayOnComponent} from './about/About-Components/relay-on/relay-on.component';
-import {TopContentComponent} from './about/About-Components/top-content/top-content.component';
 import {AppHeaderComponent} from './layout/header/app-header.component';
 import {HeaderMenuComponent} from './layout/header/header-menu/header-menu.component';
 import {AppFooterComponent} from './layout/footer/app-footer.component';
@@ -41,7 +38,7 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzSwitchModule} from "ng-zorro-antd/switch";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {NzSelectModule} from "ng-zorro-antd/select";
-import {GuideComponent} from "./guide/guide.component";
+import {AboutComponent} from "./about/about.component";
 
 
 
@@ -49,9 +46,6 @@ const COMPONENT = [
   WelcomeComponent,
   IndexComponent,
   IndexComponent,
-  AboutComponent,
-  RelayOnComponent,
-  TopContentComponent,
   AppHeaderComponent,
   HeaderContentComponent,
   HeaderMenuComponent,
@@ -61,7 +55,7 @@ const COMPONENT = [
   RegisterComponent,
   ForgetPasswordComponent,
   MemoryComponent,
-  GuideComponent,
+  AboutComponent,
 ];
 
 const COMPONENT_IMPORT = [
