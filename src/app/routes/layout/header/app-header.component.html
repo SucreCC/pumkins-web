@@ -1,33 +1,5 @@
-<!--<div class="topbar" id="top">-->
-<!--  <div class="header6">-->
-
-<!--    <div class="container po-relative">-->
-
-<!--      &lt;!&ndash;导航栏菜单&ndash;&gt;-->
-<!--      <nav class="navbar navbar-expand-lg h6-nav-bar">-->
-<!--        <a class="navbar-brand" [routerLink]="['/layout']">-->
-<!--          <img src="/assets/images/logos/white-text.png" alt="pumkins"/>-->
-<!--        </a>-->
-
-<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#h6-info"-->
-<!--                aria-controls="h6-info" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--          <span class="ti-menu"></span>-->
-<!--        </button>-->
-
-<!--        &lt;!&ndash;菜单&ndash;&gt;-->
-<!--        <app-header-menu class="ml-auto"></app-header-menu>-->
-<!--      </nav>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!--图片样式1-->
-<!--<app-header-content></app-header-content>-->
-
 
 <div class="app-header">
-
-<!--  <nav [hidden]="getTheHighOfScroll() >= 550" class="header-nav">-->
   <nav [hidden]="showNav" class="header-nav">
     <div class="left">
 
@@ -36,10 +8,6 @@
       <a [routerLink]="['/blog']">Blog</a>
 
       <a [routerLink]="['/memory']">TimeLine</a>
-
-<!--      <a [routerLink]="['/emotion']">Emotion</a>-->
-
-<!--      <a [routerLink]="['/guide']">Guide</a>-->
 
       <a [routerLink]="['/about']">About</a>
 
@@ -66,8 +34,6 @@
 
       <a *ngIf="showIcon" [routerLink]="['/login']">Sign in</a>
       <a *ngIf="showIcon" [routerLink]="['/register']">Register</a>
-
-
     </div>
   </nav>
 
@@ -79,14 +45,6 @@
       <P>Sucre & Cindy</P>
     </div>
   </header>
-
-
-  <!--  <header>-->
-  <!--    <div class="header-img">-->
-  <!--      <img [src]="pictureSrc" alt="header-picture">-->
-  <!--    </div>-->
-  <!--  </header>-->
-
 
 </div>
 

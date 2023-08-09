@@ -12,50 +12,24 @@
   <div class="card-content">
 
     <ul *ngIf="show" class="sucre">
-      <li *ngFor="let img of workImgList">
+      <li *ngFor="let article of articleList">
         <div class="left">
           <div>
-            <img [src]="img" alt="blog-image">
+            <img [src]="article.images[0]" alt="blog-image">
           </div>
         </div>
 
 
         <div class="right">
-          <h2>The basic use of React</h2>
-          <p> install React package
-            python npm install react
-            use react
-            react basic use
+          <h2 (click)="showDetail(article)">{{article.title}}</h2>
+          <p>
+            {{article.blogDescription}}
           </p>
-          <span>two days ago</span>
+          <span>{{article.day}}</span>
         </div>
 
       </li>
 
     </ul>
-
-    <ul *ngIf="!show" class="cindy">
-      <li *ngFor="let img of lifeImgList">
-        <div class="left">
-          <div>
-            <img [src]="img" alt="blog-image">
-          </div>
-        </div>
-
-
-        <div class="right">
-          <h2>The basic use of React</h2>
-          <p> install React package
-            python npm install react
-            use react
-            react basic use
-          </p>
-          <span>two days ago</span>
-        </div>
-
-      </li>
-
-    </ul>
-
   </div>
 </div>
