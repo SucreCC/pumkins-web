@@ -10,6 +10,7 @@ import {ForgetPasswordComponent} from "./login/forget-password/forget-password.c
 import {ACLGuard, ACLGuardType} from "@delon/acl";
 import {ArticleDetailComponent} from "./blog/article/article-detail.component";
 import {MemoryComponent} from "./memory/memory.component";
+import {GuideComponent} from "./guide/guide.component";
 
 
 const routes: Routes = [
@@ -90,6 +91,10 @@ const routes: Routes = [
   // {
   //   path: 'about', component: ForgetPasswordComponent, data: {title: 'About', name: 'About'}
   // }
+
+  {
+    path: 'guide', component: GuideComponent, data: {title: 'guide', name: 'Guide'}
+  },
 ];
 
 @NgModule({

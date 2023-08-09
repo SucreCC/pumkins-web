@@ -41,6 +41,7 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzSwitchModule} from "ng-zorro-antd/switch";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {NzSelectModule} from "ng-zorro-antd/select";
+import {GuideComponent} from "./guide/guide.component";
 
 
 
@@ -59,7 +60,8 @@ const COMPONENT = [
   LoginComponent,
   RegisterComponent,
   ForgetPasswordComponent,
-  MemoryComponent
+  MemoryComponent,
+  GuideComponent,
 ];
 
 const COMPONENT_IMPORT = [
