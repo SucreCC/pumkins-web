@@ -7,13 +7,20 @@ import {HomeRoutingModule} from "./home-routing.module";
 import {BlogArticleComponent} from "./blog-article/blog-article.component";
 import {TagsComponent} from "./tags/tags.component";
 import {FeaturedArticleComponent} from "./featured-article/featured-article.component";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {LinksComponent} from "./links/links.component";
+import {WebInformationComponent} from "./web-information/web-information.component";
+import {AdvertisementComponent} from "./advertisement/advertisement.component";
 
 
 const COMPONENT = [
   HomeComponent,
   BlogArticleComponent,
   TagsComponent,
-  FeaturedArticleComponent
+  FeaturedArticleComponent,
+  LinksComponent,
+  WebInformationComponent,
+  AdvertisementComponent
 ];
 
 const COMPONENT_IMPORT = [
@@ -32,6 +39,7 @@ const COMPONENTS_NOROUNT = []
     ],
     imports: [
         ...COMPONENT_IMPORT,
+        NzIconModule,
     ],
     providers: [],
   exports: [
