@@ -3,11 +3,16 @@
     <h2 class="card-h2">Website information</h2>
 
     <div>
-      <a href="#">Show Detail</a>
+<!--      <a href="#">Show Detail</a>-->
     </div>
   </div>
 
   <div class="card-content">
-    Content Area
+    <div class="clock">
+      <div class="hand hour" [style.transform]="'rotate(' + hourDegrees + 'deg)'"></div>
+      <div class="hand minute" [style.transform]="'rotate(' + minuteDegrees + 'deg)'"></div>
+      <div class="hand second" [style.transform]="'rotate(' + secondDegrees + 'deg)'"></div>
+    </div>
+
   </div>
 </div>
