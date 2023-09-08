@@ -7,9 +7,7 @@ import {WelcomeComponent} from "./welcome/welcome.component";
 import {IndexComponent} from "./layout/index.component";
 import {ServiceblogService} from './blog/data/blog-service.service';
 import {AppHeaderComponent} from './layout/header/app-header.component';
-import {HeaderMenuComponent} from './layout/header/header-menu/header-menu.component';
 import {AppFooterComponent} from './layout/footer/app-footer.component';
-import {HeaderContentComponent} from "./layout/header/header-content/header-content.component";
 import {AppBodyComponent} from "./layout/body/app-body.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {HomeModule} from "./layout/home/home.module";
@@ -47,8 +45,6 @@ const COMPONENT = [
   IndexComponent,
   IndexComponent,
   AppHeaderComponent,
-  HeaderContentComponent,
-  HeaderMenuComponent,
   AppFooterComponent,
   AppBodyComponent,
   LoginComponent,
