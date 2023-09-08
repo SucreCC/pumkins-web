@@ -24,16 +24,16 @@
 
       <nz-dropdown-menu #menu2="nzDropdownMenu">
         <ul nz-menu>
-          <li nz-menu-item [routerLink]="['/user-center']">个人中心</li>
-          <li nz-menu-item>修改头像</li>
-          <li nz-menu-item [routerLink]="['/add-blog']">发布文章</li>
-          <li nz-menu-item [routerLink]="['/backend-manage']">后台管理</li>
-          <li nz-menu-item (click)="logout()">logout</li>
+          <li nz-menu-item [routerLink]="['/user-center']">User Center</li>
+          <li nz-menu-item>Change Avert</li>
+          <li nz-menu-item [routerLink]="['/add-blog']">Publish Blog</li>
+          <li nz-menu-item [routerLink]="['/backend-manage']">Backend Manage</li>
+          <li nz-menu-item (click)="logout()">Logout</li>
         </ul>
       </nz-dropdown-menu>
 
-      <a *ngIf="showIcon" [routerLink]="['/login']">Sign in</a>
-      <a *ngIf="showIcon" [routerLink]="['/register']">Register</a>
+      <a *ngIf="showIcon" [routerLink]="['/login']">Sign In</a>
+      <a *ngIf="showIcon" [routerLink]="['/register']">Sign Up</a>
     </div>
   </nav>
 
@@ -43,6 +43,7 @@
     </div>
     <div class="header-txt">
       <P>Sucre & Cindy</P>
+      <h5>To Record Every Moment In Life</h5>
     </div>
   </header>
 

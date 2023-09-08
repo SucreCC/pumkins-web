@@ -11,7 +11,7 @@
 
   <div class="card-content">
 
-    <ul *ngIf="show" class="sucre">
+    <ul class="sucre">
       <li *ngFor="let article of articleList">
         <div class="left">
           <div>
@@ -21,11 +21,11 @@
 
 
         <div class="right">
-          <h2 (click)="showDetail(article)">{{article.title}}</h2>
+          <h2 (click)="showDetail(article)">{{ article.title}}</h2>
           <p>
             {{article.blogDescription}}
           </p>
-          <span>{{article.day}}</span>
+          <span><i class="fa-regular fa-clock"></i>&nbsp;&nbsp;{{article.day}}</span>
         </div>
 
       </li>
