@@ -2,8 +2,6 @@ import {NgModule} from '@angular/core';
 import {RoutesRoutingModule} from './routes-routing.module';
 import {CommonModule} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
-import {WelcomeComponent} from "./welcome/welcome.component";
 import {IndexComponent} from "./layout/index.component";
 import {ServiceblogService} from './blog/data/blog-service.service';
 import {AppHeaderComponent} from './layout/header/app-header.component';
@@ -41,7 +39,6 @@ import {AboutComponent} from "./about/about.component";
 
 
 const COMPONENT = [
-  WelcomeComponent,
   IndexComponent,
   IndexComponent,
   AppHeaderComponent,
@@ -97,7 +94,6 @@ const COMPONENTS_NOROUNT = []
   ],
     providers: [ServiceblogService],
     exports: [
-        WelcomeComponent,
         AppHeaderComponent
     ]
 })
