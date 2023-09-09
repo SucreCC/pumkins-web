@@ -24,10 +24,10 @@
 
       <nz-dropdown-menu #menu2="nzDropdownMenu">
         <ul nz-menu>
-          <li nz-menu-item [routerLink]="['/user-center']">User Center</li>
-          <li nz-menu-item>Change Avert</li>
-          <li nz-menu-item [routerLink]="['/add-blog']">Publish Blog</li>
-          <li nz-menu-item [routerLink]="['/backend-manage']">Backend Manage</li>
+          <li *ngIf="showMenu" nz-menu-item [routerLink]="['/user-center']">User Center</li>
+          <li *ngIf="showMenu" nz-menu-item>Change Avert</li>
+          <li *ngIf="showMenu" nz-menu-item [routerLink]="['/add-blog']">Publish Blog</li>
+          <li *ngIf="showMenu" nz-menu-item [routerLink]="['/backend-manage']">Backend Manage</li>
           <li nz-menu-item (click)="logout()">Logout</li>
         </ul>
       </nz-dropdown-menu>

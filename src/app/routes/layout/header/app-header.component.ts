@@ -30,6 +30,7 @@ export class AppHeaderComponent implements OnInit {
   }
   showIcon: boolean = false;
   showNav: boolean = true;
+  showMenu: boolean = false;
 
   tokenInfo: ITokenModel = {
     token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0aW1lU3RhbXAiOjE2Njc3OTYzMzUsImlkIjoxNCwiZXhwIjoxNjY3ODAzNTM1LCJ1c2VybmFtZSI6Imxhb2RvbmdAbGFvZG9uZyJ9.0Hxj5G_G1n9tD4VG86WjPyzicEPE67XXgTI667jULzw',
@@ -115,6 +116,10 @@ export class AppHeaderComponent implements OnInit {
   private getUserFromLocalStorage() {
     this.user = JSON.parse(<string>localStorage.getItem('user'));
     this.showIcon = this.user.email.length === 0
+    if (this.user.role != 'normal') {
+      this.showMenu = true;
+      console.log(this.user.role)
+    }
   }
 
   logout() {
