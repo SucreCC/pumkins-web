@@ -49,11 +49,6 @@
               "src/app/styles/index.less",
               "src/theme.less",
               "src/styles.css",
-              "node_modules/reveal.js/dist/reveal.css",
-              "node_modules/reveal.js/dist/reset.css",
-              "node_modules/reveal.js/dist/theme/white.css",
-
-              "node_modules/reveal.js/plugin/highlight/monokai.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
 
               "node_modules/prismjs/themes/prism-okaidia.css",
