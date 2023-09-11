@@ -194,10 +194,10 @@ export class MemoryComponent implements OnInit {
     // let user = JSON.parse(<string>localStorage.getItem('user'));
     // @ts-ignore
     this.timeNode.userId = this.user.id;
-    if (this.location.latitude && this.location.longitude) {
-      this.timeNode.latitude = this.location.latitude;
-      this.timeNode.longitude = this.location.longitude;
-    }
+   // if (location != undefined && this.location.latitude && this.location.longitude) {
+   //    this.timeNode.latitude = this.location.latitude;
+   //    this.timeNode.longitude = this.location.longitude;
+   //  }
     this.http.post(this.saveTimeNodeUrl, this.timeNode).subscribe(resp => {
       if (resp.status === 0) {
         this.blogTimeLineList = resp.data;
