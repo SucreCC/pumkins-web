@@ -1,6 +1,7 @@
 # PumkinsFrontkit
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
+It's my private blog project written by Angular and JAVA which is used to record my daily life (including functions like register/login, blog management, backend management, authority management…).
+
 
 ## Development server
 
