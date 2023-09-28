@@ -8,6 +8,19 @@ website: http://www.pumkins.us:4200/
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 ## Version Control
 
+# Version
+| Name             | Version | Comment |
+| :--------------- | ------- | ------- |
+| Angular             | 1.8     |         |
+| Ng Zorro| 2.21    |         |
+| Ng Alan            | 8.1.0   |         |
+| Querydsl         | 5.0.0   |         |
+| Log4j            | 2.11.0  |         |
+| Maven            | 3.2     |         |
+| Hibernate        | 5.4.7   |         |
+
+
+
 ## Pages
 ### Login & Register Page
 <img width="1725" alt="image" src="https://user-images.githubusercontent.com/79621538/221122073-44b60c07-2c71-48e3-8d9d-2416843bc557.png">
