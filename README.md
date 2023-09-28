@@ -13,7 +13,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 | :--------------- | ------- | ------- |
 | Angular             | 13.2.1     |         |
 | Ng Zorro|  14.1.1    |       |
-| Ng Alan            | 14.1.1   |         |
+| Ng Alain            | 14.1.1   |         |
 | Vditor         | 3.8.18  |         |
 | rxjs            | 7.5.0  |         |
 
