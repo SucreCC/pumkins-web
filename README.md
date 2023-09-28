@@ -11,14 +11,11 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 # Version
 | Name             | Version | Comment |
 | :--------------- | ------- | ------- |
-| Angular             | 1.8     |         |
-| Ng Zorro| 2.21    |         |
-| Ng Alan            | 8.1.0   |         |
-| Querydsl         | 5.0.0   |         |
-| Log4j            | 2.11.0  |         |
-| Maven            | 3.2     |         |
-| Hibernate        | 5.4.7   |         |
-
+| Angular             | 13.2.1     |         |
+| Ng Zorro| 2.21    |   14.1.1     |
+| Ng Alan            | 14.1.1   |         |
+| Vditor         | 3.8.18  |         |
+| rxjs            | 7.5.0  |         |
 
 
 ## Pages
