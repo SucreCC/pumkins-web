@@ -1,7 +1,6 @@
 # PumkinsFrontkit
 
 It's my private blog project written by Angular and JAVA which is used to record my daily life (including functions like register/login, blog management, backend management, authority management…).
-
 website: http://www.pumkins.us:4200/
 
 ## Development server
